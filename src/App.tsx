@@ -117,7 +117,7 @@ function App() {
         </aside>
 
         {/* Main Content */}
-        <main className="flex-1 h-full p-4 md:p-5 ml-0">
+        <main className="flex-1 h-full p-2">
           {/* Top Bar */}
           <header className="flex items-center justify-between rounded-xl border border-white/10 bg-slate-900/40 backdrop-blur p-3">
             <div className="flex items-center gap-2 text-sm opacity-80">
@@ -154,20 +154,25 @@ function App() {
               element={
                 <div>
                   {/* Home dashboard with previews */}
-                  <section className="grid grid-cols-1 lg:grid-cols-3 gap-4 mt-4">
-
 
                   {/* About Me */}
-                  <section className="backdrop-blur mt-6 rounded-xl border border-white/10 bg-slate-900/30 p-4">
-                    <h2 className="text-lg font-semibold mb-3">About Me</h2>
-                    <p className="text-sm opacity-90">
-                      I'm Neel, a CS + Data Science student at UW–Madison (’27).
-                      I enjoy building useful interfaces and AI-assisted
-                      tools—from VR learning experiences to agentic planners.
-                      I'm actively seeking SWE internships.
-                    </p>
+                  <section className="flex flex-row backdrop-blur mt-4 rounded-xl border border-white/10 bg-slate-900/30 p-4">
+                    <div>
+                      <h2 className="text-lg font-semibold mb-3">About Me</h2>
+                      <p className="text-sm opacity-90">
+                        I'm Neel, a CS + Data Science student at UW–Madison
+                        (’27). I enjoy building useful interfaces and
+                        AI-assisted tools—from VR learning experiences to
+                        agentic planners. I'm actively seeking SWE internships.
+                      </p>
+                    </div>
+                    <div>
+                      <img className="max-w-26 rounded-2xl border-2 border-white/10 "src="src/assets/profile_picture.jpg ">
+                      
+                      </img>
+                    </div>
                   </section>
-                  
+                  <section className="grid grid-cols-1 lg:grid-cols-3 gap-4 mt-4">
                     {/* Featured Project */}
                     <div className="backdrop-blur rounded-xl border border-white/10 bg-slate-900/30 p-4">
                       <h3 className="text-sm opacity-70 mb-2">
@@ -288,7 +293,6 @@ function App() {
                       ))}
                     </div>
                   </section>
-
                 </div>
               }
             />
