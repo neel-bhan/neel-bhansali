@@ -167,7 +167,8 @@ function App() {
                       </p>
                     </div>
                     <div>
-                      <img className="max-w-26 rounded-2xl border-2 border-white/10 "src="src/assets/profile_picture.jpg ">
+                      <img className="max-w-26 rounded-2xl border-2 border-white/10 "src="/profile_picture.jpg"
+  alt="Profile">
                       
                       </img>
                     </div>
