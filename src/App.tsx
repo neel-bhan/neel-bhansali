@@ -12,6 +12,20 @@ import { Routes, Route, Link, useLocation } from "react-router-dom";
 import "./App.css";
 import { Button } from "./components/ui/button";
 import Squares from "./components/Squares/Squares";
+import {
+  SiPython,
+  SiJavascript,
+  SiTypescript,
+  SiReact,
+  SiNodedotjs,
+  SiDotnet,
+  SiDjango,
+  SiMongodb,
+  SiTensorflow,
+  SiPytorch,
+  SiGit,
+} from "react-icons/si";
+import { FaJava } from "react-icons/fa";
 
 function SidebarLink({
   to,
@@ -39,25 +53,25 @@ function App() {
     { label: "Home", to: "/", icon: HomeIcon },
     { label: "Projects", to: "/projects", icon: FolderGit2 },
     { label: "Experience", to: "/experience", icon: Briefcase },
-    { label: "AIFA", to: "/aifa", icon: Building2 }, // changed icon
+    { label: "Organizations", to: "/organizations", icon: Building2 }, // changed icon
   ];
 
   return (
     <div className="relative w-full h-screen overflow-hidden text-white">
       {/* Background (subtle) */}
-      <div className="absolute inset-0 -z-10">
+      <div className="absolute inset-0 pointer-events-none">
         <Squares
           speed={0.2}
-          squareSize={56}
+          squareSize={35}
           direction="diagonal"
-          borderColor="#232634"
+          borderColor="#0f1899"
         />
       </div>
 
       {/* App Shell */}
-      <div className="flex h-full">
+      <div className="flex h-full min-h-screen">
         {/* Sidebar */}
-        <aside className="hidden md:flex h-full w-64 flex-col m-4 rounded-2xl border border-white/10 bg-slate-900/40 backdrop-blur p-4">
+        <aside className="md:flex w-60 flex-col m-2 rounded-2xl border border-white/10 bg-slate-900/40 backdrop-blur p-4 h-[96vh] max-h-[900px]">
           <div className="text-lg font-semibold mb-6 flex items-center gap-2">
             <LayoutDashboard size={18} />
             <span>Neel Bhansali</span>
@@ -103,7 +117,7 @@ function App() {
         </aside>
 
         {/* Main Content */}
-        <main className="flex-1 h-full p-4 md:p-6 overflow-auto">
+        <main className="flex-1 h-full p-4 md:p-5 ml-0">
           {/* Top Bar */}
           <header className="flex items-center justify-between rounded-xl border border-white/10 bg-slate-900/40 backdrop-blur p-3">
             <div className="flex items-center gap-2 text-sm opacity-80">
@@ -142,7 +156,7 @@ function App() {
                   {/* Home dashboard with previews */}
                   <section className="grid grid-cols-1 lg:grid-cols-3 gap-4 mt-4">
                     {/* Featured Project */}
-                    <div className="rounded-xl border border-white/10 bg-slate-900/30 p-4">
+                    <div className="backdrop-blur rounded-xl border border-white/10 bg-slate-900/30 p-4">
                       <h3 className="text-sm opacity-70 mb-2">
                         Featured Project
                       </h3>
@@ -170,17 +184,11 @@ function App() {
                         >
                           See projects →
                         </Link>
-                        <a
-                          className="text-emerald-300 hover:underline"
-                          href="#"
-                        >
-                          Read concept note
-                        </a>
                       </div>
                     </div>
 
                     {/* Latest Experience */}
-                    <div className="rounded-xl border border-white/10 bg-slate-900/30 p-4">
+                    <div className="backdrop-blur rounded-xl border border-white/10 bg-slate-900/30 p-4">
                       <h3 className="text-sm opacity-70 mb-2">
                         Latest Experience
                       </h3>
@@ -213,7 +221,7 @@ function App() {
                     </div>
 
                     {/* Quick Links */}
-                    <div className="rounded-xl border border-white/10 bg-slate-900/30 p-4">
+                    <div className="backdrop-blur rounded-xl border border-white/10 bg-slate-900/30 p-4">
                       <h3 className="text-sm opacity-70 mb-2">Quick Links</h3>
                       <ul className="text-sm space-y-1 opacity-90">
                         <li>
@@ -239,38 +247,37 @@ function App() {
                   </section>
 
                   {/* Tech Stack */}
-                  <section className="mt-6 rounded-xl border border-white/10 bg-slate-900/30 p-4">
+                  <section className="backdrop-blur mt-6 rounded-xl border border-white/10 bg-slate-900/30 p-4">
                     <h2 className="text-lg font-semibold mb-3">Tech Stack</h2>
                     <div className="flex flex-wrap gap-2 text-xs">
                       {[
-                        "Java",
-                        "Python",
-                        "JavaScript",
-                        "TypeScript",
-                        "React",
-                        "Node.js",
-                        ".NET",
-                        "Django",
-                        "MongoDB",
-                        "TailwindCSS",
-                        "Pandas",
-                        "NumPy",
-                        "Matplotlib",
-                        "JavaFX",
-                        "Git",
-                      ].map((t) => (
-                        <span
-                          key={t}
-                          className="px-2 py-1 rounded border border-white/10 bg-white/5"
+                        { label: "Java", Icon: FaJava },
+                        { label: "Python", Icon: SiPython },
+                        { label: "TensorFlow", Icon: SiTensorflow },
+                        { label: "PyTorch", Icon: SiPytorch },
+                        { label: "JavaScript", Icon: SiJavascript },
+                        { label: "TypeScript", Icon: SiTypescript },
+                        { label: "React", Icon: SiReact },
+                        { label: "Node.js", Icon: SiNodedotjs },
+                        { label: ".NET", Icon: SiDotnet },
+                        { label: "Django", Icon: SiDjango },
+                        { label: "MongoDB", Icon: SiMongodb },
+                        { label: "JavaFX", Icon: FaJava },
+                        { label: "Git", Icon: SiGit },
+                      ].map(({ label, Icon }) => (
+                        <div
+                          key={label}
+                          className="flex flex-col px-2 py-1 w-25 h-20 rounded border border-white/10 bg-white/5 inline-flex items-center gap-1.5"
                         >
-                          {t}
-                        </span>
+                          <Icon className="opacity-90 p-1.5" size={40} />
+                          {label}
+                        </div>
                       ))}
                     </div>
                   </section>
 
                   {/* About Me */}
-                  <section className="mt-6 rounded-xl border border-white/10 bg-slate-900/30 p-4">
+                  <section className="backdrop-blur mt-6 rounded-xl border border-white/10 bg-slate-900/30 p-4">
                     <h2 className="text-lg font-semibold mb-3">About Me</h2>
                     <p className="text-sm opacity-90">
                       I'm Neel, a CS + Data Science student at UW–Madison (’27).
@@ -287,7 +294,7 @@ function App() {
             <Route
               path="/projects"
               element={
-                <div className="mt-4 space-y-4">
+                <div className="mt-4 space-y-4 backdrop-blur rounded-xl border border-white/10 bg-slate-900/30 p-4">
                   <h2 className="text-xl font-semibold">Projects</h2>
                   <div className="space-y-4">
                     <article className="rounded-xl border border-white/10 bg-slate-900/30 p-4">
@@ -331,7 +338,7 @@ function App() {
             <Route
               path="/experience"
               element={
-                <div className="mt-4 space-y-4">
+                <div className="mt-4 space-y-4 backdrop-blur rounded-xl border border-white/10 bg-slate-900/30 p-4">
                   <h2 className="text-xl font-semibold">Experience</h2>
                   <div className="space-y-4">
                     <section className="rounded-xl border border-white/10 bg-slate-900/30 p-4">
@@ -384,9 +391,9 @@ function App() {
             />
 
             <Route
-              path="/aifa"
+              path="/organizations"
               element={
-                <div className="mt-4 space-y-4">
+                <div className="mt-4 space-y-4 backdrop-blur rounded-xl border border-white/10 bg-slate-900/30 p-4">
                   <h2 className="text-xl font-semibold">AI for All (AIFA)</h2>
                   <p className="text-sm opacity-80">
                     Non-profit work: curriculum, workshops, hackathons, and 30+
