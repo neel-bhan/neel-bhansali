@@ -155,6 +155,19 @@ function App() {
                 <div>
                   {/* Home dashboard with previews */}
                   <section className="grid grid-cols-1 lg:grid-cols-3 gap-4 mt-4">
+
+
+                  {/* About Me */}
+                  <section className="backdrop-blur mt-6 rounded-xl border border-white/10 bg-slate-900/30 p-4">
+                    <h2 className="text-lg font-semibold mb-3">About Me</h2>
+                    <p className="text-sm opacity-90">
+                      I'm Neel, a CS + Data Science student at UW–Madison (’27).
+                      I enjoy building useful interfaces and AI-assisted
+                      tools—from VR learning experiences to agentic planners.
+                      I'm actively seeking SWE internships.
+                    </p>
+                  </section>
+                  
                     {/* Featured Project */}
                     <div className="backdrop-blur rounded-xl border border-white/10 bg-slate-900/30 p-4">
                       <h3 className="text-sm opacity-70 mb-2">
@@ -276,16 +289,6 @@ function App() {
                     </div>
                   </section>
 
-                  {/* About Me */}
-                  <section className="backdrop-blur mt-6 rounded-xl border border-white/10 bg-slate-900/30 p-4">
-                    <h2 className="text-lg font-semibold mb-3">About Me</h2>
-                    <p className="text-sm opacity-90">
-                      I'm Neel, a CS + Data Science student at UW–Madison (’27).
-                      I enjoy building useful interfaces and AI-assisted
-                      tools—from VR learning experiences to agentic planners.
-                      I'm actively seeking SWE internships.
-                    </p>
-                  </section>
                 </div>
               }
             />
