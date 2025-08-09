@@ -57,9 +57,9 @@ function App() {
   ];
 
   return (
-    <div className="relative w-full h-screen overflow-hidden text-white">
+    <div className="relative w-full min-h-screen text-white">
       {/* Background (subtle) */}
-      <div className="absolute inset-0 pointer-events-none">
+      <div className="fixed inset-0 pointer-events-none">
         <Squares
           speed={0.2}
           squareSize={35}
@@ -69,7 +69,7 @@ function App() {
       </div>
 
       {/* App Shell */}
-      <div className="flex h-full min-h-screen">
+      <div className="flex min-h-screen">
         {/* Sidebar */}
         <aside className="md:flex w-60 flex-col m-2 rounded-2xl border border-white/10 bg-slate-900/40 backdrop-blur p-4 h-[96vh] max-h-[900px]">
           <div className="text-lg font-semibold mb-6 flex items-center gap-2">
@@ -167,10 +167,11 @@ function App() {
                       </p>
                     </div>
                     <div>
-                      <img className="max-w-26 rounded-2xl border-2 border-white/10 "src="/profile_picture.jpg"
-  alt="Profile">
-                      
-                      </img>
+                      <img
+                        className="max-w-30 rounded-2xl border-2 border-white/10 "
+                        src="/profile_picture.jpg"
+                        alt="Profile"
+                      ></img>
                     </div>
                   </section>
                   <section className="grid grid-cols-1 lg:grid-cols-3 gap-4 mt-4">
@@ -304,38 +305,157 @@ function App() {
               element={
                 <div className="mt-4 space-y-4 backdrop-blur rounded-xl border border-white/10 bg-slate-900/30 p-4">
                   <h2 className="text-xl font-semibold">Projects</h2>
-                  <div className="space-y-4">
-                    <article className="rounded-xl border border-white/10 bg-slate-900/30 p-4">
-                      <h3 className="font-medium">
-                        Agentic Study Planner (WIP)
-                      </h3>
-                      <p className="text-sm opacity-80 mt-1">
-                        Autonomous agents fetch syllabi, parse assignments, and
-                        adapt plans with GPA feedback. Planned integrations:
-                        Canvas API, Notion, GCal.
-                      </p>
-                    </article>
-                    <article className="rounded-xl border border-white/10 bg-slate-900/30 p-4">
-                      <h3 className="font-medium">
+                  <div className="flex flex-col space-y-8">
+                    <article className="rounded-xl border border-white/10 bg-slate-900/30 p-6 text-center">
+                      <img
+                        className="w-full max-w-md mx-auto mb-6 rounded-2xl border-4 border-white/10 shadow-lg shadow-white/10"
+                        src="/sign_language.png"
+                        alt="AI Sign Language Interpreter"
+                      />
+                      <h3 className="text-3xl font-bold mb-4 bg-gradient-to-r from-emerald-400 to-blue-500 bg-clip-text text-transparent">
                         AI Sign Language Interpreter
                       </h3>
-                      <p className="text-sm opacity-80 mt-1">
-                        CNN-based classifier with React + Django for real-time
-                        translation.
+                      <p className="text-lg opacity-90 mb-4">
+                        Revolutionary real-time AI translator using advanced CNN
+                        architecture and computer vision to bridge communication
+                        gaps with high-precision gesture recognition and
+                        seamless React frontend integration.
+                        <br />
+                        <br />
+                        Developed with TensorFlow for deep learning
+                        capabilities, featuring real-time video processing and
+                        gesture classification. The system processes hand
+                        movements through OpenCV and delivers instant
+                        translations with Django REST API backend architecture.
                       </p>
+                      <div className="flex justify-center gap-4 mt-6">
+                        <span className="px-3 py-1 bg-emerald-500/20 text-emerald-300 rounded-full text-sm">
+                          Machine Learning
+                        </span>
+                        <span className="px-3 py-1 bg-blue-500/20 text-blue-300 rounded-full text-sm">
+                          Real-time
+                        </span>
+                        <span className="px-3 py-1 bg-purple-500/20 text-purple-300 rounded-full text-sm">
+                          Accessibility
+                        </span>
+                        <span className="px-3 py-1 bg-yellow-500/20 text-yellow-300 rounded-full text-sm">
+                          Computer Vision
+                        </span>
+                        <span className="px-3 py-1 bg-red-500/20 text-red-300 rounded-full text-sm">
+                          TensorFlow
+                        </span>
+                        <span className="px-3 py-1 bg-indigo-500/20 text-indigo-300 rounded-full text-sm">
+                          Django
+                        </span>
+                      </div>
                     </article>
-                    <article className="rounded-xl border border-white/10 bg-slate-900/30 p-4">
-                      <h3 className="font-medium">AI Workout Generator</h3>
-                      <p className="text-sm opacity-80 mt-1">
-                        Decision-tree routine planner with progress
-                        visualizations.
+
+                    <article className="rounded-xl border border-white/10 bg-slate-900/30 p-6 text-center">
+                      <div className="flex flex-row justify-center gap-4 mb-6">
+                        <img
+                          className="w-full  invert max-w-5/16 mb-6 rounded-2xl border-4 border-white/10 shadow-lg"
+                          src="/workout1.png"
+                          alt="AI Workout Generator"
+                        />
+                        <img
+                          className="w-full invert max-w-5/16 mb-6 rounded-2xl border-4 border-white/10 shadow-lg"
+                          src="/workout2.png"
+                          alt="AI Workout Generator"
+                        />
+                        <img
+                          className="w-full invert max-w-5/16 mb-6 rounded-2xl border-4 border-white/10 shadow-lg"
+                          src="/workout3.png"
+                          alt="AI Workout Generator"
+                        />
+                      </div>
+                      <h3 className="text-3xl font-bold mb-4 bg-gradient-to-r from-orange-400 to-red-500 bg-clip-text text-transparent">
+                        AI Workout Generator
+                      </h3>
+                      <p className="text-lg opacity-90 mb-4">
+                        Intelligent fitness companion leveraging machine
+                        learning algorithms to create personalized workout
+                        routines with dynamic progress tracking and adaptive
+                        difficulty scaling based on user performance metrics.
+                        <br />
+                        <br />
+                        Features advanced decision tree algorithms that analyze
+                        user fitness levels, goals, and equipment availability
+                        to generate optimal exercise combinations. Built with
+                        Python and scikit-learn for smart routine generation,
+                        integrated with interactive dashboards for comprehensive
+                        fitness analytics and progress visualization.
                       </p>
+                      <div className="flex justify-center gap-4 mt-6">
+                        <span className="px-3 py-1 bg-orange-500/20 text-orange-300 rounded-full text-sm">
+                          AI Planning
+                        </span>
+                        <span className="px-3 py-1 bg-red-500/20 text-red-300 rounded-full text-sm">
+                          Health & Fitness
+                        </span>
+                        <span className="px-3 py-1 bg-blue-500/20 text-blue-300 rounded-full text-sm">
+                          Python
+                        </span>
+                        <span className="px-3 py-1 bg-green-500/20 text-green-300 rounded-full text-sm">
+                          Machine Learning
+                        </span>
+                        <span className="px-3 py-1 bg-purple-500/20 text-purple-300 rounded-full text-sm">
+                          Data Analytics
+                        </span>
+                      </div>
                     </article>
-                    <article className="rounded-xl border border-white/10 bg-slate-900/30 p-4">
-                      <h3 className="font-medium">Chef's Arena (JavaFX)</h3>
-                      <p className="text-sm opacity-80 mt-1">
-                        Kitchen simulation game with GUI built in Java/JavaFX.
+
+                    <article className="rounded-xl border border-white/10 bg-slate-900/30 p-6 text-center">
+                      <div className="flex flex-row justify-center gap-4 mb-6">
+                        <img
+                          className="w-full  max-w-5/16 mb-6 rounded-2xl border-4 border-white/10 shadow-lg shadow-white/10"
+                          src="/chef1.png"
+                          alt="Chef's Arena"
+                        />
+                        <img
+                          className="w-full max-w-5/16 mb-6 rounded-2xl border-4 border-white/10 shadow-lg shadow-white/10"
+                          src="/chef2.png"
+                          alt="Chef's Arena"
+                        />
+                        <img
+                          className="w-full  max-w-5/16 mb-6 rounded-2xl border-4 border-white/10 shadow-lg shadow-white/10"
+                          src="/chef3.png"
+                          alt="Chef's Arena"
+                        />
+                      </div>
+                      <h3 className="text-3xl font-bold mb-4 bg-gradient-to-r from-yellow-400 to-orange-500 bg-clip-text text-transparent">
+                        Chef's Arena - Kitchen Simulation Game
+                      </h3>
+                      <p className="text-lg opacity-90 mb-">
+                        Immersive culinary simulation featuring advanced game
+                        mechanics, realistic physics, and stunning 2D graphics
+                        built with JavaFX and comprehensive object-oriented
+                        design patterns.
+                        <br />
+                        <br />
+                        Includes dynamic recipe management system with 50+
+                        realistic cooking procedures, multi-threaded game engine
+                        for smooth 60 FPS gameplay, and sophisticated scoring
+                        algorithms. Features custom GUI components, particle
+                        effects, and save/load functionality with JSON
+                        serialization for persistent game progress.
                       </p>
+                      <div className="flex justify-center gap-4 mt-6">
+                        <span className="px-3 py-1 bg-yellow-500/20 text-yellow-300 rounded-full text-sm">
+                          Game Dev
+                        </span>
+                        <span className="px-3 py-1 bg-orange-500/20 text-orange-300 rounded-full text-sm">
+                          JavaFX
+                        </span>
+                        <span className="px-3 py-1 bg-blue-500/20 text-blue-300 rounded-full text-sm">
+                          Java
+                        </span>
+                        <span className="px-3 py-1 bg-purple-500/20 text-purple-300 rounded-full text-sm">
+                          OOP Design
+                        </span>
+                        <span className="px-3 py-1 bg-green-500/20 text-green-300 rounded-full text-sm">
+                          GUI Development
+                        </span>
+                      </div>
                     </article>
                   </div>
                 </div>
@@ -401,12 +521,183 @@ function App() {
             <Route
               path="/organizations"
               element={
-                <div className="mt-4 space-y-4 backdrop-blur rounded-xl border border-white/10 bg-slate-900/30 p-4">
-                  <h2 className="text-xl font-semibold">AI for All (AIFA)</h2>
-                  <p className="text-sm opacity-80">
-                    Non-profit work: curriculum, workshops, hackathons, and 30+
-                    chapters.
-                  </p>
+                <div className="mt-4 space-y-6 backdrop-blur rounded-xl border border-white/10 bg-slate-900/30 p-6">
+                  <h2 className="text-xl font-semibold">Organizations</h2>
+
+                  {/* AIFA Section */}
+                  <section className="space-y-10">
+                    {/* Hero / Header */}
+                    <div className="flex flex-col md:flex-row gap-8 md:items-center">
+                      <div className="flex flex-col items-center md:items-start shrink-0">
+                        <img
+                          src="/aifalogo.jpeg"
+                          alt="AI For All Logo"
+                          className="w-40 h-40 object-contain rounded-xl border border-white/10 shadow-lg shadow-green-500/10 bg-black/40 p-3"
+                        />
+                        <a
+                          href="https://www.linkedin.com/company/aifa-ai-for-all/"
+                          target="_blank"
+                          rel="noreferrer"
+                          className="mt-4 text-xs px-3 py-1 rounded-md bg-green-500/20 hover:bg-green-500/30 text-green-300 border border-green-400/30 transition"
+                        >
+                          LinkedIn Page →
+                        </a>
+                      </div>
+                      <div className="flex-1 space-y-4">
+                        <h3 className="text-3xl font-bold bg-gradient-to-r from-green-400 via-emerald-300 to-blue-500 bg-clip-text text-transparent">
+                          AI for All (AIFA)
+                        </h3>
+                        <p className="text-lg opacity-90 leading-relaxed">
+                          Student-led non-profit expanding equitable access to
+                          modern AI education through hands-on workshops,
+                          project-based curricula, and community-driven events.
+                          We empower emerging technologists to explore machine
+                          learning responsibly and creatively.
+                        </p>
+                        <div className="flex flex-wrap gap-2 pt-1">
+                          {[
+                            "AI Education",
+                            "Curriculum Design",
+                            "Community Outreach",
+                            "Event Ops",
+                            "Leadership",
+                            "Ethical AI",
+                          ].map((tag) => (
+                            <span
+                              key={tag}
+                              className="px-3 py-1 rounded-full bg-green-500/15 text-green-300 text-xs border border-green-400/20"
+                            >
+                              {tag}
+                            </span>
+                          ))}
+                        </div>
+                      </div>
+                    </div>
+
+                    {/* Stats Grid */}
+                    <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
+                      {[
+                        { label: "Chapters", value: "30+" },
+                        { label: "Students Reached", value: "1,000+" },
+                        { label: "Workshops Run", value: "40+" },
+                        { label: "Hackathon Participants", value: "100+" },
+                      ].map((s) => (
+                        <div
+                          key={s.label}
+                          className="rounded-xl border border-white/10 bg-white/5 p-4 text-center flex flex-col gap-1"
+                        >
+                          <div className="text-2xl font-semibold text-green-300">
+                            {s.value}
+                          </div>
+                          <div className="text-xs opacity-70 tracking-wide uppercase">
+                            {s.label}
+                          </div>
+                        </div>
+                      ))}
+                    </div>
+
+                    {/* Image Gallery */}
+                    <div>
+                      <h4 className="text-sm font-semibold opacity-80 mb-3">
+                        Gallery
+                      </h4>
+                      <div className="grid md:grid-cols-3 gap-4">
+                        <div className="relative group">
+                          <img
+                            src="/hackathonphoto.JPG"
+                            alt="AIFA hackathon event"
+                            className="w-full h-56 object-cover rounded-xl border border-white/10 shadow-lg shadow-green-500/10 group-hover:shadow-green-400/20 transition"
+                          />
+                          <div className="absolute inset-0 rounded-xl bg-gradient-to-t from-black/60 via-black/10 to-transparent opacity-0 group-hover:opacity-100 transition flex items-end p-3 text-xs tracking-wide">
+                            Hackathon Session
+                          </div>
+                        </div>
+                        <div className="relative group">
+                          <img
+                            src="/grouppicture.JPG"
+                            alt="AIFA participant group"
+                            className="w-full h-56 object-cover rounded-xl border border-white/10 shadow-lg shadow-green-500/10 group-hover:shadow-green-400/20 transition"
+                          />
+                          <div className="absolute inset-0 rounded-xl bg-gradient-to-t from-black/60 via-black/10 to-transparent opacity-0 group-hover:opacity-100 transition flex items-end p-3 text-xs tracking-wide">
+                            Community Impact
+                          </div>
+                        </div>
+                        <div className="relative group">
+                          <img
+                            src="/aifapresentation.JPG"
+                            alt="AIFA branding"
+                            className="w-full h-56 object-cover rounded-xl border border-white/10 shadow-lg shadow-green-500/10 group-hover:shadow-green-400/20 transition"
+                          />
+                          <div className="absolute inset-0 rounded-xl bg-gradient-to-t from-black/60 via-black/10 to-transparent opacity-0 group-hover:opacity-100 transition flex items-end p-3 text-xs tracking-wide">
+                            Brand Identity
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+
+                    {/* Impact / Activities */}
+                    <div className="grid md:grid-cols-2 gap-8">
+                      <div className="space-y-4">
+                        <h4 className="text-sm font-semibold opacity-80">
+                          Key Initiatives
+                        </h4>
+                        <ul className="text-sm opacity-85 space-y-2 list-disc pl-5">
+                          <li>
+                            Modular ML curriculum: fundamentals → model
+                            deployment
+                          </li>
+                          <li>
+                            Beginner-friendly labs on vision, NLP, and ethics
+                          </li>
+                          <li>
+                            Annual hackathon fostering rapid prototyping &
+                            collaboration
+                          </li>
+                          <li>
+                            Mentorship pairing newer learners with experienced
+                            contributors
+                          </li>
+                        </ul>
+                      </div>
+                      <div className="space-y-4">
+                        <h4 className="text-sm font-semibold opacity-80">
+                          My Contributions
+                        </h4>
+                        <ul className="text-sm opacity-85 space-y-2 list-disc pl-5">
+                          <li>
+                            Co-authored workshop decks & hands-on project guides
+                          </li>
+                          <li>
+                            Structured chapter launch playbook & onboarding
+                            process
+                          </li>
+                          <li>
+                            Coordinated speaker outreach & event logistics
+                          </li>
+                          <li>
+                            Iterated feedback loop to improve session engagement
+                          </li>
+                        </ul>
+                      </div>
+                    </div>
+
+                    {/* Call To Action */}
+                    <div className="mt-2 flex flex-col md:flex-row gap-4 md:items-center md:justify-between rounded-xl border border-green-500/20 bg-green-500/5 p-5">
+                      <div className="text-sm opacity-85 max-w-xl">
+                        Always looking to partner with schools & organizations
+                        interested in launching new chapters or co-hosting
+                        workshops.
+                      </div>
+                      <a
+                        href="https://www.linkedin.com/company/aifa-ai-for-all/"
+                        target="_blank"
+                        rel="noreferrer"
+                        className="inline-flex items-center justify-center px-5 py-2 rounded-md bg-gradient-to-r from-green-400 to-emerald-500 text-sm font-medium text-black shadow hover:brightness-110 transition"
+                      >
+                        Connect on LinkedIn
+                      </a>
+                    </div>
+                  </section>
                 </div>
               }
             />
