@@ -491,12 +491,14 @@ function App() {
                           <h3 className="font-semibold text-lg">
                             Software Engineer Intern · MiniOrange
                           </h3>
-                          <span className="text-xs opacity-70">Jun–Aug 2025</span>
+                          <span className="text-xs opacity-70">
+                            Jun–Aug 2025
+                          </span>
                         </div>
                         <p className="text-sm opacity-80 leading-relaxed">
                           Identity & security platform internship focused on
-                          directory tooling, MFA flows, and admin UX improvements
-                          across React + .NET surfaces.
+                          directory tooling, MFA flows, and admin UX
+                          improvements across React + .NET surfaces.
                         </p>
                         <ul className="text-sm opacity-85 space-y-1 list-disc pl-5">
                           <li>
@@ -508,12 +510,12 @@ function App() {
                             SSPR enrollment workflows
                           </li>
                           <li>
-                            Optimized form rendering components reducing validation
-                            latency & improving accessibility
+                            Optimized form rendering components reducing
+                            validation latency & improving accessibility
                           </li>
                           <li>
-                            Shipped configurable security settings panel (captcha,
-                            session, lockout thresholds)
+                            Shipped configurable security settings panel
+                            (captcha, session, lockout thresholds)
                           </li>
                         </ul>
                         <div className="flex flex-wrap gap-2 pt-2">
@@ -558,25 +560,27 @@ function App() {
                           <h3 className="font-semibold text-lg">
                             Software Engineering Intern · Represented Collective
                           </h3>
-                          <span className="text-xs opacity-70">Mar–May 2025</span>
+                          <span className="text-xs opacity-70">
+                            Mar–May 2025
+                          </span>
                         </div>
                         <p className="text-sm opacity-80 leading-relaxed">
-                          Early-stage team building immersive STEM learning through
-                          VR chemistry experiences plus AI-guided progressive
-                          tutoring.
+                          Early-stage team building immersive STEM learning
+                          through VR chemistry experiences plus AI-guided
+                          progressive tutoring.
                         </p>
                         <ul className="text-sm opacity-85 space-y-1 list-disc pl-5">
                           <li>
-                            Built VR game progression logic integrating AI-generated
-                            hints & scaffolded challenge levels
+                            Built VR game progression logic integrating
+                            AI-generated hints & scaffolded challenge levels
                           </li>
                           <li>
                             Hosted Node.js service (Render) aggregating OpenAI
                             responses & session persistence
                           </li>
                           <li>
-                            Delivered full-stack web portal (React + MongoDB) for
-                            user content & experiment logs
+                            Delivered full-stack web portal (React + MongoDB)
+                            for user content & experiment logs
                           </li>
                           <li>
                             Iterated UX flows after analytics review to improve
@@ -625,28 +629,30 @@ function App() {
                           <h3 className="font-semibold text-lg">
                             Research Assistant · UT Dallas
                           </h3>
-                          <span className="text-xs opacity-70">May–Jul 2022</span>
+                          <span className="text-xs opacity-70">
+                            May–Jul 2022
+                          </span>
                         </div>
                         <p className="text-sm opacity-80 leading-relaxed">
-                          Explored classical + deep learning approaches for pattern
-                          recognition and biometric classification.
+                          Explored classical + deep learning approaches for
+                          pattern recognition and biometric classification.
                         </p>
                         <ul className="text-sm opacity-85 space-y-1 list-disc pl-5">
                           <li>
-                            Implemented comparative experiments: CNNs, LSTMs, SVMs,
-                            RL agents, decision trees
+                            Implemented comparative experiments: CNNs, LSTMs,
+                            SVMs, RL agents, decision trees
                           </li>
                           <li>
                             Developed facial recognition prototype improving
                             identification accuracy over baseline
                           </li>
                           <li>
-                            Preprocessed image datasets (augmentation, normalization)
-                            to enhance generalization
+                            Preprocessed image datasets (augmentation,
+                            normalization) to enhance generalization
                           </li>
                           <li>
-                            Documented evaluation metrics & reproducible training
-                            scripts
+                            Documented evaluation metrics & reproducible
+                            training scripts
                           </li>
                         </ul>
                         <div className="flex flex-wrap gap-2 pt-2">
