@@ -168,7 +168,7 @@ function App() {
                     </div>
                     <div>
                       <img
-                        className="max-w-30 rounded-2xl border-2 border-white/10 "
+                        className="max-w-30 rounded-2xl border-2 border-white/10 shadow-lg shadow-white/10 ml-10"
                         src="/profile_picture.jpg"
                         alt="Profile"
                       ></img>
@@ -312,7 +312,7 @@ function App() {
                         src="/sign_language.png"
                         alt="AI Sign Language Interpreter"
                       />
-                      <h3 className="text-3xl font-bold mb-4 bg-gradient-to-r from-emerald-400 to-blue-500 bg-clip-text text-transparent">
+                      <h3 className="text-3xl font-bold mb-4">
                         AI Sign Language Interpreter
                       </h3>
                       <p className="text-lg opacity-90 mb-4">
@@ -368,7 +368,7 @@ function App() {
                           alt="AI Workout Generator"
                         />
                       </div>
-                      <h3 className="text-3xl font-bold mb-4 bg-gradient-to-r from-orange-400 to-red-500 bg-clip-text text-transparent">
+                      <h3 className="text-3xl font-bold mb-4">
                         AI Workout Generator
                       </h3>
                       <p className="text-lg opacity-90 mb-4">
@@ -422,7 +422,7 @@ function App() {
                           alt="Chef's Arena"
                         />
                       </div>
-                      <h3 className="text-3xl font-bold mb-4 bg-gradient-to-r from-yellow-400 to-orange-500 bg-clip-text text-transparent">
+                      <h3 className="text-3xl font-bold mb-4">
                         Chef's Arena - Kitchen Simulation Game
                       </h3>
                       <p className="text-lg opacity-90 mb-">
@@ -466,52 +466,207 @@ function App() {
             <Route
               path="/experience"
               element={
-                <div className="mt-4 space-y-4 backdrop-blur rounded-xl border border-white/10 bg-slate-900/30 p-4">
+                <div className="mt-4 space-y-8 backdrop-blur rounded-xl border border-white/10 bg-slate-900/30 p-6">
                   <h2 className="text-xl font-semibold">Experience</h2>
-                  <div className="space-y-4">
-                    <section className="rounded-xl border border-white/10 bg-slate-900/30 p-4">
-                      <h3 className="font-medium">
-                        Software Engineer Intern · MiniOrange (Jun–Aug 2025)
-                      </h3>
-                      <ul className="text-sm opacity-90 list-disc pl-5 space-y-1 mt-1">
-                        <li>
-                          Shipped React features (custom forms, org mgmt,
-                          captcha settings)
-                        </li>
-                        <li>
-                          Maintained .NET APIs powering dynamic flows; improved
-                          AD tooling
-                        </li>
-                        <li>
-                          Enhanced UX with MFA and self-service password reset
-                        </li>
-                      </ul>
+                  <div className="space-y-10">
+                    {/* MiniOrange */}
+                    <section className="grid md:grid-cols-[180px_1fr] gap-6 items-start rounded-xl border border-white/10 bg-white/5 p-5">
+                      <div className="flex flex-col items-center gap-3">
+                        <img
+                          src="/miniOrange.jpeg"
+                          alt="MiniOrange"
+                          className="w-36 h-36 object-cover rounded-xl border border-white/10 shadow"
+                        />
+                        <a
+                          href="https://www.miniorange.com/"
+                          target="_blank"
+                          rel="noreferrer"
+                          className="text-xs px-3 py-1 rounded-md bg-emerald-500/15 text-emerald-300 border border-emerald-500/30 hover:bg-emerald-500/25 transition"
+                        >
+                          Website →
+                        </a>
+                      </div>
+                      <div className="space-y-3">
+                        <div className="flex flex-wrap items-center gap-2">
+                          <h3 className="font-semibold text-lg">
+                            Software Engineer Intern · MiniOrange
+                          </h3>
+                          <span className="text-xs opacity-70">Jun–Aug 2025</span>
+                        </div>
+                        <p className="text-sm opacity-80 leading-relaxed">
+                          Identity & security platform internship focused on
+                          directory tooling, MFA flows, and admin UX improvements
+                          across React + .NET surfaces.
+                        </p>
+                        <ul className="text-sm opacity-85 space-y-1 list-disc pl-5">
+                          <li>
+                            Implemented Active Directory management UI (user
+                            provisioning, group sync, policy toggles)
+                          </li>
+                          <li>
+                            Extended .NET API endpoints to support dynamic MFA +
+                            SSPR enrollment workflows
+                          </li>
+                          <li>
+                            Optimized form rendering components reducing validation
+                            latency & improving accessibility
+                          </li>
+                          <li>
+                            Shipped configurable security settings panel (captcha,
+                            session, lockout thresholds)
+                          </li>
+                        </ul>
+                        <div className="flex flex-wrap gap-2 pt-2">
+                          {[
+                            "React",
+                            "TypeScript",
+                            ".NET",
+                            "MFA",
+                            "Directory Services",
+                            "API Design",
+                          ].map((t) => (
+                            <span
+                              key={t}
+                              className="px-3 py-1 rounded-full bg-emerald-500/15 text-emerald-300 text-xs border border-emerald-500/30"
+                            >
+                              {t}
+                            </span>
+                          ))}
+                        </div>
+                      </div>
                     </section>
-                    <section className="rounded-xl border border-white/10 bg-slate-900/30 p-4">
-                      <h3 className="font-medium">
-                        Software Engineering Intern · Represented Collective
-                        (Mar–May 2025)
-                      </h3>
-                      <ul className="text-sm opacity-90 list-disc pl-5 space-y-1 mt-1">
-                        <li>
-                          Full-stack dev for VR chemistry game with AI-based
-                          progressive learning
-                        </li>
-                        <li>
-                          Hosted Node.js server on Render; chained OpenAI
-                          responses
-                        </li>
-                        <li>Built and maintained React + MongoDB website</li>
-                      </ul>
+
+                    {/* Represented Collective */}
+                    <section className="grid md:grid-cols-[180px_1fr] gap-6 items-start rounded-xl border border-white/10 bg-white/5 p-5">
+                      <div className="flex flex-col items-center gap-3">
+                        <img
+                          src="/representedCollective.jpeg"
+                          alt="Represented Collective"
+                          className="w-36 h-36 object-cover rounded-xl border border-white/10 shadow"
+                        />
+                        <a
+                          href="https://www.linkedin.com/company/representedcollective/posts/?feedView=all"
+                          target="_blank"
+                          rel="noreferrer"
+                          className="text-xs px-3 py-1 rounded-md bg-blue-500/15 text-blue-300 border border-blue-500/30 hover:bg-blue-500/25 transition"
+                        >
+                          Updates →
+                        </a>
+                      </div>
+                      <div className="space-y-3">
+                        <div className="flex flex-wrap items-center gap-2">
+                          <h3 className="font-semibold text-lg">
+                            Software Engineering Intern · Represented Collective
+                          </h3>
+                          <span className="text-xs opacity-70">Mar–May 2025</span>
+                        </div>
+                        <p className="text-sm opacity-80 leading-relaxed">
+                          Early-stage team building immersive STEM learning through
+                          VR chemistry experiences plus AI-guided progressive
+                          tutoring.
+                        </p>
+                        <ul className="text-sm opacity-85 space-y-1 list-disc pl-5">
+                          <li>
+                            Built VR game progression logic integrating AI-generated
+                            hints & scaffolded challenge levels
+                          </li>
+                          <li>
+                            Hosted Node.js service (Render) aggregating OpenAI
+                            responses & session persistence
+                          </li>
+                          <li>
+                            Delivered full-stack web portal (React + MongoDB) for
+                            user content & experiment logs
+                          </li>
+                          <li>
+                            Iterated UX flows after analytics review to improve
+                            engagement and retention
+                          </li>
+                        </ul>
+                        <div className="flex flex-wrap gap-2 pt-2">
+                          {[
+                            "React",
+                            "Node.js",
+                            "MongoDB",
+                            "OpenAI",
+                            "VR",
+                            "Education Tech",
+                          ].map((t) => (
+                            <span
+                              key={t}
+                              className="px-3 py-1 rounded-full bg-blue-500/15 text-blue-300 text-xs border border-blue-500/30"
+                            >
+                              {t}
+                            </span>
+                          ))}
+                        </div>
+                      </div>
                     </section>
-                    <section className="rounded-xl border border-white/10 bg-slate-900/30 p-4">
-                      <h3 className="font-medium">
-                        Research Assistant · UT Dallas (May–Jul 2022)
-                      </h3>
-                      <ul className="text-sm opacity-90 list-disc pl-5 space-y-1 mt-1">
-                        <li>CNNs, LSTMs, SVMs, RL, decision trees</li>
-                        <li>Implemented face recognition using ML</li>
-                      </ul>
+
+                    {/* UT Dallas Research */}
+                    <section className="grid md:grid-cols-[180px_1fr] gap-6 items-start rounded-xl border border-white/10 bg-white/5 p-5">
+                      <div className="flex flex-col items-center gap-3">
+                        <img
+                          src="/utd.jpeg"
+                          alt="UT Dallas"
+                          className="w-36 h-36 object-cover rounded-xl border border-white/10 shadow"
+                        />
+                        <a
+                          href="https://www.linkedin.com/school/university-of-texas-at-dallas/"
+                          target="_blank"
+                          rel="noreferrer"
+                          className="text-xs px-3 py-1 rounded-md bg-orange-500/15 text-orange-300 border border-orange-500/30 hover:bg-orange-500/25 transition"
+                        >
+                          University →
+                        </a>
+                      </div>
+                      <div className="space-y-3">
+                        <div className="flex flex-wrap items-center gap-2">
+                          <h3 className="font-semibold text-lg">
+                            Research Assistant · UT Dallas
+                          </h3>
+                          <span className="text-xs opacity-70">May–Jul 2022</span>
+                        </div>
+                        <p className="text-sm opacity-80 leading-relaxed">
+                          Explored classical + deep learning approaches for pattern
+                          recognition and biometric classification.
+                        </p>
+                        <ul className="text-sm opacity-85 space-y-1 list-disc pl-5">
+                          <li>
+                            Implemented comparative experiments: CNNs, LSTMs, SVMs,
+                            RL agents, decision trees
+                          </li>
+                          <li>
+                            Developed facial recognition prototype improving
+                            identification accuracy over baseline
+                          </li>
+                          <li>
+                            Preprocessed image datasets (augmentation, normalization)
+                            to enhance generalization
+                          </li>
+                          <li>
+                            Documented evaluation metrics & reproducible training
+                            scripts
+                          </li>
+                        </ul>
+                        <div className="flex flex-wrap gap-2 pt-2">
+                          {[
+                            "Python",
+                            "TensorFlow",
+                            "Computer Vision",
+                            "Model Evaluation",
+                            "Data Prep",
+                            "Research",
+                          ].map((t) => (
+                            <span
+                              key={t}
+                              className="px-3 py-1 rounded-full bg-orange-500/15 text-orange-300 text-xs border border-orange-500/30"
+                            >
+                              {t}
+                            </span>
+                          ))}
+                        </div>
+                      </div>
                     </section>
                   </div>
                 </div>
@@ -544,7 +699,7 @@ function App() {
                         </a>
                       </div>
                       <div className="flex-1 space-y-4">
-                        <h3 className="text-3xl font-bold bg-gradient-to-r from-green-400 via-emerald-300 to-blue-500 bg-clip-text text-transparent">
+                        <h3 className="text-3xl font-bold">
                           AI for All (AIFA)
                         </h3>
                         <p className="text-lg opacity-90 leading-relaxed">
