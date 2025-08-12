@@ -17,6 +17,7 @@ import {
   SiGit,
 } from "react-icons/si";
 import { FaJava } from "react-icons/fa";
+import Aurora from "./components/Aurora/Aurora";
 
 function NavLink({ to, children }: { to: string; children: React.ReactNode }) {
   const location = useLocation();
@@ -40,12 +41,18 @@ function App() {
     <div className="relative w-full min-h-screen text-white bg-slate-900">
       {/* Background Animation */}
       <div className="fixed inset-0 pointer-events-none">
-        <Squares
+        {/* <Squares
           speed={0.2}
           squareSize={35}
           direction="diagonal"
           borderColor="#0f1899"
-        />
+        /> */}
+<Aurora
+  colorStops={["#10b981", "#3b82f6", "#059669"]}
+  blend={0.3}
+  amplitude={0.8}
+  speed={0.3}
+/>
       </div>
 
       {/* Navigation */}
