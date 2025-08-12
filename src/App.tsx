@@ -70,7 +70,7 @@ function App() {
               <Button
                 variant="outline"
                 size="sm"
-                className="hidden sm:flex items-center gap-2 border-emerald-500/30 text-emerald-300 hover:bg-emerald-500/10"
+                className="bg-emerald-500 hover:bg-emerald-600 text-black font-medium"
               >
                 <Download size={16} />
                 Resume
