@@ -2,7 +2,7 @@ import { Download, Mail } from "lucide-react";
 import { Routes, Route, Link, useLocation } from "react-router-dom";
 import "./App.css";
 import { Button } from "./components/ui/button";
-import Squares from "./components/Squares/Squares";
+
 import {
   SiPython,
   SiJavascript,
