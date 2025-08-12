@@ -273,7 +273,7 @@ function App() {
                       through OpenCV and delivers instant translations with
                       Django REST API backend architecture.
                     </p>
-                    <div className="flex justify-center gap-4 mt-6">
+                    <div className="flex flex-wrap justify-center gap-2 mt-6">
                       <span className="px-3 py-1 bg-emerald-500/20 text-emerald-300 rounded-full text-sm">
                         Machine Learning
                       </span>
@@ -296,19 +296,19 @@ function App() {
                   </article>
 
                   <article className="rounded-xl border border-white/10 bg-slate-900/30 p-6 text-center">
-                    <div className="flex flex-row justify-center gap-4 mb-6">
+                    <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mb-6">
                       <img
-                        className="w-full  invert max-w-5/16 mb-6 rounded-2xl border-4 border-white/10 shadow-lg"
+                        className="w-full invert rounded-2xl border-4 border-white/10 shadow-lg"
                         src="/workout1.png"
                         alt="AI Workout Generator"
                       />
                       <img
-                        className="w-full invert max-w-5/16 mb-6 rounded-2xl border-4 border-white/10 shadow-lg"
+                        className="w-full invert rounded-2xl border-4 border-white/10 shadow-lg"
                         src="/workout2.png"
                         alt="AI Workout Generator"
                       />
                       <img
-                        className="w-full invert max-w-5/16 mb-6 rounded-2xl border-4 border-white/10 shadow-lg"
+                        className="w-full invert rounded-2xl border-4 border-white/10 shadow-lg"
                         src="/workout3.png"
                         alt="AI Workout Generator"
                       />
@@ -330,7 +330,7 @@ function App() {
                       with interactive dashboards for comprehensive fitness
                       analytics and progress visualization.
                     </p>
-                    <div className="flex justify-center gap-4 mt-6">
+                    <div className="flex flex-wrap justify-center gap-2 mt-6">
                       <span className="px-3 py-1 bg-orange-500/20 text-orange-300 rounded-full text-sm">
                         AI Planning
                       </span>
@@ -350,19 +350,19 @@ function App() {
                   </article>
 
                   <article className="rounded-xl border border-white/10 bg-slate-900/30 p-6 text-center">
-                    <div className="flex flex-row justify-center gap-4 mb-6">
+                    <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mb-6">
                       <img
-                        className="w-full  max-w-5/16 mb-6 rounded-2xl border-4 border-white/10 shadow-lg shadow-white/10"
+                        className="w-full rounded-2xl border-4 border-white/10 shadow-lg shadow-white/10"
                         src="/chef1.png"
                         alt="Chef's Arena"
                       />
                       <img
-                        className="w-full max-w-5/16 mb-6 rounded-2xl border-4 border-white/10 shadow-lg shadow-white/10"
+                        className="w-full rounded-2xl border-4 border-white/10 shadow-lg shadow-white/10"
                         src="/chef2.png"
                         alt="Chef's Arena"
                       />
                       <img
-                        className="w-full  max-w-5/16 mb-6 rounded-2xl border-4 border-white/10 shadow-lg shadow-white/10"
+                        className="w-full rounded-2xl border-4 border-white/10 shadow-lg shadow-white/10"
                         src="/chef3.png"
                         alt="Chef's Arena"
                       />
@@ -384,7 +384,7 @@ function App() {
                       effects, and save/load functionality with JSON
                       serialization for persistent game progress.
                     </p>
-                    <div className="flex justify-center gap-4 mt-6">
+                    <div className="flex flex-wrap justify-center gap-2 mt-6">
                       <span className="px-3 py-1 bg-yellow-500/20 text-yellow-300 rounded-full text-sm">
                         Game Dev
                       </span>
