@@ -1,12 +1,14 @@
 import {
-  Home as HomeIcon,
-  LayoutDashboard,
-  Bell,
-  Search,
-  User,
+  Download,
+  Mail,
+  Phone,
+  ExternalLink,
+  Github,
+  Linkedin,
+  Globe,
   Briefcase,
   FolderGit2,
-  Building2, // org-style icon for AIFA
+  Building2,
 } from "lucide-react";
 import { Routes, Route, Link, useLocation } from "react-router-dom";
 import "./App.css";
@@ -27,7 +29,7 @@ import {
 } from "react-icons/si";
 import { FaJava } from "react-icons/fa";
 
-function SidebarLink({
+function NavLink({
   to,
   children,
 }: {
@@ -39,8 +41,10 @@ function SidebarLink({
   return (
     <Link
       to={to}
-      className={`w-full flex items-center gap-2 rounded-md px-3 py-2 text-sm transition ${
-        active ? "bg-white/15" : "hover:bg-white/10"
+      className={`px-4 py-2 rounded-lg font-medium transition-all ${
+        active 
+          ? "bg-emerald-500/20 text-emerald-300 border border-emerald-500/30" 
+          : "text-white/80 hover:text-white hover:bg-white/10"
       }`}
     >
       {children}
@@ -49,16 +53,9 @@ function SidebarLink({
 }
 
 function App() {
-  const navItems = [
-    { label: "Home", to: "/", icon: HomeIcon },
-    { label: "Projects", to: "/projects", icon: FolderGit2 },
-    { label: "Experience", to: "/experience", icon: Briefcase },
-    { label: "Organizations", to: "/organizations", icon: Building2 }, // changed icon
-  ];
-
   return (
-    <div className="relative w-full min-h-screen text-white">
-      {/* Background (subtle) */}
+    <div className="relative w-full min-h-screen text-white bg-slate-900">
+      {/* Background Animation */}
       <div className="fixed inset-0 pointer-events-none">
         <Squares
           speed={0.2}
@@ -68,85 +65,55 @@ function App() {
         />
       </div>
 
-      {/* App Shell */}
-      <div className="flex min-h-screen">
-        {/* Sidebar */}
-        <aside className="md:flex w-60 flex-col m-2 rounded-2xl border border-white/10 bg-slate-900/40 backdrop-blur p-4 h-[96vh] max-h-[900px]">
-          <div className="text-lg font-semibold mb-6 flex items-center gap-2">
-            <LayoutDashboard size={18} />
-            <span>Neel Bhansali</span>
-          </div>
-          <nav className="space-y-1">
-            {navItems.map(({ label, to, icon: Icon }) => (
-              <SidebarLink key={label} to={to}>
-                <Icon size={16} />
-                <span>{label}</span>
-              </SidebarLink>
-            ))}
-          </nav>
-          <div className="mt-auto pt-4 text-xs opacity-80 space-y-1">
-            <div>817-659-4024</div>
-            <div>neelbh99@gmail.com</div>
-            <div className="flex gap-3">
-              <a
-                href="https://www.linkedin.com/in/neel-bhansali-506a42265/"
-                target="_blank"
-                rel="noreferrer"
-                className="hover:underline"
-              >
-                LinkedIn
-              </a>
-              <a
-                href="https://github.com/neel-bhan"
-                target="_blank"
-                rel="noreferrer"
-                className="hover:underline"
-              >
-                GitHub
-              </a>
-              <a
-                href="https://neelbhansali.com"
-                target="_blank"
-                rel="noreferrer"
-                className="hover:underline"
-              >
-                Website
-              </a>
-            </div>
-          </div>
-        </aside>
+      {/* Navigation */}
+      <nav className="relative z-10 border-b border-white/10 bg-slate-900/80 backdrop-blur-lg">
+        <div className="max-w-6xl mx-auto px-6 py-4">
+          <div className="flex items-center justify-between">
+            {/* Logo/Name */}
+            <Link to="/" className="text-xl font-bold text-white">
+              Neel Bhansali
+            </Link>
 
-        {/* Main Content */}
-        <main className="flex-1 h-full p-2">
-          {/* Top Bar */}
-          <header className="flex items-center justify-between rounded-xl border border-white/10 bg-slate-900/40 backdrop-blur p-3">
-            <div className="flex items-center gap-2 text-sm opacity-80">
-              <LayoutDashboard size={18} />
-              <span>Portfolio</span>
+            {/* Navigation Links */}
+            <div className="hidden md:flex items-center gap-2">
+              <NavLink to="/">Home</NavLink>
+              <NavLink to="/projects">Projects</NavLink>
+              <NavLink to="/experience">Experience</NavLink>
+              <NavLink to="/organizations">Organizations</NavLink>
             </div>
-            <div className="flex items-center gap-2">
-              <div className="relative">
-                <Search
-                  className="absolute left-3 top-1/2 -translate-y-1/2 opacity-60"
-                  size={16}
-                />
-                <input
-                  placeholder="Search..."
-                  className="h-9 w-56 md:w-72 bg-white/5 border border-white/10 rounded-md pl-9 pr-3 text-sm outline-none placeholder-white/50"
-                />
-              </div>
+
+            {/* Action Buttons */}
+            <div className="flex items-center gap-3">
               <Button
-                variant="ghost"
-                size="icon"
-                className="rounded-full bg-white/5 border border-white/10 hover:bg-white/10"
+                variant="outline"
+                size="sm"
+                className="hidden sm:flex items-center gap-2 border-emerald-500/30 text-emerald-300 hover:bg-emerald-500/10"
               >
-                <Bell size={16} />
+                <Download size={16} />
+                Resume
               </Button>
-              <div className="h-8 w-8 rounded-full bg-white/20 flex items-center justify-center">
-                <User size={16} />
-              </div>
+              <Button
+                size="sm"
+                className="bg-emerald-500 hover:bg-emerald-600 text-black font-medium"
+              >
+                <Mail size={16} className="mr-2" />
+                Contact
+              </Button>
             </div>
-          </header>
+          </div>
+
+          {/* Mobile Navigation */}
+          <div className="md:hidden mt-4 flex justify-center gap-2">
+            <NavLink to="/">Home</NavLink>
+            <NavLink to="/projects">Projects</NavLink>
+            <NavLink to="/experience">Experience</NavLink>
+            <NavLink to="/organizations">Orgs</NavLink>
+          </div>
+        </div>
+      </nav>
+
+      {/* Main Content */}
+      <main className="relative z-10 max-w-6xl mx-auto px-6 py-8">
 
           <Routes>
             <Route
@@ -865,8 +832,7 @@ function App() {
           </Routes>
         </main>
       </div>
-    </div>
-  );
-}
+    );
+  }
 
 export default App;
