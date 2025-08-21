@@ -74,17 +74,25 @@ function App() {
 
             {/* Action Buttons */}
             <div className="flex items-center gap-3">
-              <Button
-                variant="outline"
-                size="sm"
-                className="bg-emerald-500 hover:bg-emerald-600 text-black font-medium"
+              <a 
+                href="/Neel Bhansali Resume.pdf" 
+                target="_blank" 
+                rel="noopener noreferrer"
+                className="inline-block"
               >
-                <Download size={16} />
-                Resume
-              </Button>
+                <Button
+                  variant="outline"
+                  size="sm"
+                  className="bg-emerald-500 hover:bg-emerald-600 text-black font-medium"
+                >
+                  <Download size={16} />
+                  Resume
+                </Button>
+              </a>
               <Button
                 size="sm"
                 className="bg-emerald-500 hover:bg-emerald-600 text-black font-medium"
+                onClick={() => window.open('mailto:neelbh99@gmail.com?subject=Let\'s Connect!&body=Hi Neel,%0D%0A%0D%0AI saw your portfolio and would like to connect.%0D%0A%0D%0APhone: 817-659-4024', '_blank')}
               >
                 <Mail size={16} className="mr-2" />
                 Contact
@@ -197,7 +205,12 @@ function App() {
                     <h3 className="text-sm opacity-70 mb-2">Quick Links</h3>
                     <ul className="text-sm space-y-1 opacity-90">
                       <li>
-                        <a className="hover:underline" href="#">
+                        <a 
+                          className="hover:underline" 
+                          href="/Neel Bhansali Resume.pdf" 
+                          target="_blank" 
+                          rel="noopener noreferrer"
+                        >
                           Resume (PDF)
                         </a>
                       </li>
