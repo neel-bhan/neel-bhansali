@@ -255,9 +255,97 @@ function App() {
           <Route
             path="/projects"
             element={
-              <div className="mt-4 space-y-4 backdrop-blur rounded-xl border border-white/10 bg-slate-900/30 p-4">
+              <div className="mt-4 space-y-6 backdrop-blur rounded-xl border border-white/10 bg-slate-900/30 p-6">
                 <h2 className="text-xl font-semibold">Projects</h2>
                 <div className="flex flex-col space-y-8">
+                  {/* College Resale Platform */}
+                  <article className="rounded-xl border border-white/10 bg-slate-900/30 p-6 text-center">
+                    <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mb-6">
+                      <img
+                        className="w-full rounded-2xl border-4 border-white/10 shadow-lg shadow-white/10"
+                        src="/campus-resale-home.png"
+                        alt="Campus Resale Platform Home"
+                      />
+                      <img
+                        className="w-full rounded-2xl border-4 border-white/10 shadow-lg shadow-white/10"
+                        src="/campus-resale-dashboard.png"
+                        alt="Campus Resale Platform Dashboard"
+                      />
+                      <img
+                        className="w-full rounded-2xl border-4 border-white/10 shadow-lg shadow-white/10"
+                        src="/campus-resale-login.png"
+                        alt="Campus Resale Platform Login"
+                      />
+                    </div>
+                    <h3 className="text-3xl font-bold mb-4">
+                      College Resale Platform
+                    </h3>
+                    <p className="text-lg opacity-90 mb-4">
+                      University-exclusive marketplace designed to connect students for buying and selling textbooks and sports tickets. Features automated school email verification to ensure campus-only access and geolocation search for local transactions.
+                      <br />
+                      <br />
+                      Built with modern web technologies including React and TypeScript for a responsive user experience, powered by a robust Node.js backend with PostgreSQL database. Includes real-time chat and notifications through WebSockets, enabling instant bidding and live ticket updates with web scraping integration for current campus sporting events.
+                    </p>
+                    <div className="flex flex-wrap justify-center gap-2 mt-6">
+                      <span className="px-3 py-1 bg-blue-500/20 text-blue-300 rounded-full text-sm">
+                        React
+                      </span>
+                      <span className="px-3 py-1 bg-indigo-500/20 text-indigo-300 rounded-full text-sm">
+                        TypeScript
+                      </span>
+                      <span className="px-3 py-1 bg-green-500/20 text-green-300 rounded-full text-sm">
+                        Node.js
+                      </span>
+                      <span className="px-3 py-1 bg-purple-500/20 text-purple-300 rounded-full text-sm">
+                        PostgreSQL
+                      </span>
+                      <span className="px-3 py-1 bg-orange-500/20 text-orange-300 rounded-full text-sm">
+                        WebSockets
+                      </span>
+                      <span className="px-3 py-1 bg-yellow-500/20 text-yellow-300 rounded-full text-sm">
+                        Web Scraping
+                      </span>
+                    </div>
+                  </article>
+
+                  {/* Auto-Rotation Password Manager */}
+                  <article className="rounded-xl border border-white/10 bg-slate-900/30 p-6 text-center">
+                    <img
+                      className="w-full max-w-md mx-auto mb-6 rounded-2xl border-4 border-white/10 shadow-lg shadow-white/10"
+                      src="/password-rotation-agent.png"
+                      alt="Auto-Rotation Password Manager"
+                    />
+                    <h3 className="text-3xl font-bold mb-4">
+                      Auto-Rotation Password Manager (AI Agent)
+                    </h3>
+                    <p className="text-lg opacity-90 mb-4">
+                      Intelligent password management system that automatically rotates and updates passwords across your digital accounts. Features an AI agent that handles the complexity of password changes while maintaining security through multi-factor authentication support.
+                      <br />
+                      <br />
+                      Designed with a local-first architecture ensuring your data stays secure on your device. Includes offline scheduling capabilities, real-time monitoring for rotation status, and automatic rollback for failed attempts. The system uses YAML-driven adapters to guide the AI through different service workflows with AES-GCM encryption for maximum security.
+                    </p>
+                    <div className="flex flex-wrap justify-center gap-2 mt-6">
+                      <span className="px-3 py-1 bg-emerald-500/20 text-emerald-300 rounded-full text-sm">
+                        AI Agent
+                      </span>
+                      <span className="px-3 py-1 bg-blue-500/20 text-blue-300 rounded-full text-sm">
+                        React
+                      </span>
+                      <span className="px-3 py-1 bg-red-500/20 text-red-300 rounded-full text-sm">
+                        Security
+                      </span>
+                      <span className="px-3 py-1 bg-purple-500/20 text-purple-300 rounded-full text-sm">
+                        MFA
+                      </span>
+                      <span className="px-3 py-1 bg-yellow-500/20 text-yellow-300 rounded-full text-sm">
+                        Encryption
+                      </span>
+                      <span className="px-3 py-1 bg-orange-500/20 text-orange-300 rounded-full text-sm">
+                        Automation
+                      </span>
+                    </div>
+                  </article>
+
                   <article className="rounded-xl border border-white/10 bg-slate-900/30 p-6 text-center">
                     <img
                       className="w-full max-w-md mx-auto mb-6 rounded-2xl border-4 border-white/10 shadow-lg shadow-white/10"
