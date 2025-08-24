@@ -47,12 +47,12 @@ function App() {
           direction="diagonal"
           borderColor="#0f1899"
         /> */}
-<Aurora
-  colorStops={["#10b981", "#3b82f6", "#059669"]}
-  blend={0.3}
-  amplitude={0.8}
-  speed={0.3}
-/>
+        <Aurora
+          colorStops={["#10b981", "#3b82f6", "#059669"]}
+          blend={0.3}
+          amplitude={0.8}
+          speed={0.3}
+        />
       </div>
 
       {/* Navigation */}
@@ -74,9 +74,9 @@ function App() {
 
             {/* Action Buttons */}
             <div className="flex items-center gap-3">
-              <a 
-                href="/Neel Bhansali Resume.pdf" 
-                target="_blank" 
+              <a
+                href="/Neel Bhansali Resume.pdf"
+                target="_blank"
                 rel="noopener noreferrer"
                 className="inline-block"
               >
@@ -92,7 +92,12 @@ function App() {
               <Button
                 size="sm"
                 className="bg-emerald-500 hover:bg-emerald-600 text-black font-medium"
-                onClick={() => window.open('mailto:neelbh99@gmail.com?subject=Let\'s Connect!&body=Hi Neel,%0D%0A%0D%0AI saw your portfolio and would like to connect.%0D%0A%0D%0APhone: 817-659-4024', '_blank')}
+                onClick={() =>
+                  window.open(
+                    "mailto:neelbh99@gmail.com?subject=Let's Connect!&body=Hi Neel,%0D%0A%0D%0AI saw your portfolio and would like to connect.%0D%0A%0D%0APhone: 817-659-4024",
+                    "_blank"
+                  )
+                }
               >
                 <Mail size={16} className="mr-2" />
                 Contact
@@ -205,10 +210,10 @@ function App() {
                     <h3 className="text-sm opacity-70 mb-2">Quick Links</h3>
                     <ul className="text-sm space-y-1 opacity-90">
                       <li>
-                        <a 
-                          className="hover:underline" 
-                          href="/Neel Bhansali Resume.pdf" 
-                          target="_blank" 
+                        <a
+                          className="hover:underline"
+                          href="/Neel Bhansali Resume.pdf"
+                          target="_blank"
                           rel="noopener noreferrer"
                         >
                           Resume (PDF)
@@ -294,10 +299,19 @@ function App() {
                       College Resale Platform
                     </h3>
                     <p className="text-lg opacity-90 mb-4">
-                      University-exclusive marketplace designed to connect students for buying and selling textbooks and sports tickets. Features automated school email verification to ensure campus-only access and geolocation search for local transactions.
+                      University-exclusive marketplace designed to connect
+                      students for buying and selling textbooks and sports
+                      tickets. Features automated school email verification to
+                      ensure campus-only access and geolocation search for local
+                      transactions.
                       <br />
                       <br />
-                      Built with modern web technologies including React and TypeScript for a responsive user experience, powered by a robust Node.js backend with PostgreSQL database. Includes real-time chat and notifications through WebSockets, enabling instant bidding and live ticket updates with web scraping integration for current campus sporting events.
+                      Built with modern web technologies including React and
+                      TypeScript for a responsive user experience, powered by a
+                      robust Node.js backend with PostgreSQL database. Includes
+                      real-time chat and notifications through WebSockets,
+                      enabling instant bidding and live ticket updates with web
+                      scraping integration for current campus sporting events.
                     </p>
                     <div className="flex flex-wrap justify-center gap-2 mt-6">
                       <span className="px-3 py-1 bg-blue-500/20 text-blue-300 rounded-full text-sm">
@@ -321,40 +335,48 @@ function App() {
                     </div>
                   </article>
 
-                  {/* Auto-Rotation Password Manager */}
+                  {/* Agentic Portfolio Updater */}
                   <article className="rounded-xl border border-white/10 bg-slate-900/30 p-6 text-center">
                     <img
                       className="w-full max-w-md mx-auto mb-6 rounded-2xl border-4 border-white/10 shadow-lg shadow-white/10"
                       src="/password-rotation-agent.png"
-                      alt="Auto-Rotation Password Manager"
+                      alt="Agentic Portfolio Updater"
                     />
                     <h3 className="text-3xl font-bold mb-4">
-                      Auto-Rotation Password Manager (AI Agent)
+                      Agentic Portfolio Updater
                     </h3>
                     <p className="text-lg opacity-90 mb-4">
-                      Intelligent password management system that automatically rotates and updates passwords across your digital accounts. Features an AI agent that handles the complexity of password changes while maintaining security through multi-factor authentication support.
+                      Built an agentic AI pipeline that detects new GitHub repos
+                      via webhooks, generates project summaries with the OpenAI
+                      API, and submits PRs updating a Next.js/React portfolio
+                      site for seamless portfolio integration.
                       <br />
                       <br />
-                      Designed with a local-first architecture ensuring your data stays secure on your device. Includes offline scheduling capabilities, real-time monitoring for rotation status, and automatic rollback for failed attempts. The system uses YAML-driven adapters to guide the AI through different service workflows with AES-GCM encryption for maximum security.
+                      Designed a structured JSON/YAML schema for consistent
+                      project entries with automated tech stack detection and
+                      tagging, supporting scalable updates across projects.
+                      Integrated README image parsing for project previews and
+                      implemented AWS SQS, Lambda, S3 and GitHub Actions CI/CD
+                      with rollbacks, and PR validation.
                     </p>
                     <div className="flex flex-wrap justify-center gap-2 mt-6">
                       <span className="px-3 py-1 bg-emerald-500/20 text-emerald-300 rounded-full text-sm">
                         AI Agent
                       </span>
                       <span className="px-3 py-1 bg-blue-500/20 text-blue-300 rounded-full text-sm">
-                        React
-                      </span>
-                      <span className="px-3 py-1 bg-red-500/20 text-red-300 rounded-full text-sm">
-                        Security
+                        Next.js
                       </span>
                       <span className="px-3 py-1 bg-purple-500/20 text-purple-300 rounded-full text-sm">
-                        MFA
-                      </span>
-                      <span className="px-3 py-1 bg-yellow-500/20 text-yellow-300 rounded-full text-sm">
-                        Encryption
+                        OpenAI API
                       </span>
                       <span className="px-3 py-1 bg-orange-500/20 text-orange-300 rounded-full text-sm">
-                        Automation
+                        AWS Lambda
+                      </span>
+                      <span className="px-3 py-1 bg-yellow-500/20 text-yellow-300 rounded-full text-sm">
+                        GitHub Actions
+                      </span>
+                      <span className="px-3 py-1 bg-red-500/20 text-red-300 rounded-full text-sm">
+                        Webhooks
                       </span>
                     </div>
                   </article>
