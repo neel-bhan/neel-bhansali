@@ -513,8 +513,9 @@ function App() {
                       algorithms. Features custom GUI components, particle
                       effects, and save/load functionality with JSON
                       serialization for persistent game progress.
-
-                      Aron liked my project btw
+                      <br />
+                      <br />
+                      Aaron liked my project btw
                     </p>
 
 
