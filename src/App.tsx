@@ -513,7 +513,12 @@ function App() {
                       algorithms. Features custom GUI components, particle
                       effects, and save/load functionality with JSON
                       serialization for persistent game progress.
+
+                      Aron liked my project btw
                     </p>
+
+
+                    
                     <div className="flex flex-wrap justify-center gap-2 mt-6">
                       <span className="px-3 py-1 bg-yellow-500/20 text-yellow-300 rounded-full text-sm">
                         Game Dev
