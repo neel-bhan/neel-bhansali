@@ -279,67 +279,107 @@ function App() {
                     Featured Projects
                   </h2>
                   <p className="text-lg text-white/70 max-w-2xl mx-auto">
-                    Discover my latest work in software engineering, AI, and web development
+                    Discover my latest work in software engineering, AI, and web
+                    development
                   </p>
                 </div>
-                
+
                 <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
                   {/* College Resale Platform - Featured */}
                   <article className="lg:col-span-2 group relative overflow-hidden rounded-2xl border border-white/20 bg-gradient-to-br from-slate-900/90 to-slate-800/90 backdrop-blur-xl hover:border-emerald-500/50 transition-all duration-500 hover:shadow-2xl hover:shadow-emerald-500/20">
                     <div className="absolute inset-0 bg-gradient-to-br from-emerald-500/5 to-blue-500/5 opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
-                    
-                    {/* Hero Image */}
-                    <div className="relative h-64 lg:h-80 overflow-hidden">
-                      <img
-                        className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
-                        src="/campus-resale-home.png"
-                        alt="Campus Resale Platform"
-                      />
-                      <div className="absolute inset-0 bg-gradient-to-t from-slate-900 via-transparent to-transparent"></div>
-                      <div className="absolute top-4 left-4">
-                        <span className="px-3 py-1 bg-emerald-500/90 text-white text-sm font-medium rounded-full backdrop-blur">
+
+                    {/* Unified Image Gallery */}
+                    <div className="relative p-6 pt-8">
+                      <div className="absolute top-6 left-6 z-10">
+                        <span className="px-4 py-2 bg-emerald-500/90 text-white text-sm font-medium rounded-full backdrop-blur shadow-lg">
                           ⭐ Featured Project
                         </span>
                       </div>
-                    </div>
 
-                    <div className="p-8">
-                      <div className="flex items-center gap-4 mb-6">
-                        <h3 className="text-3xl font-bold text-white group-hover:text-emerald-400 transition-colors">
-                          College Resale Platform
-                        </h3>
-                        <div className="flex gap-2">
+                      {/* Image Grid - All images same size in clean grid */}
+                      <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+                        <div className="relative h-48 lg:h-56 rounded-xl overflow-hidden border-2 border-white/20 hover:border-emerald-500/50 transition-all cursor-pointer group/img bg-white/5">
                           <img
-                            className="w-16 h-16 rounded-lg border-2 border-white/20 hover:border-emerald-500/50 transition-all cursor-pointer transform hover:scale-110"
+                            className="w-full h-full object-contain transition-transform duration-500 group-hover/img:scale-105"
+                            src="/campus-resale-home.png"
+                            alt="Campus Resale Platform Home"
+                          />
+                          <div className="absolute bottom-3 left-3">
+                            <span className="px-2 py-1 bg-black/60 text-white text-xs rounded backdrop-blur">
+                              Home Page
+                            </span>
+                          </div>
+                        </div>
+                        <div className="relative h-48 lg:h-56 rounded-xl overflow-hidden border-2 border-white/20 hover:border-emerald-500/50 transition-all cursor-pointer group/img bg-white/5">
+                          <img
+                            className="w-full h-full object-contain transition-transform duration-500 group-hover/img:scale-105"
                             src="/campus-resale-dashboard.png"
-                            alt="Dashboard"
+                            alt="Campus Resale Platform Dashboard"
                           />
+                          <div className="absolute bottom-3 left-3">
+                            <span className="px-2 py-1 bg-black/60 text-white text-xs rounded backdrop-blur">
+                              Dashboard
+                            </span>
+                          </div>
+                        </div>
+                        <div className="relative h-48 lg:h-56 rounded-xl overflow-hidden border-2 border-white/20 hover:border-emerald-500/50 transition-all cursor-pointer group/img bg-white/5">
                           <img
-                            className="w-16 h-16 rounded-lg border-2 border-white/20 hover:border-emerald-500/50 transition-all cursor-pointer transform hover:scale-110"
+                            className="w-full h-full object-contain transition-transform duration-500 group-hover/img:scale-105"
                             src="/campus-resale-login.png"
-                            alt="Login"
+                            alt="Campus Resale Platform Login"
                           />
+                          <div className="absolute bottom-3 left-3">
+                            <span className="px-2 py-1 bg-black/60 text-white text-xs rounded backdrop-blur">
+                              Authentication
+                            </span>
+                          </div>
                         </div>
                       </div>
-                      
+                    </div>
+
+                    <div className="p-8 pt-4">
+                      <div className="mb-6">
+                        <h3 className="text-4xl font-bold text-white group-hover:text-emerald-400 transition-colors mb-2">
+                          College Resale Platform
+                        </h3>
+                        <p className="text-emerald-400/80 font-medium">
+                          University Marketplace & Ticket Exchange
+                        </p>
+                      </div>
+
                       <p className="text-lg text-white/80 leading-relaxed mb-6">
-                        University-exclusive marketplace connecting students for textbooks and sports tickets. 
-                        Features automated email verification, geolocation search, real-time chat, and WebSocket 
-                        notifications with web scraping for live sporting events.
+                        University-exclusive marketplace connecting students for
+                        textbooks and sports tickets. Features automated email
+                        verification, geolocation search, real-time chat, and
+                        WebSocket notifications with web scraping for live
+                        sporting events.
                       </p>
 
                       <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mb-6">
                         <div className="bg-white/5 rounded-xl p-4 border border-white/10">
-                          <h4 className="font-semibold text-emerald-400 mb-2">🔐 Security</h4>
-                          <p className="text-sm text-white/70">Email verification & campus-only access</p>
+                          <h4 className="font-semibold text-emerald-400 mb-2">
+                            🔐 Security
+                          </h4>
+                          <p className="text-sm text-white/70">
+                            Email verification & campus-only access
+                          </p>
                         </div>
                         <div className="bg-white/5 rounded-xl p-4 border border-white/10">
-                          <h4 className="font-semibold text-blue-400 mb-2">⚡ Real-time</h4>
-                          <p className="text-sm text-white/70">WebSocket chat & live notifications</p>
+                          <h4 className="font-semibold text-blue-400 mb-2">
+                            ⚡ Real-time
+                          </h4>
+                          <p className="text-sm text-white/70">
+                            WebSocket chat & live notifications
+                          </p>
                         </div>
                         <div className="bg-white/5 rounded-xl p-4 border border-white/10">
-                          <h4 className="font-semibold text-purple-400 mb-2">🌐 Full-stack</h4>
-                          <p className="text-sm text-white/70">React + Node.js + PostgreSQL</p>
+                          <h4 className="font-semibold text-purple-400 mb-2">
+                            🌐 Full-stack
+                          </h4>
+                          <p className="text-sm text-white/70">
+                            React + Node.js + PostgreSQL
+                          </p>
                         </div>
                       </div>
 
@@ -366,14 +406,15 @@ function App() {
                   {/* AI Portfolio Updater */}
                   <article className="group relative overflow-hidden rounded-2xl border border-white/20 bg-gradient-to-br from-slate-900/90 to-slate-800/90 backdrop-blur-xl hover:border-purple-500/50 transition-all duration-500 hover:shadow-2xl hover:shadow-purple-500/20">
                     <div className="absolute inset-0 bg-gradient-to-br from-purple-500/5 to-pink-500/5 opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
-                    
-                    <div className="relative h-48 overflow-hidden">
+
+                    {/* Larger Image Section */}
+                    <div className="relative h-56 lg:h-64 overflow-hidden rounded-t-2xl">
                       <img
-                        className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
+                        className="w-full h-full object-contain bg-white/5 transition-transform duration-700 group-hover:scale-105"
                         src="/password-rotation-agent.png"
                         alt="AI Portfolio Updater"
                       />
-                      <div className="absolute inset-0 bg-gradient-to-t from-slate-900 via-transparent to-transparent"></div>
+                      <div className="absolute inset-0 bg-gradient-to-t from-slate-900/60 via-transparent to-transparent"></div>
                       <div className="absolute top-4 left-4">
                         <span className="px-3 py-1 bg-purple-500/90 text-white text-sm font-medium rounded-full backdrop-blur">
                           🤖 AI Powered
@@ -382,23 +423,36 @@ function App() {
                     </div>
 
                     <div className="p-6">
-                      <h3 className="text-2xl font-bold text-white group-hover:text-purple-400 transition-colors mb-4">
+                      <h3 className="text-2xl font-bold text-white group-hover:text-purple-400 transition-colors mb-2">
                         Agentic Portfolio Updater
                       </h3>
-                      
+                      <p className="text-purple-400/80 font-medium mb-4 text-sm">
+                        AI-Driven Development Automation
+                      </p>
+
                       <p className="text-white/80 leading-relaxed mb-6">
-                        AI-powered automation that detects GitHub repos via webhooks, generates summaries with OpenAI, 
-                        and creates portfolio PRs with AWS infrastructure and CI/CD validation.
+                        AI-powered automation that detects GitHub repos via
+                        webhooks, generates summaries with OpenAI, and creates
+                        portfolio PRs with AWS infrastructure and CI/CD
+                        validation.
                       </p>
 
                       <div className="grid grid-cols-2 gap-3 mb-6">
                         <div className="bg-white/5 rounded-lg p-3 border border-white/10">
-                          <h4 className="font-semibold text-purple-400 mb-1 text-sm">🔄 Automation</h4>
-                          <p className="text-xs text-white/70">GitHub webhooks + AI summaries</p>
+                          <h4 className="font-semibold text-purple-400 mb-1 text-sm">
+                            🔄 Automation
+                          </h4>
+                          <p className="text-xs text-white/70">
+                            GitHub webhooks + AI summaries
+                          </p>
                         </div>
                         <div className="bg-white/5 rounded-lg p-3 border border-white/10">
-                          <h4 className="font-semibold text-orange-400 mb-1 text-sm">☁️ AWS Stack</h4>
-                          <p className="text-xs text-white/70">Lambda, SQS, S3 integration</p>
+                          <h4 className="font-semibold text-orange-400 mb-1 text-sm">
+                            ☁️ AWS Stack
+                          </h4>
+                          <p className="text-xs text-white/70">
+                            Lambda, SQS, S3 integration
+                          </p>
                         </div>
                       </div>
 
@@ -422,14 +476,15 @@ function App() {
                   {/* Sign Language Interpreter */}
                   <article className="group relative overflow-hidden rounded-2xl border border-white/20 bg-gradient-to-br from-slate-900/90 to-slate-800/90 backdrop-blur-xl hover:border-green-500/50 transition-all duration-500 hover:shadow-2xl hover:shadow-green-500/20">
                     <div className="absolute inset-0 bg-gradient-to-br from-green-500/5 to-teal-500/5 opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
-                    
-                    <div className="relative h-48 overflow-hidden">
+
+                    {/* Larger Image Section */}
+                    <div className="relative h-56 lg:h-64 overflow-hidden rounded-t-2xl">
                       <img
-                        className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
+                        className="w-full h-full object-contain bg-white/5 transition-transform duration-700 group-hover:scale-105"
                         src="/sign_language.png"
                         alt="AI Sign Language Interpreter"
                       />
-                      <div className="absolute inset-0 bg-gradient-to-t from-slate-900 via-transparent to-transparent"></div>
+                      <div className="absolute inset-0 bg-gradient-to-t from-slate-900/60 via-transparent to-transparent"></div>
                       <div className="absolute top-4 left-4">
                         <span className="px-3 py-1 bg-green-500/90 text-white text-sm font-medium rounded-full backdrop-blur">
                           🎯 Real-time AI
@@ -438,23 +493,35 @@ function App() {
                     </div>
 
                     <div className="p-6">
-                      <h3 className="text-2xl font-bold text-white group-hover:text-green-400 transition-colors mb-4">
+                      <h3 className="text-2xl font-bold text-white group-hover:text-green-400 transition-colors mb-2">
                         AI Sign Language Interpreter
                       </h3>
-                      
+                      <p className="text-green-400/80 font-medium mb-4 text-sm">
+                        Computer Vision & Accessibility
+                      </p>
+
                       <p className="text-white/80 leading-relaxed mb-6">
-                        Revolutionary real-time translator using CNN architecture and computer vision 
-                        for high-precision gesture recognition with seamless React integration.
+                        Revolutionary real-time translator using CNN
+                        architecture and computer vision for high-precision
+                        gesture recognition with seamless React integration.
                       </p>
 
                       <div className="grid grid-cols-2 gap-3 mb-6">
                         <div className="bg-white/5 rounded-lg p-3 border border-white/10">
-                          <h4 className="font-semibold text-green-400 mb-1 text-sm">👁️ Computer Vision</h4>
-                          <p className="text-xs text-white/70">OpenCV + TensorFlow CNN</p>
+                          <h4 className="font-semibold text-green-400 mb-1 text-sm">
+                            👁️ Computer Vision
+                          </h4>
+                          <p className="text-xs text-white/70">
+                            OpenCV + TensorFlow CNN
+                          </p>
                         </div>
                         <div className="bg-white/5 rounded-lg p-3 border border-white/10">
-                          <h4 className="font-semibold text-blue-400 mb-1 text-sm">♿ Accessibility</h4>
-                          <p className="text-xs text-white/70">Real-time translation</p>
+                          <h4 className="font-semibold text-blue-400 mb-1 text-sm">
+                            ♿ Accessibility
+                          </h4>
+                          <p className="text-xs text-white/70">
+                            Real-time translation
+                          </p>
                         </div>
                       </div>
 
@@ -476,53 +543,90 @@ function App() {
                   </article>
 
                   {/* AI Workout Generator */}
-                  <article className="group relative overflow-hidden rounded-2xl border border-white/20 bg-gradient-to-br from-slate-900/90 to-slate-800/90 backdrop-blur-xl hover:border-orange-500/50 transition-all duration-500 hover:shadow-2xl hover:shadow-orange-500/20">
+                  <article className="lg:col-span-2 group relative overflow-hidden rounded-2xl border border-white/20 bg-gradient-to-br from-slate-900/90 to-slate-800/90 backdrop-blur-xl hover:border-orange-500/50 transition-all duration-500 hover:shadow-2xl hover:shadow-orange-500/20">
                     <div className="absolute inset-0 bg-gradient-to-br from-orange-500/5 to-red-500/5 opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
-                    
-                    <div className="relative h-48 overflow-hidden">
-                      <div className="grid grid-cols-3 h-full">
-                        <img
-                          className="w-full h-full object-cover invert transition-transform duration-700 group-hover:scale-105"
-                          src="/workout1.png"
-                          alt="AI Workout Generator"
-                        />
-                        <img
-                          className="w-full h-full object-cover invert transition-transform duration-700 group-hover:scale-105"
-                          src="/workout2.png"
-                          alt="AI Workout Generator"
-                        />
-                        <img
-                          className="w-full h-full object-cover invert transition-transform duration-700 group-hover:scale-105"
-                          src="/workout3.png"
-                          alt="AI Workout Generator"
-                        />
-                      </div>
-                      <div className="absolute inset-0 bg-gradient-to-t from-slate-900 via-transparent to-transparent"></div>
-                      <div className="absolute top-4 left-4">
-                        <span className="px-3 py-1 bg-orange-500/90 text-white text-sm font-medium rounded-full backdrop-blur">
+
+                    {/* Unified Image Gallery - Same as Featured */}
+                    <div className="relative p-6 pt-8">
+                      <div className="absolute top-6 left-6 z-10">
+                        <span className="px-4 py-2 bg-orange-500/90 text-white text-sm font-medium rounded-full backdrop-blur shadow-lg">
                           🏋️ Fitness AI
                         </span>
                       </div>
+
+                      {/* Image Grid - All images same size in clean grid */}
+                      <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+                        <div className="relative h-48 lg:h-56 rounded-xl overflow-hidden border-2 border-white/20 hover:border-orange-500/50 transition-all cursor-pointer group/img bg-white/10">
+                          <img
+                            className="w-full h-full object-contain invert transition-transform duration-500 group-hover/img:scale-105"
+                            src="/workout1.png"
+                            alt="Workout Generator Interface"
+                          />
+                          <div className="absolute bottom-3 left-3">
+                            <span className="px-2 py-1 bg-black/60 text-white text-xs rounded backdrop-blur">
+                              Main App
+                            </span>
+                          </div>
+                        </div>
+                        <div className="relative h-48 lg:h-56 rounded-xl overflow-hidden border-2 border-white/20 hover:border-orange-500/50 transition-all cursor-pointer group/img bg-white/10">
+                          <img
+                            className="w-full h-full object-contain invert transition-transform duration-500 group-hover/img:scale-105"
+                            src="/workout2.png"
+                            alt="Workout Planning"
+                          />
+                          <div className="absolute bottom-3 left-3">
+                            <span className="px-2 py-1 bg-black/60 text-white text-xs rounded backdrop-blur">
+                              Planning
+                            </span>
+                          </div>
+                        </div>
+                        <div className="relative h-48 lg:h-56 rounded-xl overflow-hidden border-2 border-white/20 hover:border-orange-500/50 transition-all cursor-pointer group/img bg-white/10">
+                          <img
+                            className="w-full h-full object-contain invert transition-transform duration-500 group-hover/img:scale-105"
+                            src="/workout3.png"
+                            alt="Workout Analytics"
+                          />
+                          <div className="absolute bottom-3 left-3">
+                            <span className="px-2 py-1 bg-black/60 text-white text-xs rounded backdrop-blur">
+                              Analytics
+                            </span>
+                          </div>
+                        </div>
+                      </div>
                     </div>
 
-                    <div className="p-6">
-                      <h3 className="text-2xl font-bold text-white group-hover:text-orange-400 transition-colors mb-4">
-                        AI Workout Generator
-                      </h3>
-                      
+                    <div className="p-8 pt-4">
+                      <div className="mb-6">
+                        <h3 className="text-4xl font-bold text-white group-hover:text-orange-400 transition-colors mb-2">
+                          AI Workout Generator
+                        </h3>
+                        <p className="text-orange-400/80 font-medium">
+                          Intelligent Fitness Planning
+                        </p>
+                      </div>
+
                       <p className="text-white/80 leading-relaxed mb-6">
-                        Intelligent fitness companion using ML algorithms for personalized routines 
-                        with adaptive difficulty scaling based on user performance metrics.
+                        Intelligent fitness companion using ML algorithms for
+                        personalized routines with adaptive difficulty scaling
+                        based on user performance metrics.
                       </p>
 
                       <div className="grid grid-cols-2 gap-3 mb-6">
                         <div className="bg-white/5 rounded-lg p-3 border border-white/10">
-                          <h4 className="font-semibold text-orange-400 mb-1 text-sm">🧠 Smart Planning</h4>
-                          <p className="text-xs text-white/70">Decision tree algorithms</p>
+                          <h4 className="font-semibold text-orange-400 mb-1 text-sm">
+                            🧠 Smart Planning
+                          </h4>
+                          <p className="text-xs text-white/70">
+                            Decision tree algorithms
+                          </p>
                         </div>
                         <div className="bg-white/5 rounded-lg p-3 border border-white/10">
-                          <h4 className="font-semibold text-purple-400 mb-1 text-sm">📊 Analytics</h4>
-                          <p className="text-xs text-white/70">Progress visualization</p>
+                          <h4 className="font-semibold text-purple-400 mb-1 text-sm">
+                            📊 Analytics
+                          </h4>
+                          <p className="text-xs text-white/70">
+                            Progress visualization
+                          </p>
                         </div>
                       </div>
 
@@ -544,59 +648,91 @@ function App() {
                   </article>
 
                   {/* Chef's Arena Game */}
-                  <article className="group relative overflow-hidden rounded-2xl border border-white/20 bg-gradient-to-br from-slate-900/90 to-slate-800/90 backdrop-blur-xl hover:border-yellow-500/50 transition-all duration-500 hover:shadow-2xl hover:shadow-yellow-500/20">
+                  <article className="lg:col-span-2 group relative overflow-hidden rounded-2xl border border-white/20 bg-gradient-to-br from-slate-900/90 to-slate-800/90 backdrop-blur-xl hover:border-yellow-500/50 transition-all duration-500 hover:shadow-2xl hover:shadow-yellow-500/20">
                     <div className="absolute inset-0 bg-gradient-to-br from-yellow-500/5 to-orange-500/5 opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
-                    
-                    <div className="relative h-48 overflow-hidden">
-                      <div className="grid grid-cols-3 h-full">
-                        <img
-                          className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
-                          src="/chef1.png"
-                          alt="Chef's Arena"
-                        />
-                        <img
-                          className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
-                          src="/chef2.png"
-                          alt="Chef's Arena"
-                        />
-                        <img
-                          className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
-                          src="/chef3.png"
-                          alt="Chef's Arena"
-                        />
-                      </div>
-                      <div className="absolute inset-0 bg-gradient-to-t from-slate-900 via-transparent to-transparent"></div>
-                      <div className="absolute top-4 left-4">
-                        <span className="px-3 py-1 bg-yellow-500/90 text-black text-sm font-medium rounded-full backdrop-blur">
+
+                    {/* Unified Image Gallery - Same as Featured */}
+                    <div className="relative p-6 pt-8">
+                      <div className="absolute top-6 left-6 z-10">
+                        <span className="px-4 py-2 bg-yellow-500/90 text-black text-sm font-medium rounded-full backdrop-blur shadow-lg">
                           🎮 Game Dev
                         </span>
                       </div>
+
+                      {/* Image Grid - All images same size in clean grid */}
+                      <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+                        <div className="relative h-48 lg:h-56 rounded-xl overflow-hidden border-2 border-white/20 hover:border-yellow-500/50 transition-all cursor-pointer group/img bg-white/5">
+                          <img
+                            className="w-full h-full object-contain transition-transform duration-500 group-hover/img:scale-105"
+                            src="/chef1.png"
+                            alt="Chef's Arena Gameplay"
+                          />
+                          <div className="absolute bottom-3 left-3">
+                            <span className="px-2 py-1 bg-black/60 text-white text-xs rounded backdrop-blur">
+                              Gameplay
+                            </span>
+                          </div>
+                        </div>
+                        <div className="relative h-48 lg:h-56 rounded-xl overflow-hidden border-2 border-white/20 hover:border-yellow-500/50 transition-all cursor-pointer group/img bg-white/5">
+                          <img
+                            className="w-full h-full object-contain transition-transform duration-500 group-hover/img:scale-105"
+                            src="/chef2.png"
+                            alt="Chef's Arena Interface"
+                          />
+                          <div className="absolute bottom-3 left-3">
+                            <span className="px-2 py-1 bg-black/60 text-white text-xs rounded backdrop-blur">
+                              Interface
+                            </span>
+                          </div>
+                        </div>
+                        <div className="relative h-48 lg:h-56 rounded-xl overflow-hidden border-2 border-white/20 hover:border-yellow-500/50 transition-all cursor-pointer group/img bg-white/5">
+                          <img
+                            className="w-full h-full object-contain transition-transform duration-500 group-hover/img:scale-105"
+                            src="/chef3.png"
+                            alt="Chef's Arena Menu"
+                          />
+                          <div className="absolute bottom-3 left-3">
+                            <span className="px-2 py-1 bg-black/60 text-white text-xs rounded backdrop-blur">
+                              Menu
+                            </span>
+                          </div>
+                        </div>
+                      </div>
                     </div>
 
-                    <div className="p-6">
-                      <h3 className="text-2xl font-bold text-white group-hover:text-yellow-400 transition-colors mb-4">
-                        Chef's Arena - Kitchen Simulation
-                      </h3>
-                      
-                      <p className="text-white/80 leading-relaxed mb-4">
-                        Immersive culinary simulation with advanced game mechanics, realistic physics, 
-                        and stunning 2D graphics built with JavaFX and OOP design patterns.
-                      </p>
-
-                      <div className="bg-yellow-500/10 border border-yellow-500/30 rounded-lg p-3 mb-6">
-                        <p className="text-yellow-300 text-sm italic">
-                          "Aaron liked my project btw" 😊
+                    <div className="p-8 pt-4">
+                      <div className="mb-6">
+                        <h3 className="text-4xl font-bold text-white group-hover:text-yellow-400 transition-colors mb-2">
+                          Chef's Arena - Kitchen Simulation
+                        </h3>
+                        <p className="text-yellow-400/80 font-medium">
+                          Immersive Culinary Game Experience
                         </p>
                       </div>
 
+                      <p className="text-white/80 leading-relaxed mb-4">
+                        Immersive culinary simulation with advanced game
+                        mechanics, realistic physics, and stunning 2D graphics
+                        built with JavaFX and OOP design patterns.
+                      </p>
+
+
                       <div className="grid grid-cols-2 gap-3 mb-6">
                         <div className="bg-white/5 rounded-lg p-3 border border-white/10">
-                          <h4 className="font-semibold text-yellow-400 mb-1 text-sm">🎯 Performance</h4>
-                          <p className="text-xs text-white/70">60 FPS multi-threaded engine</p>
+                          <h4 className="font-semibold text-yellow-400 mb-1 text-sm">
+                            🎯 Performance
+                          </h4>
+                          <p className="text-xs text-white/70">
+                            60 FPS multi-threaded engine
+                          </p>
                         </div>
                         <div className="bg-white/5 rounded-lg p-3 border border-white/10">
-                          <h4 className="font-semibold text-orange-400 mb-1 text-sm">🍳 Content</h4>
-                          <p className="text-xs text-white/70">50+ realistic recipes</p>
+                          <h4 className="font-semibold text-orange-400 mb-1 text-sm">
+                            🍳 Content
+                          </h4>
+                          <p className="text-xs text-white/70">
+                            50+ realistic recipes
+                          </p>
                         </div>
                       </div>
 
