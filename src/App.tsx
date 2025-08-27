@@ -269,273 +269,351 @@ function App() {
             }
           />
 
-          {/* Projects: vertical showcases */}
+          {/* Projects: Enhanced visual showcase */}
           <Route
             path="/projects"
             element={
-              <div className="mt-4 space-y-6 backdrop-blur rounded-xl border border-white/10 bg-slate-900/30 p-6">
-                <h2 className="text-xl font-semibold">Projects</h2>
-                <div className="flex flex-col space-y-8">
-                  {/* College Resale Platform */}
-                  <article className="rounded-xl border border-white/10 bg-slate-900/30 p-6 text-center">
-                    <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mb-6">
-                      <img
-                        className="w-full rounded-2xl border-4 border-white/10 shadow-lg shadow-white/10"
-                        src="/campus-resale-home.png"
-                        alt="Campus Resale Platform Home"
-                      />
-                      <img
-                        className="w-full rounded-2xl border-4 border-white/10 shadow-lg shadow-white/10"
-                        src="/campus-resale-dashboard.png"
-                        alt="Campus Resale Platform Dashboard"
-                      />
-                      <img
-                        className="w-full rounded-2xl border-4 border-white/10 shadow-lg shadow-white/10"
-                        src="/campus-resale-login.png"
-                        alt="Campus Resale Platform Login"
-                      />
-                    </div>
-                    <h3 className="text-3xl font-bold mb-4">
-                      College Resale Platform
-                    </h3>
-                    <p className="text-lg opacity-90 mb-4">
-                      University-exclusive marketplace designed to connect
-                      students for buying and selling textbooks and sports
-                      tickets. Features automated school email verification to
-                      ensure campus-only access and geolocation search for local
-                      transactions.
-                      <br />
-                      <br />
-                      Built with modern web technologies including React and
-                      TypeScript for a responsive user experience, powered by a
-                      robust Node.js backend with PostgreSQL database. Includes
-                      real-time chat and notifications through WebSockets,
-                      enabling instant bidding and live ticket updates with web
-                      scraping integration for current campus sporting events.
-                    </p>
-                    <div className="flex flex-wrap justify-center gap-2 mt-6">
-                      <span className="px-3 py-1 bg-blue-500/20 text-blue-300 rounded-full text-sm">
-                        React
-                      </span>
-                      <span className="px-3 py-1 bg-indigo-500/20 text-indigo-300 rounded-full text-sm">
-                        TypeScript
-                      </span>
-                      <span className="px-3 py-1 bg-green-500/20 text-green-300 rounded-full text-sm">
-                        Node.js
-                      </span>
-                      <span className="px-3 py-1 bg-purple-500/20 text-purple-300 rounded-full text-sm">
-                        PostgreSQL
-                      </span>
-                      <span className="px-3 py-1 bg-orange-500/20 text-orange-300 rounded-full text-sm">
-                        WebSockets
-                      </span>
-                      <span className="px-3 py-1 bg-yellow-500/20 text-yellow-300 rounded-full text-sm">
-                        Web Scraping
-                      </span>
-                    </div>
-                  </article>
-
-                  {/* Agentic Portfolio Updater */}
-                  <article className="rounded-xl border border-white/10 bg-slate-900/30 p-6 text-center">
-                    <img
-                      className="w-full max-w-md mx-auto mb-6 rounded-2xl border-4 border-white/10 shadow-lg shadow-white/10"
-                      src="/password-rotation-agent.png"
-                      alt="Agentic Portfolio Updater"
-                    />
-                    <h3 className="text-3xl font-bold mb-4">
-                      Agentic Portfolio Updater
-                    </h3>
-                    <p className="text-lg opacity-90 mb-4">
-                      Built an agentic AI pipeline that detects new GitHub repos
-                      via webhooks, generates project summaries with the OpenAI
-                      API, and submits PRs updating a Next.js/React portfolio
-                      site for seamless portfolio integration.
-                      <br />
-                      <br />
-                      Designed a structured JSON/YAML schema for consistent
-                      project entries with automated tech stack detection and
-                      tagging, supporting scalable updates across projects.
-                      Integrated README image parsing for project previews and
-                      implemented AWS SQS, Lambda, S3 and GitHub Actions CI/CD
-                      with rollbacks, and PR validation.
-                    </p>
-                    <div className="flex flex-wrap justify-center gap-2 mt-6">
-                      <span className="px-3 py-1 bg-emerald-500/20 text-emerald-300 rounded-full text-sm">
-                        AI Agent
-                      </span>
-                      <span className="px-3 py-1 bg-blue-500/20 text-blue-300 rounded-full text-sm">
-                        Next.js
-                      </span>
-                      <span className="px-3 py-1 bg-purple-500/20 text-purple-300 rounded-full text-sm">
-                        OpenAI API
-                      </span>
-                      <span className="px-3 py-1 bg-orange-500/20 text-orange-300 rounded-full text-sm">
-                        AWS Lambda
-                      </span>
-                      <span className="px-3 py-1 bg-yellow-500/20 text-yellow-300 rounded-full text-sm">
-                        GitHub Actions
-                      </span>
-                      <span className="px-3 py-1 bg-red-500/20 text-red-300 rounded-full text-sm">
-                        Webhooks
-                      </span>
-                    </div>
-                  </article>
-
-                  <article className="rounded-xl border border-white/10 bg-slate-900/30 p-6 text-center">
-                    <img
-                      className="w-full max-w-md mx-auto mb-6 rounded-2xl border-4 border-white/10 shadow-lg shadow-white/10"
-                      src="/sign_language.png"
-                      alt="AI Sign Language Interpreter"
-                    />
-                    <h3 className="text-3xl font-bold mb-4">
-                      AI Sign Language Interpreter
-                    </h3>
-                    <p className="text-lg opacity-90 mb-4">
-                      Revolutionary real-time AI translator using advanced CNN
-                      architecture and computer vision to bridge communication
-                      gaps with high-precision gesture recognition and seamless
-                      React frontend integration.
-                      <br />
-                      <br />
-                      Developed with TensorFlow for deep learning capabilities,
-                      featuring real-time video processing and gesture
-                      classification. The system processes hand movements
-                      through OpenCV and delivers instant translations with
-                      Django REST API backend architecture.
-                    </p>
-                    <div className="flex flex-wrap justify-center gap-2 mt-6">
-                      <span className="px-3 py-1 bg-emerald-500/20 text-emerald-300 rounded-full text-sm">
-                        Machine Learning
-                      </span>
-                      <span className="px-3 py-1 bg-blue-500/20 text-blue-300 rounded-full text-sm">
-                        Real-time
-                      </span>
-                      <span className="px-3 py-1 bg-purple-500/20 text-purple-300 rounded-full text-sm">
-                        Accessibility
-                      </span>
-                      <span className="px-3 py-1 bg-yellow-500/20 text-yellow-300 rounded-full text-sm">
-                        Computer Vision
-                      </span>
-                      <span className="px-3 py-1 bg-red-500/20 text-red-300 rounded-full text-sm">
-                        TensorFlow
-                      </span>
-                      <span className="px-3 py-1 bg-indigo-500/20 text-indigo-300 rounded-full text-sm">
-                        Django
-                      </span>
-                    </div>
-                  </article>
-
-                  <article className="rounded-xl border border-white/10 bg-slate-900/30 p-6 text-center">
-                    <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mb-6">
-                      <img
-                        className="w-full invert rounded-2xl border-4 border-white/10 shadow-lg"
-                        src="/workout1.png"
-                        alt="AI Workout Generator"
-                      />
-                      <img
-                        className="w-full invert rounded-2xl border-4 border-white/10 shadow-lg"
-                        src="/workout2.png"
-                        alt="AI Workout Generator"
-                      />
-                      <img
-                        className="w-full invert rounded-2xl border-4 border-white/10 shadow-lg"
-                        src="/workout3.png"
-                        alt="AI Workout Generator"
-                      />
-                    </div>
-                    <h3 className="text-3xl font-bold mb-4">
-                      AI Workout Generator
-                    </h3>
-                    <p className="text-lg opacity-90 mb-4">
-                      Intelligent fitness companion leveraging machine learning
-                      algorithms to create personalized workout routines with
-                      dynamic progress tracking and adaptive difficulty scaling
-                      based on user performance metrics.
-                      <br />
-                      <br />
-                      Features advanced decision tree algorithms that analyze
-                      user fitness levels, goals, and equipment availability to
-                      generate optimal exercise combinations. Built with Python
-                      and scikit-learn for smart routine generation, integrated
-                      with interactive dashboards for comprehensive fitness
-                      analytics and progress visualization.
-                    </p>
-                    <div className="flex flex-wrap justify-center gap-2 mt-6">
-                      <span className="px-3 py-1 bg-orange-500/20 text-orange-300 rounded-full text-sm">
-                        AI Planning
-                      </span>
-                      <span className="px-3 py-1 bg-red-500/20 text-red-300 rounded-full text-sm">
-                        Health & Fitness
-                      </span>
-                      <span className="px-3 py-1 bg-blue-500/20 text-blue-300 rounded-full text-sm">
-                        Python
-                      </span>
-                      <span className="px-3 py-1 bg-green-500/20 text-green-300 rounded-full text-sm">
-                        Machine Learning
-                      </span>
-                      <span className="px-3 py-1 bg-purple-500/20 text-purple-300 rounded-full text-sm">
-                        Data Analytics
-                      </span>
-                    </div>
-                  </article>
-
-                  <article className="rounded-xl border border-white/10 bg-slate-900/30 p-6 text-center">
-                    <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mb-6">
-                      <img
-                        className="w-full rounded-2xl border-4 border-white/10 shadow-lg shadow-white/10"
-                        src="/chef1.png"
-                        alt="Chef's Arena"
-                      />
-                      <img
-                        className="w-full rounded-2xl border-4 border-white/10 shadow-lg shadow-white/10"
-                        src="/chef2.png"
-                        alt="Chef's Arena"
-                      />
-                      <img
-                        className="w-full rounded-2xl border-4 border-white/10 shadow-lg shadow-white/10"
-                        src="/chef3.png"
-                        alt="Chef's Arena"
-                      />
-                    </div>
-                    <h3 className="text-3xl font-bold mb-4">
-                      Chef's Arena - Kitchen Simulation Game
-                    </h3>
-                    <p className="text-lg opacity-90 mb-">
-                      Immersive culinary simulation featuring advanced game
-                      mechanics, realistic physics, and stunning 2D graphics
-                      built with JavaFX and comprehensive object-oriented design
-                      patterns.
-                      <br />
-                      <br />
-                      Includes dynamic recipe management system with 50+
-                      realistic cooking procedures, multi-threaded game engine
-                      for smooth 60 FPS gameplay, and sophisticated scoring
-                      algorithms. Features custom GUI components, particle
-                      effects, and save/load functionality with JSON
-                      serialization for persistent game progress.
-                      <br />
-                      <br />
-                      Aaron liked my project btw
-                    </p>
-
-
+              <div className="mt-4 space-y-8">
+                <div className="text-center mb-12">
+                  <h2 className="text-4xl font-bold bg-gradient-to-r from-emerald-400 to-blue-500 bg-clip-text text-transparent mb-4">
+                    Featured Projects
+                  </h2>
+                  <p className="text-lg text-white/70 max-w-2xl mx-auto">
+                    Discover my latest work in software engineering, AI, and web development
+                  </p>
+                </div>
+                
+                <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
+                  {/* College Resale Platform - Featured */}
+                  <article className="lg:col-span-2 group relative overflow-hidden rounded-2xl border border-white/20 bg-gradient-to-br from-slate-900/90 to-slate-800/90 backdrop-blur-xl hover:border-emerald-500/50 transition-all duration-500 hover:shadow-2xl hover:shadow-emerald-500/20">
+                    <div className="absolute inset-0 bg-gradient-to-br from-emerald-500/5 to-blue-500/5 opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
                     
-                    <div className="flex flex-wrap justify-center gap-2 mt-6">
-                      <span className="px-3 py-1 bg-yellow-500/20 text-yellow-300 rounded-full text-sm">
-                        Game Dev
-                      </span>
-                      <span className="px-3 py-1 bg-orange-500/20 text-orange-300 rounded-full text-sm">
-                        JavaFX
-                      </span>
-                      <span className="px-3 py-1 bg-blue-500/20 text-blue-300 rounded-full text-sm">
-                        Java
-                      </span>
-                      <span className="px-3 py-1 bg-purple-500/20 text-purple-300 rounded-full text-sm">
-                        OOP Design
-                      </span>
-                      <span className="px-3 py-1 bg-green-500/20 text-green-300 rounded-full text-sm">
-                        GUI Development
-                      </span>
+                    {/* Hero Image */}
+                    <div className="relative h-64 lg:h-80 overflow-hidden">
+                      <img
+                        className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
+                        src="/campus-resale-home.png"
+                        alt="Campus Resale Platform"
+                      />
+                      <div className="absolute inset-0 bg-gradient-to-t from-slate-900 via-transparent to-transparent"></div>
+                      <div className="absolute top-4 left-4">
+                        <span className="px-3 py-1 bg-emerald-500/90 text-white text-sm font-medium rounded-full backdrop-blur">
+                          ⭐ Featured Project
+                        </span>
+                      </div>
+                    </div>
+
+                    <div className="p-8">
+                      <div className="flex items-center gap-4 mb-6">
+                        <h3 className="text-3xl font-bold text-white group-hover:text-emerald-400 transition-colors">
+                          College Resale Platform
+                        </h3>
+                        <div className="flex gap-2">
+                          <img
+                            className="w-16 h-16 rounded-lg border-2 border-white/20 hover:border-emerald-500/50 transition-all cursor-pointer transform hover:scale-110"
+                            src="/campus-resale-dashboard.png"
+                            alt="Dashboard"
+                          />
+                          <img
+                            className="w-16 h-16 rounded-lg border-2 border-white/20 hover:border-emerald-500/50 transition-all cursor-pointer transform hover:scale-110"
+                            src="/campus-resale-login.png"
+                            alt="Login"
+                          />
+                        </div>
+                      </div>
+                      
+                      <p className="text-lg text-white/80 leading-relaxed mb-6">
+                        University-exclusive marketplace connecting students for textbooks and sports tickets. 
+                        Features automated email verification, geolocation search, real-time chat, and WebSocket 
+                        notifications with web scraping for live sporting events.
+                      </p>
+
+                      <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mb-6">
+                        <div className="bg-white/5 rounded-xl p-4 border border-white/10">
+                          <h4 className="font-semibold text-emerald-400 mb-2">🔐 Security</h4>
+                          <p className="text-sm text-white/70">Email verification & campus-only access</p>
+                        </div>
+                        <div className="bg-white/5 rounded-xl p-4 border border-white/10">
+                          <h4 className="font-semibold text-blue-400 mb-2">⚡ Real-time</h4>
+                          <p className="text-sm text-white/70">WebSocket chat & live notifications</p>
+                        </div>
+                        <div className="bg-white/5 rounded-xl p-4 border border-white/10">
+                          <h4 className="font-semibold text-purple-400 mb-2">🌐 Full-stack</h4>
+                          <p className="text-sm text-white/70">React + Node.js + PostgreSQL</p>
+                        </div>
+                      </div>
+
+                      <div className="flex flex-wrap gap-2">
+                        <span className="px-4 py-2 bg-blue-500/20 text-blue-300 rounded-full text-sm font-medium border border-blue-500/30">
+                          React
+                        </span>
+                        <span className="px-4 py-2 bg-indigo-500/20 text-indigo-300 rounded-full text-sm font-medium border border-indigo-500/30">
+                          TypeScript
+                        </span>
+                        <span className="px-4 py-2 bg-green-500/20 text-green-300 rounded-full text-sm font-medium border border-green-500/30">
+                          Node.js
+                        </span>
+                        <span className="px-4 py-2 bg-purple-500/20 text-purple-300 rounded-full text-sm font-medium border border-purple-500/30">
+                          PostgreSQL
+                        </span>
+                        <span className="px-4 py-2 bg-orange-500/20 text-orange-300 rounded-full text-sm font-medium border border-orange-500/30">
+                          WebSockets
+                        </span>
+                      </div>
+                    </div>
+                  </article>
+
+                  {/* AI Portfolio Updater */}
+                  <article className="group relative overflow-hidden rounded-2xl border border-white/20 bg-gradient-to-br from-slate-900/90 to-slate-800/90 backdrop-blur-xl hover:border-purple-500/50 transition-all duration-500 hover:shadow-2xl hover:shadow-purple-500/20">
+                    <div className="absolute inset-0 bg-gradient-to-br from-purple-500/5 to-pink-500/5 opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+                    
+                    <div className="relative h-48 overflow-hidden">
+                      <img
+                        className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
+                        src="/password-rotation-agent.png"
+                        alt="AI Portfolio Updater"
+                      />
+                      <div className="absolute inset-0 bg-gradient-to-t from-slate-900 via-transparent to-transparent"></div>
+                      <div className="absolute top-4 left-4">
+                        <span className="px-3 py-1 bg-purple-500/90 text-white text-sm font-medium rounded-full backdrop-blur">
+                          🤖 AI Powered
+                        </span>
+                      </div>
+                    </div>
+
+                    <div className="p-6">
+                      <h3 className="text-2xl font-bold text-white group-hover:text-purple-400 transition-colors mb-4">
+                        Agentic Portfolio Updater
+                      </h3>
+                      
+                      <p className="text-white/80 leading-relaxed mb-6">
+                        AI-powered automation that detects GitHub repos via webhooks, generates summaries with OpenAI, 
+                        and creates portfolio PRs with AWS infrastructure and CI/CD validation.
+                      </p>
+
+                      <div className="grid grid-cols-2 gap-3 mb-6">
+                        <div className="bg-white/5 rounded-lg p-3 border border-white/10">
+                          <h4 className="font-semibold text-purple-400 mb-1 text-sm">🔄 Automation</h4>
+                          <p className="text-xs text-white/70">GitHub webhooks + AI summaries</p>
+                        </div>
+                        <div className="bg-white/5 rounded-lg p-3 border border-white/10">
+                          <h4 className="font-semibold text-orange-400 mb-1 text-sm">☁️ AWS Stack</h4>
+                          <p className="text-xs text-white/70">Lambda, SQS, S3 integration</p>
+                        </div>
+                      </div>
+
+                      <div className="flex flex-wrap gap-2">
+                        <span className="px-3 py-1 bg-emerald-500/20 text-emerald-300 rounded-full text-xs font-medium border border-emerald-500/30">
+                          AI Agent
+                        </span>
+                        <span className="px-3 py-1 bg-blue-500/20 text-blue-300 rounded-full text-xs font-medium border border-blue-500/30">
+                          Next.js
+                        </span>
+                        <span className="px-3 py-1 bg-purple-500/20 text-purple-300 rounded-full text-xs font-medium border border-purple-500/30">
+                          OpenAI API
+                        </span>
+                        <span className="px-3 py-1 bg-orange-500/20 text-orange-300 rounded-full text-xs font-medium border border-orange-500/30">
+                          AWS Lambda
+                        </span>
+                      </div>
+                    </div>
+                  </article>
+
+                  {/* Sign Language Interpreter */}
+                  <article className="group relative overflow-hidden rounded-2xl border border-white/20 bg-gradient-to-br from-slate-900/90 to-slate-800/90 backdrop-blur-xl hover:border-green-500/50 transition-all duration-500 hover:shadow-2xl hover:shadow-green-500/20">
+                    <div className="absolute inset-0 bg-gradient-to-br from-green-500/5 to-teal-500/5 opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+                    
+                    <div className="relative h-48 overflow-hidden">
+                      <img
+                        className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
+                        src="/sign_language.png"
+                        alt="AI Sign Language Interpreter"
+                      />
+                      <div className="absolute inset-0 bg-gradient-to-t from-slate-900 via-transparent to-transparent"></div>
+                      <div className="absolute top-4 left-4">
+                        <span className="px-3 py-1 bg-green-500/90 text-white text-sm font-medium rounded-full backdrop-blur">
+                          🎯 Real-time AI
+                        </span>
+                      </div>
+                    </div>
+
+                    <div className="p-6">
+                      <h3 className="text-2xl font-bold text-white group-hover:text-green-400 transition-colors mb-4">
+                        AI Sign Language Interpreter
+                      </h3>
+                      
+                      <p className="text-white/80 leading-relaxed mb-6">
+                        Revolutionary real-time translator using CNN architecture and computer vision 
+                        for high-precision gesture recognition with seamless React integration.
+                      </p>
+
+                      <div className="grid grid-cols-2 gap-3 mb-6">
+                        <div className="bg-white/5 rounded-lg p-3 border border-white/10">
+                          <h4 className="font-semibold text-green-400 mb-1 text-sm">👁️ Computer Vision</h4>
+                          <p className="text-xs text-white/70">OpenCV + TensorFlow CNN</p>
+                        </div>
+                        <div className="bg-white/5 rounded-lg p-3 border border-white/10">
+                          <h4 className="font-semibold text-blue-400 mb-1 text-sm">♿ Accessibility</h4>
+                          <p className="text-xs text-white/70">Real-time translation</p>
+                        </div>
+                      </div>
+
+                      <div className="flex flex-wrap gap-2">
+                        <span className="px-3 py-1 bg-emerald-500/20 text-emerald-300 rounded-full text-xs font-medium border border-emerald-500/30">
+                          Machine Learning
+                        </span>
+                        <span className="px-3 py-1 bg-red-500/20 text-red-300 rounded-full text-xs font-medium border border-red-500/30">
+                          TensorFlow
+                        </span>
+                        <span className="px-3 py-1 bg-indigo-500/20 text-indigo-300 rounded-full text-xs font-medium border border-indigo-500/30">
+                          Django
+                        </span>
+                        <span className="px-3 py-1 bg-yellow-500/20 text-yellow-300 rounded-full text-xs font-medium border border-yellow-500/30">
+                          Computer Vision
+                        </span>
+                      </div>
+                    </div>
+                  </article>
+
+                  {/* AI Workout Generator */}
+                  <article className="group relative overflow-hidden rounded-2xl border border-white/20 bg-gradient-to-br from-slate-900/90 to-slate-800/90 backdrop-blur-xl hover:border-orange-500/50 transition-all duration-500 hover:shadow-2xl hover:shadow-orange-500/20">
+                    <div className="absolute inset-0 bg-gradient-to-br from-orange-500/5 to-red-500/5 opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+                    
+                    <div className="relative h-48 overflow-hidden">
+                      <div className="grid grid-cols-3 h-full">
+                        <img
+                          className="w-full h-full object-cover invert transition-transform duration-700 group-hover:scale-105"
+                          src="/workout1.png"
+                          alt="AI Workout Generator"
+                        />
+                        <img
+                          className="w-full h-full object-cover invert transition-transform duration-700 group-hover:scale-105"
+                          src="/workout2.png"
+                          alt="AI Workout Generator"
+                        />
+                        <img
+                          className="w-full h-full object-cover invert transition-transform duration-700 group-hover:scale-105"
+                          src="/workout3.png"
+                          alt="AI Workout Generator"
+                        />
+                      </div>
+                      <div className="absolute inset-0 bg-gradient-to-t from-slate-900 via-transparent to-transparent"></div>
+                      <div className="absolute top-4 left-4">
+                        <span className="px-3 py-1 bg-orange-500/90 text-white text-sm font-medium rounded-full backdrop-blur">
+                          🏋️ Fitness AI
+                        </span>
+                      </div>
+                    </div>
+
+                    <div className="p-6">
+                      <h3 className="text-2xl font-bold text-white group-hover:text-orange-400 transition-colors mb-4">
+                        AI Workout Generator
+                      </h3>
+                      
+                      <p className="text-white/80 leading-relaxed mb-6">
+                        Intelligent fitness companion using ML algorithms for personalized routines 
+                        with adaptive difficulty scaling based on user performance metrics.
+                      </p>
+
+                      <div className="grid grid-cols-2 gap-3 mb-6">
+                        <div className="bg-white/5 rounded-lg p-3 border border-white/10">
+                          <h4 className="font-semibold text-orange-400 mb-1 text-sm">🧠 Smart Planning</h4>
+                          <p className="text-xs text-white/70">Decision tree algorithms</p>
+                        </div>
+                        <div className="bg-white/5 rounded-lg p-3 border border-white/10">
+                          <h4 className="font-semibold text-purple-400 mb-1 text-sm">📊 Analytics</h4>
+                          <p className="text-xs text-white/70">Progress visualization</p>
+                        </div>
+                      </div>
+
+                      <div className="flex flex-wrap gap-2">
+                        <span className="px-3 py-1 bg-orange-500/20 text-orange-300 rounded-full text-xs font-medium border border-orange-500/30">
+                          AI Planning
+                        </span>
+                        <span className="px-3 py-1 bg-blue-500/20 text-blue-300 rounded-full text-xs font-medium border border-blue-500/30">
+                          Python
+                        </span>
+                        <span className="px-3 py-1 bg-green-500/20 text-green-300 rounded-full text-xs font-medium border border-green-500/30">
+                          Machine Learning
+                        </span>
+                        <span className="px-3 py-1 bg-purple-500/20 text-purple-300 rounded-full text-xs font-medium border border-purple-500/30">
+                          Data Analytics
+                        </span>
+                      </div>
+                    </div>
+                  </article>
+
+                  {/* Chef's Arena Game */}
+                  <article className="group relative overflow-hidden rounded-2xl border border-white/20 bg-gradient-to-br from-slate-900/90 to-slate-800/90 backdrop-blur-xl hover:border-yellow-500/50 transition-all duration-500 hover:shadow-2xl hover:shadow-yellow-500/20">
+                    <div className="absolute inset-0 bg-gradient-to-br from-yellow-500/5 to-orange-500/5 opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+                    
+                    <div className="relative h-48 overflow-hidden">
+                      <div className="grid grid-cols-3 h-full">
+                        <img
+                          className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
+                          src="/chef1.png"
+                          alt="Chef's Arena"
+                        />
+                        <img
+                          className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
+                          src="/chef2.png"
+                          alt="Chef's Arena"
+                        />
+                        <img
+                          className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
+                          src="/chef3.png"
+                          alt="Chef's Arena"
+                        />
+                      </div>
+                      <div className="absolute inset-0 bg-gradient-to-t from-slate-900 via-transparent to-transparent"></div>
+                      <div className="absolute top-4 left-4">
+                        <span className="px-3 py-1 bg-yellow-500/90 text-black text-sm font-medium rounded-full backdrop-blur">
+                          🎮 Game Dev
+                        </span>
+                      </div>
+                    </div>
+
+                    <div className="p-6">
+                      <h3 className="text-2xl font-bold text-white group-hover:text-yellow-400 transition-colors mb-4">
+                        Chef's Arena - Kitchen Simulation
+                      </h3>
+                      
+                      <p className="text-white/80 leading-relaxed mb-4">
+                        Immersive culinary simulation with advanced game mechanics, realistic physics, 
+                        and stunning 2D graphics built with JavaFX and OOP design patterns.
+                      </p>
+
+                      <div className="bg-yellow-500/10 border border-yellow-500/30 rounded-lg p-3 mb-6">
+                        <p className="text-yellow-300 text-sm italic">
+                          "Aaron liked my project btw" 😊
+                        </p>
+                      </div>
+
+                      <div className="grid grid-cols-2 gap-3 mb-6">
+                        <div className="bg-white/5 rounded-lg p-3 border border-white/10">
+                          <h4 className="font-semibold text-yellow-400 mb-1 text-sm">🎯 Performance</h4>
+                          <p className="text-xs text-white/70">60 FPS multi-threaded engine</p>
+                        </div>
+                        <div className="bg-white/5 rounded-lg p-3 border border-white/10">
+                          <h4 className="font-semibold text-orange-400 mb-1 text-sm">🍳 Content</h4>
+                          <p className="text-xs text-white/70">50+ realistic recipes</p>
+                        </div>
+                      </div>
+
+                      <div className="flex flex-wrap gap-2">
+                        <span className="px-3 py-1 bg-yellow-500/20 text-yellow-300 rounded-full text-xs font-medium border border-yellow-500/30">
+                          Game Dev
+                        </span>
+                        <span className="px-3 py-1 bg-orange-500/20 text-orange-300 rounded-full text-xs font-medium border border-orange-500/30">
+                          JavaFX
+                        </span>
+                        <span className="px-3 py-1 bg-blue-500/20 text-blue-300 rounded-full text-xs font-medium border border-blue-500/30">
+                          Java
+                        </span>
+                        <span className="px-3 py-1 bg-purple-500/20 text-purple-300 rounded-full text-xs font-medium border border-purple-500/30">
+                          OOP Design
+                        </span>
+                      </div>
                     </div>
                   </article>
                 </div>
