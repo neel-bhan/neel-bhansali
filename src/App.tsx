@@ -150,19 +150,17 @@ function App() {
                       Featured Project
                     </h3>
                     <p className="text-lg font-semibold">
-                      Agentic Study Planner (WIP)
+                      College Resale Platform
                     </p>
                     <p className="text-sm opacity-80 mt-1">
-                      Agent that parses syllabi, tracks grades, and adapts study
-                      plans with Canvas/GPA feedback.
+                      University-exclusive marketplace connecting students for textbooks and sports tickets with real-time features.
                     </p>
                     <ul className="text-sm opacity-80 mt-2 list-disc pl-5 space-y-1">
-                      <li>Fetches syllabus PDFs and extracts deadlines</li>
+                      <li>Automated school email verification for campus-only access</li>
                       <li>
-                        Builds calendar + reminders; re-plans after grades are
-                        posted
+                        Real-time chat & notifications through WebSockets
                       </li>
-                      <li>Integrates with Notion/Google Calendar (planned)</li>
+                      <li>Geolocation search and web scraping for live events</li>
                     </ul>
                     <div className="mt-3 flex gap-3">
                       <Link
