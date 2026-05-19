@@ -298,9 +298,9 @@ function ProjectRegistry() {
         </article>
       </Reveal>
 
-      <div className="project-grid">
+      <div className="project-grid equal-card-grid">
         {registry.map((project, index) => (
-          <Reveal key={project.id} delay={index * 0.08}>
+          <Reveal key={project.id} delay={index * 0.08} className="equal-card-shell">
             <ProjectCard project={project} />
           </Reveal>
         ))}
@@ -632,12 +632,15 @@ function TagList({ tags }: { tags: string[] }) {
 function Reveal({
   children,
   delay = 0,
+  className,
 }: {
   children: React.ReactNode;
   delay?: number;
+  className?: string;
 }) {
   return (
     <motion.div
+      className={className}
       initial={{ opacity: 0, y: 30 }}
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true, margin: "-80px" }}

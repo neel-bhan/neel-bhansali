@@ -590,14 +590,24 @@ button {
   grid-template-columns: repeat(2, minmax(0, 1fr));
   gap: 1.1rem;
   margin-top: 0.95rem;
+  align-items: stretch;
+}
+
+.equal-card-grid > .equal-card-shell {
+  height: 100%;
 }
 
 .project-card {
+  display: grid;
+  grid-template-rows: 250px 1fr;
+  height: 100%;
   overflow: hidden;
   border-radius: 28px;
 }
 
 .project-card-body {
+  display: flex;
+  flex-direction: column;
   padding: 1.15rem;
 }
 
@@ -608,7 +618,7 @@ button {
 }
 
 .project-card p {
-  min-height: 88px;
+  min-height: 104px;
   margin: 0.75rem 0;
   color: var(--muted);
   line-height: 1.65;
@@ -631,7 +641,8 @@ button {
 
 .project-visual.compact {
   grid-template-columns: 1.45fr 0.75fr;
-  min-height: 250px;
+  min-height: 0;
+  height: 250px;
   padding: 0.85rem 0.85rem 0;
 }
 
@@ -880,6 +891,11 @@ button {
   margin-top: 1rem;
 }
 
+.project-card-body > .tag-list {
+  margin-top: auto;
+  padding-top: 1rem;
+}
+
 .tag-list span {
   display: inline-flex;
   align-items: center;
@@ -901,6 +917,10 @@ button {
   padding: 0;
   list-style: none;
   color: var(--soft);
+}
+
+.project-card ul {
+  min-height: 70px;
 }
 
 .project-card li,
@@ -1500,6 +1520,14 @@ button {
     grid-template-columns: 1fr;
     grid-template-rows: auto;
     min-height: auto;
+  }
+
+  .project-card {
+    grid-template-rows: auto 1fr;
+  }
+
+  .project-visual.compact {
+    height: auto;
   }
 
   .visual-frame {
