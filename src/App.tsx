@@ -1,1152 +1,721 @@
-import { Download, Mail } from "lucide-react";
-import { Routes, Route, Link, useLocation } from "react-router-dom";
-import "./App.css";
-import { Button } from "./components/ui/button";
-
+import { useEffect, useMemo, useState } from "react";
+import { AnimatePresence, motion, useScroll, useTransform } from "motion/react";
 import {
-  SiPython,
-  SiJavascript,
-  SiTypescript,
-  SiReact,
-  SiNodedotjs,
-  SiDotnet,
-  SiDjango,
-  SiMongodb,
-  SiTensorflow,
-  SiPytorch,
-  SiGit,
-} from "react-icons/si";
-import { FaJava } from "react-icons/fa";
-import Aurora from "./components/Aurora/Aurora";
+  ArrowRight,
+  ArrowUpRight,
+  Check,
+  ChevronRight,
+  CircleDot,
+  Command,
+  Database,
+  FileText,
+  Github,
+  Mail,
+  Menu,
+  Network,
+  Sparkles,
+  WandSparkles,
+  X,
+} from "lucide-react";
+import {
+  experiences,
+  heroSignals,
+  pipelineSteps,
+  projects,
+} from "./content";
+import type { Project } from "./content";
 
-function NavLink({ to, children }: { to: string; children: React.ReactNode }) {
-  const location = useLocation();
-  const active = location.pathname === to;
+const navItems = [
+  { label: "Overview", href: "#top" },
+  { label: "Projects", href: "#projects" },
+  { label: "Experience", href: "#experience" },
+  { label: "Automation", href: "#automation" },
+  { label: "Contact", href: "#contact" },
+];
+
+const commands = [
+  { label: "Open project registry", href: "#projects" },
+  { label: "View experience log", href: "#experience" },
+  { label: "Inspect automation pipeline", href: "#automation" },
+  { label: "Download resume", href: "/Neel_Bhansali_resume.pdf" },
+  { label: "Email Neel", href: "mailto:neelbh99@gmail.com" },
+  { label: "Open GitHub", href: "https://github.com/neel-bhan" },
+];
+
+function App() {
+  const [booted, setBooted] = useState(false);
+  const [commandOpen, setCommandOpen] = useState(false);
+  const [mobileOpen, setMobileOpen] = useState(false);
+  const { scrollYProgress } = useScroll();
+  const progressScale = useTransform(scrollYProgress, [0, 1], ["0%", "100%"]);
+
+  useEffect(() => {
+    const bootTimer = window.setTimeout(() => setBooted(true), 1350);
+    return () => window.clearTimeout(bootTimer);
+  }, []);
+
+  useEffect(() => {
+    const onKeyDown = (event: KeyboardEvent) => {
+      if (event.key === "/" && !event.metaKey && !event.ctrlKey) {
+        const target = event.target as HTMLElement | null;
+        const isTyping =
+          target?.tagName === "INPUT" ||
+          target?.tagName === "TEXTAREA" ||
+          target?.isContentEditable;
+
+        if (!isTyping) {
+          event.preventDefault();
+          setCommandOpen(true);
+        }
+      }
+
+      if (event.key === "Escape") {
+        setCommandOpen(false);
+        setMobileOpen(false);
+      }
+    };
+
+    window.addEventListener("keydown", onKeyDown);
+    return () => window.removeEventListener("keydown", onKeyDown);
+  }, []);
+
   return (
-    <Link
-      to={to}
-      className={`px-4 py-2 rounded-lg font-medium transition-all ${
-        active
-          ? "bg-emerald-500/20 text-emerald-300 border border-emerald-500/30"
-          : "text-white/80 hover:text-white hover:bg-white/10"
-      }`}
-    >
-      {children}
-    </Link>
+    <div className="site-shell">
+      <motion.div className="scroll-progress" style={{ width: progressScale }} />
+      <AmbientSystem />
+
+      <AnimatePresence>{!booted && <BootSequence />}</AnimatePresence>
+
+      <Header
+        commandOpen={() => setCommandOpen(true)}
+        mobileOpen={mobileOpen}
+        setMobileOpen={setMobileOpen}
+      />
+
+      <main>
+        <Hero commandOpen={() => setCommandOpen(true)} />
+        <ProjectRegistry />
+        <ExperienceLog />
+        <LeadershipNetwork />
+        <AutomationPipeline />
+        <ContactSection />
+      </main>
+
+      <StatusDock />
+      <CommandPalette open={commandOpen} onClose={() => setCommandOpen(false)} />
+    </div>
   );
 }
 
-function App() {
+function Header({
+  commandOpen,
+  mobileOpen,
+  setMobileOpen,
+}: {
+  commandOpen: () => void;
+  mobileOpen: boolean;
+  setMobileOpen: (open: boolean) => void;
+}) {
   return (
-    <div className="relative w-full min-h-screen text-white bg-slate-900">
-      {/* Background Animation */}
-      <div className="fixed inset-0 pointer-events-none">
-        {/* <Squares
-          speed={0.2}
-          squareSize={35}
-          direction="diagonal"
-          borderColor="#0f1899"
-        /> */}
-        <Aurora
-          colorStops={["#10b981", "#3b82f6", "#059669"]}
-          blend={0.3}
-          amplitude={0.8}
-          speed={0.3}
-        />
-      </div>
+    <header className="system-header">
+      <a className="brand-mark" href="#top" aria-label="Living Portfolio System home">
+        <span className="brand-orbit" />
+        <span>
+          <strong>Living Portfolio System</strong>
+          <small>Neel Bhansali</small>
+        </span>
+      </a>
 
-      {/* Navigation */}
-      <nav className="relative z-10 border-b border-white/10 bg-slate-900/80 backdrop-blur-lg">
-        <div className="max-w-6xl mx-auto px-6 py-4">
-          <div className="flex items-center justify-between">
-            {/* Logo/Name */}
-            <Link to="/" className="text-xl font-bold text-white">
-              Neel Bhansali
-            </Link>
-
-            {/* Navigation Links */}
-            <div className="hidden md:flex items-center gap-2">
-              <NavLink to="/">Home</NavLink>
-              <NavLink to="/projects">Projects</NavLink>
-              <NavLink to="/experience">Experience</NavLink>
-              <NavLink to="/organizations">Organizations</NavLink>
-            </div>
-
-            {/* Action Buttons */}
-            <div className="flex items-center gap-3">
-              <a
-                href="/Neel Bhansali Resume.pdf"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="inline-block"
-              >
-                <Button
-                  variant="outline"
-                  size="sm"
-                  className="bg-emerald-500 hover:bg-emerald-600 text-black font-medium"
-                >
-                  <Download size={16} />
-                  Resume
-                </Button>
-              </a>
-              <Button
-                size="sm"
-                className="bg-emerald-500 hover:bg-emerald-600 text-black font-medium"
-                onClick={() =>
-                  window.open(
-                    "mailto:neelbh99@gmail.com?subject=Let's Connect!&body=Hi Neel,%0D%0A%0D%0AI saw your portfolio and would like to connect.%0D%0A%0D%0APhone: 817-659-4024",
-                    "_blank"
-                  )
-                }
-              >
-                <Mail size={16} className="mr-2" />
-                Contact
-              </Button>
-            </div>
-          </div>
-
-          {/* Mobile Navigation */}
-          <div className="md:hidden mt-4 flex justify-center gap-2">
-            <NavLink to="/">Home</NavLink>
-            <NavLink to="/projects">Projects</NavLink>
-            <NavLink to="/experience">Experience</NavLink>
-            <NavLink to="/organizations">Orgs</NavLink>
-          </div>
-        </div>
+      <nav className="desktop-nav" aria-label="Primary navigation">
+        {navItems.map((item) => (
+          <a key={item.href} href={item.href}>
+            {item.label}
+          </a>
+        ))}
       </nav>
 
-      {/* Main Content */}
-      <main className="relative z-10 max-w-6xl mx-auto px-6 py-8">
-        <Routes>
-          <Route
-            path="/"
-            element={
-              <div>
-                {/* Home dashboard with previews */}
+      <div className="header-actions">
+        <button className="icon-button" type="button" onClick={commandOpen} aria-label="Open command palette">
+          <Command size={18} />
+        </button>
+        <a className="resume-button" href="/Neel_Bhansali_resume.pdf" target="_blank" rel="noreferrer">
+          <FileText size={16} />
+          Resume
+        </a>
+        <button
+          className="icon-button mobile-menu"
+          type="button"
+          onClick={() => setMobileOpen(!mobileOpen)}
+          aria-label="Toggle menu"
+        >
+          {mobileOpen ? <X size={18} /> : <Menu size={18} />}
+        </button>
+      </div>
 
-                {/* About Me */}
-                <section className="flex flex-row backdrop-blur mt-4 rounded-xl border border-white/10 bg-slate-900/30 p-4">
-                  <div>
-                    <h2 className="text-lg font-semibold mb-3">About Me</h2>
-                    <p className="text-sm opacity-90">
-                      I'm Neel, a CS + Data Science student at UW–Madison (’27).
-                      I enjoy building useful interfaces and AI-assisted
-                      tools—from VR learning experiences to agentic planners.
-                      I'm actively seeking SWE internships.
-                    </p>
-                  </div>
-                  <div>
-                    <img
-                      className="max-w-30 rounded-2xl border-2 border-white/10 shadow-lg shadow-white/10 ml-10"
-                      src="/profile_picture.jpg"
-                      alt="Profile"
-                    ></img>
-                  </div>
-                </section>
-                <section className="grid grid-cols-1 lg:grid-cols-3 gap-4 mt-4">
-                  {/* Featured Project */}
-                  <div className="backdrop-blur rounded-xl border border-white/10 bg-slate-900/30 p-4">
-                    <h3 className="text-sm opacity-70 mb-2">
-                      Featured Project
-                    </h3>
-                    <p className="text-lg font-semibold">
-                      College Resale Platform
-                    </p>
-                    <p className="text-sm opacity-80 mt-1">
-                      University-exclusive marketplace connecting students for textbooks and sports tickets with real-time features.
-                    </p>
-                    <ul className="text-sm opacity-80 mt-2 list-disc pl-5 space-y-1">
-                      <li>Automated school email verification for campus-only access</li>
-                      <li>
-                        Real-time chat & notifications through WebSockets
-                      </li>
-                      <li>Geolocation search and web scraping for live events</li>
-                    </ul>
-                    <div className="mt-3 flex gap-3">
-                      <Link
-                        to="/projects"
-                        className="text-emerald-300 hover:underline"
-                      >
-                        See projects →
-                      </Link>
-                    </div>
-                  </div>
+      <AnimatePresence>
+        {mobileOpen && (
+          <motion.nav
+            className="mobile-nav"
+            initial={{ opacity: 0, y: -12 }}
+            animate={{ opacity: 1, y: 0 }}
+            exit={{ opacity: 0, y: -12 }}
+            aria-label="Mobile navigation"
+          >
+            {navItems.map((item) => (
+              <a key={item.href} href={item.href} onClick={() => setMobileOpen(false)}>
+                {item.label}
+                <ChevronRight size={16} />
+              </a>
+            ))}
+          </motion.nav>
+        )}
+      </AnimatePresence>
+    </header>
+  );
+}
 
-                  {/* Latest Experience */}
-                  <div className="backdrop-blur rounded-xl border border-white/10 bg-slate-900/30 p-4">
-                    <h3 className="text-sm opacity-70 mb-2">
-                      Latest Experience
-                    </h3>
-                    <p className="text-lg font-semibold">
-                      Software Engineer Intern · MiniOrange
-                    </p>
-                    <p className="text-sm opacity-80 mt-1">
-                      Contributed across React frontend and .NET APIs, building
-                      AD management UIs, MFA + SSPR flows, and configurable
-                      security settings.
-                    </p>
-                    <ul className="text-sm opacity-80 mt-2 list-disc pl-5 space-y-1">
-                      <li>Shipped custom forms and org-management modules</li>
-                      <li>Improved backend endpoints for dynamic workflows</li>
-                      <li>
-                        Collaborated with designers to refine UX and
-                        accessibility
-                      </li>
-                    </ul>
-                    <div className="mt-3">
-                      <Link
-                        to="/experience"
-                        className="text-emerald-300 hover:underline"
-                      >
-                        See experience →
-                      </Link>
-                    </div>
-                  </div>
+function Hero({ commandOpen }: { commandOpen: () => void }) {
+  return (
+    <section id="top" className="hero-section section-grid">
+      <motion.div
+        className="hero-copy"
+        initial={{ opacity: 0, y: 28 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.8, delay: 1.05 }}
+      >
+        <div className="system-pill">
+          <span className="live-dot" />
+          Auto-update pipeline in progress
+        </div>
+        <h1>
+          A portfolio that behaves like a living system.
+          <span> Built by Neel Bhansali.</span>
+        </h1>
+        <p>
+          CS + Data Science student at UW-Madison building AI-assisted systems, full-stack products,
+          ML prototypes, and technical communities. This site is designed as the interface for an
+          evolving GitHub-aware portfolio manager.
+        </p>
 
-                  {/* Quick Links */}
-                  <div className="backdrop-blur rounded-xl border border-white/10 bg-slate-900/30 p-4">
-                    <h3 className="text-sm opacity-70 mb-2">Quick Links</h3>
-                    <ul className="text-sm space-y-1 opacity-90">
-                      <li>
-                        <a
-                          className="hover:underline"
-                          href="/Neel Bhansali Resume.pdf"
-                          target="_blank"
-                          rel="noopener noreferrer"
-                        >
-                          Resume (PDF)
-                        </a>
-                      </li>
-                      <li>
-                        <a
-                          className="hover:underline"
-                          href="mailto:neelbh99@gmail.com"
-                        >
-                          Email
-                        </a>
-                      </li>
-                      <li>
-                        <a className="hover:underline" href="#">
-                          Calendly
-                        </a>
-                      </li>
-                    </ul>
-                  </div>
-                </section>
+        <div className="hero-actions">
+          <a className="primary-action" href="#projects">
+            Enter project registry
+            <ArrowRight size={18} />
+          </a>
+          <button className="secondary-action" type="button" onClick={commandOpen}>
+            <Command size={17} />
+            Command center
+          </button>
+        </div>
+      </motion.div>
 
-                {/* Tech Stack */}
-                <section className="backdrop-blur mt-6 rounded-xl border border-white/10 bg-slate-900/30 p-4">
-                  <h2 className="text-lg font-semibold mb-3">Tech Stack</h2>
-                  <div className="flex flex-wrap gap-2 text-xs">
-                    {[
-                      { label: "Java", Icon: FaJava },
-                      { label: "Python", Icon: SiPython },
-                      { label: "TensorFlow", Icon: SiTensorflow },
-                      { label: "PyTorch", Icon: SiPytorch },
-                      { label: "JavaScript", Icon: SiJavascript },
-                      { label: "TypeScript", Icon: SiTypescript },
-                      { label: "React", Icon: SiReact },
-                      { label: "Node.js", Icon: SiNodedotjs },
-                      { label: ".NET", Icon: SiDotnet },
-                      { label: "Django", Icon: SiDjango },
-                      { label: "MongoDB", Icon: SiMongodb },
-                      { label: "JavaFX", Icon: FaJava },
-                      { label: "Git", Icon: SiGit },
-                    ].map(({ label, Icon }) => (
-                      <div
-                        key={label}
-                        className="flex flex-col px-2 py-1 w-25 h-20 rounded border border-white/10 bg-white/5 items-center gap-1.5"
-                      >
-                        <Icon className="opacity-90 p-1.5" size={40} />
-                        {label}
-                      </div>
-                    ))}
-                  </div>
-                </section>
-              </div>
-            }
-          />
+      <motion.div
+        className="hero-system"
+        initial={{ opacity: 0, scale: 0.96 }}
+        animate={{ opacity: 1, scale: 1 }}
+        transition={{ duration: 0.9, delay: 1.25 }}
+      >
+        <div className="system-card">
+          <div className="card-header">
+            <span>System Overview</span>
+            <span className="mono">online</span>
+          </div>
+          <div className="neel-card">
+            <img src="/profile_picture.jpg" alt="Neel Bhansali" />
+            <div>
+              <strong>Neel Bhansali</strong>
+              <span>Full-stack + AI systems builder</span>
+            </div>
+          </div>
 
-          {/* Projects: Enhanced visual showcase */}
-          <Route
-            path="/projects"
-            element={
-              <div className="mt-4 space-y-8">
-                <div className="text-center mb-12">
-                  <h2 className="text-4xl font-bold bg-gradient-to-r from-emerald-400 to-blue-500 bg-clip-text text-transparent mb-4">
-                    Featured Projects
-                  </h2>
-                  <p className="text-lg text-white/70 max-w-2xl mx-auto">
-                    Discover my latest work in software engineering, AI, and web
-                    development
-                  </p>
-                </div>
+          <div className="signal-stack">
+            {heroSignals.map((signal, index) => {
+              const Icon = signal.icon;
+              return (
+                <motion.div
+                  className="signal-row"
+                  key={signal.label}
+                  initial={{ opacity: 0, x: 18 }}
+                  animate={{ opacity: 1, x: 0 }}
+                  transition={{ delay: 1.45 + index * 0.1 }}
+                >
+                  <Icon size={18} />
+                  <span>{signal.label}</span>
+                  <strong>{signal.value}</strong>
+                </motion.div>
+              );
+            })}
+          </div>
+        </div>
 
-                <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
-                  {/* College Resale Platform - Featured */}
-                  <article className="lg:col-span-2 group relative overflow-hidden rounded-2xl border border-white/20 bg-gradient-to-br from-slate-900/90 to-slate-800/90 backdrop-blur-xl hover:border-emerald-500/50 transition-all duration-500 hover:shadow-2xl hover:shadow-emerald-500/20">
-                    <div className="absolute inset-0 bg-gradient-to-br from-emerald-500/5 to-blue-500/5 opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+        <SystemGraph />
+      </motion.div>
+    </section>
+  );
+}
 
-                    {/* Unified Image Gallery */}
-                    <div className="relative p-6 pt-8">
-                      <div className="absolute top-6 left-6 z-10">
-                        <span className="px-4 py-2 bg-emerald-500/90 text-white text-sm font-medium rounded-full backdrop-blur shadow-lg">
-                          ⭐ Featured Project
-                        </span>
-                      </div>
+function ProjectRegistry() {
+  const featured = projects[0];
+  const registry = projects.slice(1);
 
-                      {/* Image Grid - All images same size in clean grid */}
-                      <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
-                        <div className="relative h-48 lg:h-56 rounded-xl overflow-hidden border-2 border-white/20 hover:border-emerald-500/50 transition-all cursor-pointer group/img bg-white/5">
-                          <img
-                            className="w-full h-full object-contain transition-transform duration-500 group-hover/img:scale-105"
-                            src="/campus-resale-home.png"
-                            alt="Campus Resale Platform Home"
-                          />
-                          <div className="absolute bottom-3 left-3">
-                            <span className="px-2 py-1 bg-black/60 text-white text-xs rounded backdrop-blur">
-                              Home Page
-                            </span>
-                          </div>
-                        </div>
-                        <div className="relative h-48 lg:h-56 rounded-xl overflow-hidden border-2 border-white/20 hover:border-emerald-500/50 transition-all cursor-pointer group/img bg-white/5">
-                          <img
-                            className="w-full h-full object-contain transition-transform duration-500 group-hover/img:scale-105"
-                            src="/campus-resale-dashboard.png"
-                            alt="Campus Resale Platform Dashboard"
-                          />
-                          <div className="absolute bottom-3 left-3">
-                            <span className="px-2 py-1 bg-black/60 text-white text-xs rounded backdrop-blur">
-                              Dashboard
-                            </span>
-                          </div>
-                        </div>
-                        <div className="relative h-48 lg:h-56 rounded-xl overflow-hidden border-2 border-white/20 hover:border-emerald-500/50 transition-all cursor-pointer group/img bg-white/5">
-                          <img
-                            className="w-full h-full object-contain transition-transform duration-500 group-hover/img:scale-105"
-                            src="/campus-resale-login.png"
-                            alt="Campus Resale Platform Login"
-                          />
-                          <div className="absolute bottom-3 left-3">
-                            <span className="px-2 py-1 bg-black/60 text-white text-xs rounded backdrop-blur">
-                              Authentication
-                            </span>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
+  return (
+    <section id="projects" className="content-section">
+      <SectionIntro
+        eyebrow="Project registry"
+        title="Curated builds with proof, context, and technical signal."
+        body="Each project is treated as a record the future automation layer can update: metadata, screenshots, stack, impact, and highlights stay separate from the interface."
+      />
 
-                    <div className="p-8 pt-4">
-                      <div className="mb-6">
-                        <h3 className="text-4xl font-bold text-white group-hover:text-emerald-400 transition-colors mb-2">
-                          College Resale Platform
-                        </h3>
-                        <p className="text-emerald-400/80 font-medium">
-                          University Marketplace & Ticket Exchange
-                        </p>
-                      </div>
+      <Reveal>
+        <article className={`featured-project accent-${featured.accent}`}>
+          <div className="featured-copy">
+            <div className="record-label">
+              <CircleDot size={16} />
+              featured record
+            </div>
+            <h3>{featured.title}</h3>
+            <p>{featured.summary}</p>
+            <div className="impact-line">
+              <Sparkles size={18} />
+              {featured.impact}
+            </div>
+            <TagList tags={featured.stack} />
+          </div>
+          <LivingPipelineVisual />
+        </article>
+      </Reveal>
 
-                      <p className="text-lg text-white/80 leading-relaxed mb-6">
-                        University-exclusive marketplace connecting students for
-                        textbooks and sports tickets. Features automated email
-                        verification, geolocation search, real-time chat, and
-                        WebSocket notifications with web scraping for live
-                        sporting events.
-                      </p>
+      <div className="project-grid">
+        {registry.map((project, index) => (
+          <Reveal key={project.id} delay={index * 0.08}>
+            <ProjectCard project={project} />
+          </Reveal>
+        ))}
+      </div>
+    </section>
+  );
+}
 
-                      <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mb-6">
-                        <div className="bg-white/5 rounded-xl p-4 border border-white/10">
-                          <h4 className="font-semibold text-emerald-400 mb-2">
-                            🔐 Security
-                          </h4>
-                          <p className="text-sm text-white/70">
-                            Email verification & campus-only access
-                          </p>
-                        </div>
-                        <div className="bg-white/5 rounded-xl p-4 border border-white/10">
-                          <h4 className="font-semibold text-blue-400 mb-2">
-                            ⚡ Real-time
-                          </h4>
-                          <p className="text-sm text-white/70">
-                            WebSocket chat & live notifications
-                          </p>
-                        </div>
-                        <div className="bg-white/5 rounded-xl p-4 border border-white/10">
-                          <h4 className="font-semibold text-purple-400 mb-2">
-                            🌐 Full-stack
-                          </h4>
-                          <p className="text-sm text-white/70">
-                            React + Node.js + PostgreSQL
-                          </p>
-                        </div>
-                      </div>
+function ProjectCard({ project }: { project: Project }) {
+  return (
+    <article className={`project-card accent-${project.accent}`}>
+      <ProjectVisual project={project} compact />
+      <div className="project-card-body">
+        <div className="project-meta">
+          <span>{project.eyebrow}</span>
+          <strong>{project.status}</strong>
+        </div>
+        <h3>{project.title}</h3>
+        <p>{project.summary}</p>
+        <ul>
+          {project.highlights.slice(0, 2).map((highlight) => (
+            <li key={highlight}>
+              <Check size={15} />
+              {highlight}
+            </li>
+          ))}
+        </ul>
+        <TagList tags={project.stack.slice(0, 4)} />
+      </div>
+    </article>
+  );
+}
 
-                      <div className="flex flex-wrap gap-2">
-                        <span className="px-4 py-2 bg-blue-500/20 text-blue-300 rounded-full text-sm font-medium border border-blue-500/30">
-                          React
-                        </span>
-                        <span className="px-4 py-2 bg-indigo-500/20 text-indigo-300 rounded-full text-sm font-medium border border-indigo-500/30">
-                          TypeScript
-                        </span>
-                        <span className="px-4 py-2 bg-green-500/20 text-green-300 rounded-full text-sm font-medium border border-green-500/30">
-                          Node.js
-                        </span>
-                        <span className="px-4 py-2 bg-purple-500/20 text-purple-300 rounded-full text-sm font-medium border border-purple-500/30">
-                          PostgreSQL
-                        </span>
-                        <span className="px-4 py-2 bg-orange-500/20 text-orange-300 rounded-full text-sm font-medium border border-orange-500/30">
-                          WebSockets
-                        </span>
-                      </div>
-                    </div>
-                  </article>
+function LivingPipelineVisual() {
+  const visualSteps = [
+    { label: "GitHub signal", icon: Github },
+    { label: "Repo context", icon: Database },
+    { label: "AI draft", icon: WandSparkles },
+    { label: "Review PR", icon: Check },
+    { label: "Site update", icon: Network },
+  ];
 
-                  {/* AI Portfolio Updater */}
-                  <article className="group relative overflow-hidden rounded-2xl border border-white/20 bg-gradient-to-br from-slate-900/90 to-slate-800/90 backdrop-blur-xl hover:border-purple-500/50 transition-all duration-500 hover:shadow-2xl hover:shadow-purple-500/20">
-                    <div className="absolute inset-0 bg-gradient-to-br from-purple-500/5 to-pink-500/5 opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
-
-                    {/* Larger Image Section */}
-                    <div className="relative h-56 lg:h-64 overflow-hidden rounded-t-2xl">
-                      <img
-                        className="w-full h-full object-contain bg-white/5 transition-transform duration-700 group-hover:scale-105"
-                        src="/password-rotation-agent.png"
-                        alt="AI Portfolio Updater"
-                      />
-                      <div className="absolute inset-0 bg-gradient-to-t from-slate-900/60 via-transparent to-transparent"></div>
-                      <div className="absolute top-4 left-4">
-                        <span className="px-3 py-1 bg-purple-500/90 text-white text-sm font-medium rounded-full backdrop-blur">
-                          🤖 AI Powered
-                        </span>
-                      </div>
-                    </div>
-
-                    <div className="p-6">
-                      <h3 className="text-2xl font-bold text-white group-hover:text-purple-400 transition-colors mb-2">
-                        Agentic Portfolio Updater
-                      </h3>
-                      <p className="text-purple-400/80 font-medium mb-4 text-sm">
-                        AI-Driven Development Automation
-                      </p>
-
-                      <p className="text-white/80 leading-relaxed mb-6">
-                        AI-powered automation that detects GitHub repos via
-                        webhooks, generates summaries with OpenAI, and creates
-                        portfolio PRs with AWS infrastructure and CI/CD
-                        validation.
-                      </p>
-
-                      <div className="grid grid-cols-2 gap-3 mb-6">
-                        <div className="bg-white/5 rounded-lg p-3 border border-white/10">
-                          <h4 className="font-semibold text-purple-400 mb-1 text-sm">
-                            🔄 Automation
-                          </h4>
-                          <p className="text-xs text-white/70">
-                            GitHub webhooks + AI summaries
-                          </p>
-                        </div>
-                        <div className="bg-white/5 rounded-lg p-3 border border-white/10">
-                          <h4 className="font-semibold text-orange-400 mb-1 text-sm">
-                            ☁️ AWS Stack
-                          </h4>
-                          <p className="text-xs text-white/70">
-                            Lambda, SQS, S3 integration
-                          </p>
-                        </div>
-                      </div>
-
-                      <div className="flex flex-wrap gap-2">
-                        <span className="px-3 py-1 bg-emerald-500/20 text-emerald-300 rounded-full text-xs font-medium border border-emerald-500/30">
-                          AI Agent
-                        </span>
-                        <span className="px-3 py-1 bg-blue-500/20 text-blue-300 rounded-full text-xs font-medium border border-blue-500/30">
-                          Next.js
-                        </span>
-                        <span className="px-3 py-1 bg-purple-500/20 text-purple-300 rounded-full text-xs font-medium border border-purple-500/30">
-                          OpenAI API
-                        </span>
-                        <span className="px-3 py-1 bg-orange-500/20 text-orange-300 rounded-full text-xs font-medium border border-orange-500/30">
-                          AWS Lambda
-                        </span>
-                      </div>
-                    </div>
-                  </article>
-
-                  {/* Sign Language Interpreter */}
-                  <article className="group relative overflow-hidden rounded-2xl border border-white/20 bg-gradient-to-br from-slate-900/90 to-slate-800/90 backdrop-blur-xl hover:border-green-500/50 transition-all duration-500 hover:shadow-2xl hover:shadow-green-500/20">
-                    <div className="absolute inset-0 bg-gradient-to-br from-green-500/5 to-teal-500/5 opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
-
-                    {/* Larger Image Section */}
-                    <div className="relative h-56 lg:h-64 overflow-hidden rounded-t-2xl">
-                      <img
-                        className="w-full h-full object-contain bg-white/5 transition-transform duration-700 group-hover:scale-105"
-                        src="/sign_language.png"
-                        alt="AI Sign Language Interpreter"
-                      />
-                      <div className="absolute inset-0 bg-gradient-to-t from-slate-900/60 via-transparent to-transparent"></div>
-                      <div className="absolute top-4 left-4">
-                        <span className="px-3 py-1 bg-green-500/90 text-white text-sm font-medium rounded-full backdrop-blur">
-                          🎯 Real-time AI
-                        </span>
-                      </div>
-                    </div>
-
-                    <div className="p-6">
-                      <h3 className="text-2xl font-bold text-white group-hover:text-green-400 transition-colors mb-2">
-                        AI Sign Language Interpreter
-                      </h3>
-                      <p className="text-green-400/80 font-medium mb-4 text-sm">
-                        Computer Vision & Accessibility
-                      </p>
-
-                      <p className="text-white/80 leading-relaxed mb-6">
-                        Revolutionary real-time translator using CNN
-                        architecture and computer vision for high-precision
-                        gesture recognition with seamless React integration.
-                      </p>
-
-                      <div className="grid grid-cols-2 gap-3 mb-6">
-                        <div className="bg-white/5 rounded-lg p-3 border border-white/10">
-                          <h4 className="font-semibold text-green-400 mb-1 text-sm">
-                            👁️ Computer Vision
-                          </h4>
-                          <p className="text-xs text-white/70">
-                            OpenCV + TensorFlow CNN
-                          </p>
-                        </div>
-                        <div className="bg-white/5 rounded-lg p-3 border border-white/10">
-                          <h4 className="font-semibold text-blue-400 mb-1 text-sm">
-                            ♿ Accessibility
-                          </h4>
-                          <p className="text-xs text-white/70">
-                            Real-time translation
-                          </p>
-                        </div>
-                      </div>
-
-                      <div className="flex flex-wrap gap-2">
-                        <span className="px-3 py-1 bg-emerald-500/20 text-emerald-300 rounded-full text-xs font-medium border border-emerald-500/30">
-                          Machine Learning
-                        </span>
-                        <span className="px-3 py-1 bg-red-500/20 text-red-300 rounded-full text-xs font-medium border border-red-500/30">
-                          TensorFlow
-                        </span>
-                        <span className="px-3 py-1 bg-indigo-500/20 text-indigo-300 rounded-full text-xs font-medium border border-indigo-500/30">
-                          Django
-                        </span>
-                        <span className="px-3 py-1 bg-yellow-500/20 text-yellow-300 rounded-full text-xs font-medium border border-yellow-500/30">
-                          Computer Vision
-                        </span>
-                      </div>
-                    </div>
-                  </article>
-
-                  {/* AI Workout Generator */}
-                  <article className="lg:col-span-2 group relative overflow-hidden rounded-2xl border border-white/20 bg-gradient-to-br from-slate-900/90 to-slate-800/90 backdrop-blur-xl hover:border-orange-500/50 transition-all duration-500 hover:shadow-2xl hover:shadow-orange-500/20">
-                    <div className="absolute inset-0 bg-gradient-to-br from-orange-500/5 to-red-500/5 opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
-
-                    {/* Unified Image Gallery - Same as Featured */}
-                    <div className="relative p-6 pt-8">
-                      <div className="absolute top-6 left-6 z-10">
-                        <span className="px-4 py-2 bg-orange-500/90 text-white text-sm font-medium rounded-full backdrop-blur shadow-lg">
-                          🏋️ Fitness AI
-                        </span>
-                      </div>
-
-                      {/* Image Grid - All images same size in clean grid */}
-                      <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
-                        <div className="relative h-48 lg:h-56 rounded-xl overflow-hidden border-2 border-white/20 hover:border-orange-500/50 transition-all cursor-pointer group/img bg-white/10">
-                          <img
-                            className="w-full h-full object-contain invert transition-transform duration-500 group-hover/img:scale-105"
-                            src="/workout1.png"
-                            alt="Workout Generator Interface"
-                          />
-                          <div className="absolute bottom-3 left-3">
-                            <span className="px-2 py-1 bg-black/60 text-white text-xs rounded backdrop-blur">
-                              Main App
-                            </span>
-                          </div>
-                        </div>
-                        <div className="relative h-48 lg:h-56 rounded-xl overflow-hidden border-2 border-white/20 hover:border-orange-500/50 transition-all cursor-pointer group/img bg-white/10">
-                          <img
-                            className="w-full h-full object-contain invert transition-transform duration-500 group-hover/img:scale-105"
-                            src="/workout2.png"
-                            alt="Workout Planning"
-                          />
-                          <div className="absolute bottom-3 left-3">
-                            <span className="px-2 py-1 bg-black/60 text-white text-xs rounded backdrop-blur">
-                              Planning
-                            </span>
-                          </div>
-                        </div>
-                        <div className="relative h-48 lg:h-56 rounded-xl overflow-hidden border-2 border-white/20 hover:border-orange-500/50 transition-all cursor-pointer group/img bg-white/10">
-                          <img
-                            className="w-full h-full object-contain invert transition-transform duration-500 group-hover/img:scale-105"
-                            src="/workout3.png"
-                            alt="Workout Analytics"
-                          />
-                          <div className="absolute bottom-3 left-3">
-                            <span className="px-2 py-1 bg-black/60 text-white text-xs rounded backdrop-blur">
-                              Analytics
-                            </span>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-
-                    <div className="p-8 pt-4">
-                      <div className="mb-6">
-                        <h3 className="text-4xl font-bold text-white group-hover:text-orange-400 transition-colors mb-2">
-                          AI Workout Generator
-                        </h3>
-                        <p className="text-orange-400/80 font-medium">
-                          Intelligent Fitness Planning
-                        </p>
-                      </div>
-
-                      <p className="text-white/80 leading-relaxed mb-6">
-                        Intelligent fitness companion using ML algorithms for
-                        personalized routines with adaptive difficulty scaling
-                        based on user performance metrics.
-                      </p>
-
-                      <div className="grid grid-cols-2 gap-3 mb-6">
-                        <div className="bg-white/5 rounded-lg p-3 border border-white/10">
-                          <h4 className="font-semibold text-orange-400 mb-1 text-sm">
-                            🧠 Smart Planning
-                          </h4>
-                          <p className="text-xs text-white/70">
-                            Decision tree algorithms
-                          </p>
-                        </div>
-                        <div className="bg-white/5 rounded-lg p-3 border border-white/10">
-                          <h4 className="font-semibold text-purple-400 mb-1 text-sm">
-                            📊 Analytics
-                          </h4>
-                          <p className="text-xs text-white/70">
-                            Progress visualization
-                          </p>
-                        </div>
-                      </div>
-
-                      <div className="flex flex-wrap gap-2">
-                        <span className="px-3 py-1 bg-orange-500/20 text-orange-300 rounded-full text-xs font-medium border border-orange-500/30">
-                          AI Planning
-                        </span>
-                        <span className="px-3 py-1 bg-blue-500/20 text-blue-300 rounded-full text-xs font-medium border border-blue-500/30">
-                          Python
-                        </span>
-                        <span className="px-3 py-1 bg-green-500/20 text-green-300 rounded-full text-xs font-medium border border-green-500/30">
-                          Machine Learning
-                        </span>
-                        <span className="px-3 py-1 bg-purple-500/20 text-purple-300 rounded-full text-xs font-medium border border-purple-500/30">
-                          Data Analytics
-                        </span>
-                      </div>
-                    </div>
-                  </article>
-
-                  {/* Chef's Arena Game */}
-                  <article className="lg:col-span-2 group relative overflow-hidden rounded-2xl border border-white/20 bg-gradient-to-br from-slate-900/90 to-slate-800/90 backdrop-blur-xl hover:border-yellow-500/50 transition-all duration-500 hover:shadow-2xl hover:shadow-yellow-500/20">
-                    <div className="absolute inset-0 bg-gradient-to-br from-yellow-500/5 to-orange-500/5 opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
-
-                    {/* Unified Image Gallery - Same as Featured */}
-                    <div className="relative p-6 pt-8">
-                      <div className="absolute top-6 left-6 z-10">
-                        <span className="px-4 py-2 bg-yellow-500/90 text-black text-sm font-medium rounded-full backdrop-blur shadow-lg">
-                          🎮 Game Dev
-                        </span>
-                      </div>
-
-                      {/* Image Grid - All images same size in clean grid */}
-                      <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
-                        <div className="relative h-48 lg:h-56 rounded-xl overflow-hidden border-2 border-white/20 hover:border-yellow-500/50 transition-all cursor-pointer group/img bg-white/5">
-                          <img
-                            className="w-full h-full object-contain transition-transform duration-500 group-hover/img:scale-105"
-                            src="/chef1.png"
-                            alt="Chef's Arena Gameplay"
-                          />
-                          <div className="absolute bottom-3 left-3">
-                            <span className="px-2 py-1 bg-black/60 text-white text-xs rounded backdrop-blur">
-                              Gameplay
-                            </span>
-                          </div>
-                        </div>
-                        <div className="relative h-48 lg:h-56 rounded-xl overflow-hidden border-2 border-white/20 hover:border-yellow-500/50 transition-all cursor-pointer group/img bg-white/5">
-                          <img
-                            className="w-full h-full object-contain transition-transform duration-500 group-hover/img:scale-105"
-                            src="/chef2.png"
-                            alt="Chef's Arena Interface"
-                          />
-                          <div className="absolute bottom-3 left-3">
-                            <span className="px-2 py-1 bg-black/60 text-white text-xs rounded backdrop-blur">
-                              Interface
-                            </span>
-                          </div>
-                        </div>
-                        <div className="relative h-48 lg:h-56 rounded-xl overflow-hidden border-2 border-white/20 hover:border-yellow-500/50 transition-all cursor-pointer group/img bg-white/5">
-                          <img
-                            className="w-full h-full object-contain transition-transform duration-500 group-hover/img:scale-105"
-                            src="/chef3.png"
-                            alt="Chef's Arena Menu"
-                          />
-                          <div className="absolute bottom-3 left-3">
-                            <span className="px-2 py-1 bg-black/60 text-white text-xs rounded backdrop-blur">
-                              Menu
-                            </span>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-
-                    <div className="p-8 pt-4">
-                      <div className="mb-6">
-                        <h3 className="text-4xl font-bold text-white group-hover:text-yellow-400 transition-colors mb-2">
-                          Chef's Arena - Kitchen Simulation
-                        </h3>
-                        <p className="text-yellow-400/80 font-medium">
-                          Immersive Culinary Game Experience
-                        </p>
-                      </div>
-
-                      <p className="text-white/80 leading-relaxed mb-4">
-                        Immersive culinary simulation with advanced game
-                        mechanics, realistic physics, and stunning 2D graphics
-                        built with JavaFX and OOP design patterns.
-                      </p>
-
-
-                      <div className="grid grid-cols-2 gap-3 mb-6">
-                        <div className="bg-white/5 rounded-lg p-3 border border-white/10">
-                          <h4 className="font-semibold text-yellow-400 mb-1 text-sm">
-                            🎯 Performance
-                          </h4>
-                          <p className="text-xs text-white/70">
-                            60 FPS multi-threaded engine
-                          </p>
-                        </div>
-                        <div className="bg-white/5 rounded-lg p-3 border border-white/10">
-                          <h4 className="font-semibold text-orange-400 mb-1 text-sm">
-                            🍳 Content
-                          </h4>
-                          <p className="text-xs text-white/70">
-                            50+ realistic recipes
-                          </p>
-                        </div>
-                      </div>
-
-                      <div className="flex flex-wrap gap-2">
-                        <span className="px-3 py-1 bg-yellow-500/20 text-yellow-300 rounded-full text-xs font-medium border border-yellow-500/30">
-                          Game Dev
-                        </span>
-                        <span className="px-3 py-1 bg-orange-500/20 text-orange-300 rounded-full text-xs font-medium border border-orange-500/30">
-                          JavaFX
-                        </span>
-                        <span className="px-3 py-1 bg-blue-500/20 text-blue-300 rounded-full text-xs font-medium border border-blue-500/30">
-                          Java
-                        </span>
-                        <span className="px-3 py-1 bg-purple-500/20 text-purple-300 rounded-full text-xs font-medium border border-purple-500/30">
-                          OOP Design
-                        </span>
-                      </div>
-                    </div>
-                  </article>
-                </div>
-              </div>
-            }
-          />
-
-          {/* Experience: vertical showcases */}
-          <Route
-            path="/experience"
-            element={
-              <div className="mt-4 space-y-8 backdrop-blur rounded-xl border border-white/10 bg-slate-900/30 p-6">
-                <h2 className="text-xl font-semibold">Experience</h2>
-                <div className="space-y-10">
-                  {/* MiniOrange */}
-                  <section className="grid md:grid-cols-[180px_1fr] gap-6 items-start rounded-xl border border-white/10 bg-white/5 p-5">
-                    <div className="flex flex-col items-center gap-3">
-                      <img
-                        src="/miniOrange.jpeg"
-                        alt="MiniOrange"
-                        className="w-36 h-36 object-cover rounded-xl border border-white/10 shadow"
-                      />
-                      <a
-                        href="https://www.miniorange.com/"
-                        target="_blank"
-                        rel="noreferrer"
-                        className="text-xs px-3 py-1 rounded-md bg-emerald-500/15 text-emerald-300 border border-emerald-500/30 hover:bg-emerald-500/25 transition"
-                      >
-                        Website →
-                      </a>
-                    </div>
-                    <div className="space-y-3">
-                      <div className="flex flex-wrap items-center gap-2">
-                        <h3 className="font-semibold text-lg">
-                          Software Engineer Intern · MiniOrange
-                        </h3>
-                        <span className="text-xs opacity-70">Jun–Aug 2025</span>
-                      </div>
-                      <p className="text-sm opacity-80 leading-relaxed">
-                        Identity & security platform internship focused on
-                        directory tooling, MFA flows, and admin UX improvements
-                        across React + .NET surfaces.
-                      </p>
-                      <ul className="text-sm opacity-85 space-y-1 list-disc pl-5">
-                        <li>
-                          Implemented Active Directory management UI (user
-                          provisioning, group sync, policy toggles)
-                        </li>
-                        <li>
-                          Extended .NET API endpoints to support dynamic MFA +
-                          SSPR enrollment workflows
-                        </li>
-                        <li>
-                          Optimized form rendering components reducing
-                          validation latency & improving accessibility
-                        </li>
-                        <li>
-                          Shipped configurable security settings panel (captcha,
-                          session, lockout thresholds)
-                        </li>
-                      </ul>
-                      <div className="flex flex-wrap gap-2 pt-2">
-                        {[
-                          "React",
-                          "TypeScript",
-                          ".NET",
-                          "MFA",
-                          "Directory Services",
-                          "API Design",
-                        ].map((t) => (
-                          <span
-                            key={t}
-                            className="px-3 py-1 rounded-full bg-emerald-500/15 text-emerald-300 text-xs border border-emerald-500/30"
-                          >
-                            {t}
-                          </span>
-                        ))}
-                      </div>
-                    </div>
-                  </section>
-
-                  {/* Represented Collective */}
-                  <section className="grid md:grid-cols-[180px_1fr] gap-6 items-start rounded-xl border border-white/10 bg-white/5 p-5">
-                    <div className="flex flex-col items-center gap-3">
-                      <img
-                        src="/representedCollective.jpeg"
-                        alt="Represented Collective"
-                        className="w-36 h-36 object-cover rounded-xl border border-white/10 shadow"
-                      />
-                      <a
-                        href="https://www.linkedin.com/company/representedcollective/posts/?feedView=all"
-                        target="_blank"
-                        rel="noreferrer"
-                        className="text-xs px-3 py-1 rounded-md bg-blue-500/15 text-blue-300 border border-blue-500/30 hover:bg-blue-500/25 transition"
-                      >
-                        Updates →
-                      </a>
-                    </div>
-                    <div className="space-y-3">
-                      <div className="flex flex-wrap items-center gap-2">
-                        <h3 className="font-semibold text-lg">
-                          Software Engineering Intern · Represented Collective
-                        </h3>
-                        <span className="text-xs opacity-70">Mar–May 2025</span>
-                      </div>
-                      <p className="text-sm opacity-80 leading-relaxed">
-                        Early-stage team building immersive STEM learning
-                        through VR chemistry experiences plus AI-guided
-                        progressive tutoring.
-                      </p>
-                      <ul className="text-sm opacity-85 space-y-1 list-disc pl-5">
-                        <li>
-                          Built VR game progression logic integrating
-                          AI-generated hints & scaffolded challenge levels
-                        </li>
-                        <li>
-                          Hosted Node.js service (Render) aggregating OpenAI
-                          responses & session persistence
-                        </li>
-                        <li>
-                          Delivered full-stack web portal (React + MongoDB) for
-                          user content & experiment logs
-                        </li>
-                        <li>
-                          Iterated UX flows after analytics review to improve
-                          engagement and retention
-                        </li>
-                      </ul>
-                      <div className="flex flex-wrap gap-2 pt-2">
-                        {[
-                          "React",
-                          "Node.js",
-                          "MongoDB",
-                          "OpenAI",
-                          "VR",
-                          "Education Tech",
-                        ].map((t) => (
-                          <span
-                            key={t}
-                            className="px-3 py-1 rounded-full bg-blue-500/15 text-blue-300 text-xs border border-blue-500/30"
-                          >
-                            {t}
-                          </span>
-                        ))}
-                      </div>
-                    </div>
-                  </section>
-
-                  {/* UT Dallas Research */}
-                  <section className="grid md:grid-cols-[180px_1fr] gap-6 items-start rounded-xl border border-white/10 bg-white/5 p-5">
-                    <div className="flex flex-col items-center gap-3">
-                      <img
-                        src="/utd.jpeg"
-                        alt="UT Dallas"
-                        className="w-36 h-36 object-cover rounded-xl border border-white/10 shadow"
-                      />
-                      <a
-                        href="https://www.linkedin.com/school/university-of-texas-at-dallas/"
-                        target="_blank"
-                        rel="noreferrer"
-                        className="text-xs px-3 py-1 rounded-md bg-orange-500/15 text-orange-300 border border-orange-500/30 hover:bg-orange-500/25 transition"
-                      >
-                        University →
-                      </a>
-                    </div>
-                    <div className="space-y-3">
-                      <div className="flex flex-wrap items-center gap-2">
-                        <h3 className="font-semibold text-lg">
-                          Research Assistant · UT Dallas
-                        </h3>
-                        <span className="text-xs opacity-70">May–Jul 2022</span>
-                      </div>
-                      <p className="text-sm opacity-80 leading-relaxed">
-                        Explored classical + deep learning approaches for
-                        pattern recognition and biometric classification.
-                      </p>
-                      <ul className="text-sm opacity-85 space-y-1 list-disc pl-5">
-                        <li>
-                          Implemented comparative experiments: CNNs, LSTMs,
-                          SVMs, RL agents, decision trees
-                        </li>
-                        <li>
-                          Developed facial recognition prototype improving
-                          identification accuracy over baseline
-                        </li>
-                        <li>
-                          Preprocessed image datasets (augmentation,
-                          normalization) to enhance generalization
-                        </li>
-                        <li>
-                          Documented evaluation metrics & reproducible training
-                          scripts
-                        </li>
-                      </ul>
-                      <div className="flex flex-wrap gap-2 pt-2">
-                        {[
-                          "Python",
-                          "TensorFlow",
-                          "Computer Vision",
-                          "Model Evaluation",
-                          "Data Prep",
-                          "Research",
-                        ].map((t) => (
-                          <span
-                            key={t}
-                            className="px-3 py-1 rounded-full bg-orange-500/15 text-orange-300 text-xs border border-orange-500/30"
-                          >
-                            {t}
-                          </span>
-                        ))}
-                      </div>
-                    </div>
-                  </section>
-                </div>
-              </div>
-            }
-          />
-
-          <Route
-            path="/organizations"
-            element={
-              <div className="mt-4 space-y-6 backdrop-blur rounded-xl border border-white/10 bg-slate-900/30 p-6">
-                <h2 className="text-xl font-semibold">Organizations</h2>
-
-                {/* AIFA Section */}
-                <section className="space-y-10">
-                  {/* Hero / Header */}
-                  <div className="flex flex-col md:flex-row gap-8 md:items-center">
-                    <div className="flex flex-col items-center md:items-start shrink-0">
-                      <img
-                        src="/aifalogo.jpeg"
-                        alt="AI For All Logo"
-                        className="w-40 h-40 object-contain rounded-xl border border-white/10 shadow-lg shadow-green-500/10 bg-black/40 p-3"
-                      />
-                      <a
-                        href="https://www.linkedin.com/company/aifa-ai-for-all/"
-                        target="_blank"
-                        rel="noreferrer"
-                        className="mt-4 text-xs px-3 py-1 rounded-md bg-green-500/20 hover:bg-green-500/30 text-green-300 border border-green-400/30 transition"
-                      >
-                        LinkedIn Page →
-                      </a>
-                    </div>
-                    <div className="flex-1 space-y-4">
-                      <h3 className="text-3xl font-bold">AI for All (AIFA)</h3>
-                      <p className="text-lg opacity-90 leading-relaxed">
-                        Student-led non-profit expanding equitable access to
-                        modern AI education through hands-on workshops,
-                        project-based curricula, and community-driven events. We
-                        empower emerging technologists to explore machine
-                        learning responsibly and creatively.
-                      </p>
-                      <div className="flex flex-wrap gap-2 pt-1">
-                        {[
-                          "AI Education",
-                          "Curriculum Design",
-                          "Community Outreach",
-                          "Event Ops",
-                          "Leadership",
-                          "Ethical AI",
-                        ].map((tag) => (
-                          <span
-                            key={tag}
-                            className="px-3 py-1 rounded-full bg-green-500/15 text-green-300 text-xs border border-green-400/20"
-                          >
-                            {tag}
-                          </span>
-                        ))}
-                      </div>
-                    </div>
-                  </div>
-
-                  {/* Stats Grid */}
-                  <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
-                    {[
-                      { label: "Chapters", value: "30+" },
-                      { label: "Students Reached", value: "1,000+" },
-                      { label: "Workshops Run", value: "40+" },
-                      { label: "Hackathon Participants", value: "100+" },
-                    ].map((s) => (
-                      <div
-                        key={s.label}
-                        className="rounded-xl border border-white/10 bg-white/5 p-4 text-center flex flex-col gap-1"
-                      >
-                        <div className="text-2xl font-semibold text-green-300">
-                          {s.value}
-                        </div>
-                        <div className="text-xs opacity-70 tracking-wide uppercase">
-                          {s.label}
-                        </div>
-                      </div>
-                    ))}
-                  </div>
-
-                  {/* Image Gallery */}
-                  <div>
-                    <h4 className="text-sm font-semibold opacity-80 mb-3">
-                      Gallery
-                    </h4>
-                    <div className="grid md:grid-cols-3 gap-4">
-                      <div className="relative group">
-                        <img
-                          src="/hackathonphoto.JPG"
-                          alt="AIFA hackathon event"
-                          className="w-full h-56 object-cover rounded-xl border border-white/10 shadow-lg shadow-green-500/10 group-hover:shadow-green-400/20 transition"
-                        />
-                        <div className="absolute inset-0 rounded-xl bg-gradient-to-t from-black/60 via-black/10 to-transparent opacity-0 group-hover:opacity-100 transition flex items-end p-3 text-xs tracking-wide">
-                          Hackathon Session
-                        </div>
-                      </div>
-                      <div className="relative group">
-                        <img
-                          src="/grouppicture.JPG"
-                          alt="AIFA participant group"
-                          className="w-full h-56 object-cover rounded-xl border border-white/10 shadow-lg shadow-green-500/10 group-hover:shadow-green-400/20 transition"
-                        />
-                        <div className="absolute inset-0 rounded-xl bg-gradient-to-t from-black/60 via-black/10 to-transparent opacity-0 group-hover:opacity-100 transition flex items-end p-3 text-xs tracking-wide">
-                          Community Impact
-                        </div>
-                      </div>
-                      <div className="relative group">
-                        <img
-                          src="/aifapresentation.JPG"
-                          alt="AIFA branding"
-                          className="w-full h-56 object-cover rounded-xl border border-white/10 shadow-lg shadow-green-500/10 group-hover:shadow-green-400/20 transition"
-                        />
-                        <div className="absolute inset-0 rounded-xl bg-gradient-to-t from-black/60 via-black/10 to-transparent opacity-0 group-hover:opacity-100 transition flex items-end p-3 text-xs tracking-wide">
-                          Brand Identity
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-
-                  {/* Impact / Activities */}
-                  <div className="grid md:grid-cols-2 gap-8">
-                    <div className="space-y-4">
-                      <h4 className="text-sm font-semibold opacity-80">
-                        Key Initiatives
-                      </h4>
-                      <ul className="text-sm opacity-85 space-y-2 list-disc pl-5">
-                        <li>
-                          Modular ML curriculum: fundamentals → model deployment
-                        </li>
-                        <li>
-                          Beginner-friendly labs on vision, NLP, and ethics
-                        </li>
-                        <li>
-                          Annual hackathon fostering rapid prototyping &
-                          collaboration
-                        </li>
-                        <li>
-                          Mentorship pairing newer learners with experienced
-                          contributors
-                        </li>
-                      </ul>
-                    </div>
-                    <div className="space-y-4">
-                      <h4 className="text-sm font-semibold opacity-80">
-                        My Contributions
-                      </h4>
-                      <ul className="text-sm opacity-85 space-y-2 list-disc pl-5">
-                        <li>
-                          Co-authored workshop decks & hands-on project guides
-                        </li>
-                        <li>
-                          Structured chapter launch playbook & onboarding
-                          process
-                        </li>
-                        <li>Coordinated speaker outreach & event logistics</li>
-                        <li>
-                          Iterated feedback loop to improve session engagement
-                        </li>
-                      </ul>
-                    </div>
-                  </div>
-
-                  {/* Call To Action */}
-                  <div className="mt-2 flex flex-col md:flex-row gap-4 md:items-center md:justify-between rounded-xl border border-green-500/20 bg-green-500/5 p-5">
-                    <div className="text-sm opacity-85 max-w-xl">
-                      Always looking to partner with schools & organizations
-                      interested in launching new chapters or co-hosting
-                      workshops.
-                    </div>
-                    <a
-                      href="https://www.linkedin.com/company/aifa-ai-for-all/"
-                      target="_blank"
-                      rel="noreferrer"
-                      className="inline-flex items-center justify-center px-5 py-2 rounded-md bg-gradient-to-r from-green-400 to-emerald-500 text-sm font-medium text-black shadow hover:brightness-110 transition"
-                    >
-                      Connect on LinkedIn
-                    </a>
-                  </div>
-                </section>
-              </div>
-            }
-          />
-        </Routes>
-      </main>
+  return (
+    <div className="living-pipeline-visual" aria-label="Animated GitHub to portfolio update pipeline">
+      <div className="pipeline-orbit" />
+      <motion.div
+        className="pipeline-pulse"
+        animate={{
+          offsetDistance: ["0%", "100%"],
+        }}
+        transition={{ duration: 6.5, repeat: Infinity, ease: "linear" }}
+      />
+      {visualSteps.map((step, index) => {
+        const Icon = step.icon;
+        return (
+          <motion.div
+            className="pipeline-node"
+            key={step.label}
+            initial={{ opacity: 0, y: 14, scale: 0.92 }}
+            whileInView={{ opacity: 1, y: 0, scale: 1 }}
+            viewport={{ once: true }}
+            transition={{ delay: index * 0.12, duration: 0.5 }}
+          >
+            <span className="node-index">{String(index + 1).padStart(2, "0")}</span>
+            <Icon size={22} />
+            <strong>{step.label}</strong>
+          </motion.div>
+        );
+      })}
+      <div className="pipeline-terminal">
+        <span className="mono">portfolio.update()</span>
+        <strong>Reviewed project record ready for deploy</strong>
+      </div>
     </div>
+  );
+}
+
+function ProjectVisual({ project, compact = false }: { project: Project; compact?: boolean }) {
+  return (
+    <div className={compact ? "project-visual compact" : "project-visual"}>
+      {project.images.slice(0, 3).map((image, index) => (
+        <motion.div
+          className="visual-frame"
+          key={image}
+          style={{ zIndex: 4 - index }}
+          whileHover={{ y: compact ? -4 : -8, rotate: index === 0 ? 0 : index % 2 ? -1.5 : 1.5 }}
+          transition={{ type: "spring", stiffness: 180, damping: 18 }}
+        >
+          <img src={image} alt={`${project.title} screen ${index + 1}`} />
+        </motion.div>
+      ))}
+    </div>
+  );
+}
+
+function ExperienceLog() {
+  return (
+    <section id="experience" className="content-section">
+      <SectionIntro
+        eyebrow="Experience log"
+        title="Backend, identity, AI education, and research signals."
+        body="The experience layer keeps the same system language: each role is a logged event with context, technical surface area, and outcomes."
+      />
+
+      <div className="timeline">
+        {experiences.map((experience, index) => (
+          <Reveal key={experience.company} delay={index * 0.08}>
+            <article className={`timeline-item accent-${experience.accent}`}>
+              <div className="timeline-node" />
+              <img src={experience.image} alt={experience.company} />
+              <div className="timeline-copy">
+                <div className="project-meta">
+                  <span>{experience.date}</span>
+                  <strong>{experience.location}</strong>
+                </div>
+                <h3>{experience.role}</h3>
+                <h4>{experience.company}</h4>
+                <p>{experience.summary}</p>
+                <ul>
+                  {experience.highlights.map((highlight) => (
+                    <li key={highlight}>
+                      <Check size={15} />
+                      {highlight}
+                    </li>
+                  ))}
+                </ul>
+                <TagList tags={experience.stack} />
+              </div>
+            </article>
+          </Reveal>
+        ))}
+      </div>
+    </section>
+  );
+}
+
+function LeadershipNetwork() {
+  return (
+    <section className="content-section leadership-section">
+      <SectionIntro
+        eyebrow="Leadership network"
+        title="AI for All connects the technical work to real people."
+        body="AIFA is the community layer: workshops, curriculum, hackathons, and chapter growth that make AI education more accessible."
+      />
+
+      <Reveal>
+        <div className="leadership-panel">
+          <div className="leadership-copy">
+            <img className="aifa-logo" src="/aifalogo.jpeg" alt="AI for All logo" />
+            <h3>AI for All</h3>
+            <p>
+              Student-led non-profit expanding equitable access to modern AI education through
+              hands-on workshops, project-based curricula, community events, and responsible AI
+              learning.
+            </p>
+            <div className="metric-row">
+              {[
+                ["30+", "Chapters"],
+                ["1,000+", "Students reached"],
+                ["40+", "Workshops"],
+                ["100+", "Hackathon participants"],
+              ].map(([value, label]) => (
+                <div key={label}>
+                  <strong>{value}</strong>
+                  <span>{label}</span>
+                </div>
+              ))}
+            </div>
+          </div>
+          <div className="gallery-grid">
+            <img src="/hackathonphoto.JPG" alt="AIFA hackathon session" />
+            <img src="/grouppicture.JPG" alt="AIFA participant group" />
+            <img src="/aifapresentation.JPG" alt="AIFA presentation" />
+          </div>
+        </div>
+      </Reveal>
+    </section>
+  );
+}
+
+function AutomationPipeline() {
+  return (
+    <section id="automation" className="content-section automation-section">
+      <SectionIntro
+        eyebrow="Automation layer"
+        title="The portfolio is designed to update from GitHub signals."
+        body="The public site is the interface. The next layer is a reviewed automation pipeline that turns new project work into structured portfolio updates."
+      />
+
+      <div className="pipeline-panel">
+        {pipelineSteps.map((step, index) => {
+          const Icon = step.icon;
+          return (
+            <Reveal key={step.title} delay={index * 0.08}>
+              <article className="pipeline-step">
+                <div className="step-index">{String(index + 1).padStart(2, "0")}</div>
+                <Icon size={23} />
+                <h3>{step.title}</h3>
+                <p>{step.detail}</p>
+              </article>
+            </Reveal>
+          );
+        })}
+      </div>
+    </section>
+  );
+}
+
+function ContactSection() {
+  return (
+    <section id="contact" className="content-section contact-section">
+      <Reveal>
+        <div className="contact-panel">
+          <div>
+            <span className="section-eyebrow">Contact protocol</span>
+            <h2>Want to build something useful?</h2>
+            <p>
+              I am looking for software engineering opportunities where I can work on backend
+              systems, AI-assisted tools, full-stack products, and automation-heavy workflows.
+            </p>
+          </div>
+          <div className="contact-actions">
+            <a className="primary-action" href="mailto:neelbh99@gmail.com">
+              <Mail size={18} />
+              Email me
+            </a>
+            <a className="secondary-action" href="/Neel_Bhansali_resume.pdf" target="_blank" rel="noreferrer">
+              <FileText size={18} />
+              Resume
+            </a>
+            <a className="secondary-action" href="https://github.com/neel-bhan" target="_blank" rel="noreferrer">
+              <Github size={18} />
+              GitHub
+            </a>
+          </div>
+        </div>
+      </Reveal>
+    </section>
+  );
+}
+
+function CommandPalette({ open, onClose }: { open: boolean; onClose: () => void }) {
+  const commandRows = useMemo(() => commands, []);
+
+  return (
+    <AnimatePresence>
+      {open && (
+        <motion.div
+          className="command-backdrop"
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          exit={{ opacity: 0 }}
+          onClick={onClose}
+        >
+          <motion.div
+            className="command-palette"
+            initial={{ opacity: 0, y: 24, scale: 0.98 }}
+            animate={{ opacity: 1, y: 0, scale: 1 }}
+            exit={{ opacity: 0, y: 18, scale: 0.98 }}
+            onClick={(event) => event.stopPropagation()}
+          >
+            <div className="command-topline">
+              <Command size={18} />
+              <span>Command center</span>
+              <button type="button" onClick={onClose} aria-label="Close command palette">
+                <X size={18} />
+              </button>
+            </div>
+            <div className="command-list">
+              {commandRows.map((command) => (
+                <a key={command.label} href={command.href} onClick={onClose}>
+                  <span>{command.label}</span>
+                  <ArrowUpRight size={16} />
+                </a>
+              ))}
+            </div>
+          </motion.div>
+        </motion.div>
+      )}
+    </AnimatePresence>
+  );
+}
+
+function SectionIntro({ eyebrow, title, body }: { eyebrow: string; title: string; body: string }) {
+  return (
+    <Reveal>
+      <div className="section-intro">
+        <span className="section-eyebrow">{eyebrow}</span>
+        <h2>{title}</h2>
+        <p>{body}</p>
+      </div>
+    </Reveal>
+  );
+}
+
+function TagList({ tags }: { tags: string[] }) {
+  return (
+    <div className="tag-list">
+      {tags.map((tag) => (
+        <span key={tag}>{tag}</span>
+      ))}
+    </div>
+  );
+}
+
+function Reveal({
+  children,
+  delay = 0,
+}: {
+  children: React.ReactNode;
+  delay?: number;
+}) {
+  return (
+    <motion.div
+      initial={{ opacity: 0, y: 30 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      viewport={{ once: true, margin: "-80px" }}
+      transition={{ duration: 0.65, delay, ease: [0.22, 1, 0.36, 1] }}
+    >
+      {children}
+    </motion.div>
+  );
+}
+
+function BootSequence() {
+  const rows = ["indexing projects", "loading experience log", "arming GitHub sync", "system online"];
+
+  return (
+    <motion.div className="boot-screen" exit={{ opacity: 0 }} transition={{ duration: 0.45 }}>
+      <div className="boot-card">
+        <div className="boot-logo">
+          <Sparkles size={22} />
+        </div>
+        {rows.map((row, index) => (
+          <motion.div
+            className="boot-row"
+            key={row}
+            initial={{ opacity: 0, x: -10 }}
+            animate={{ opacity: 1, x: 0 }}
+            transition={{ delay: index * 0.22 }}
+          >
+            <span>{row}</span>
+            <Check size={15} />
+          </motion.div>
+        ))}
+      </div>
+    </motion.div>
+  );
+}
+
+function AmbientSystem() {
+  return (
+    <div className="ambient-system" aria-hidden="true">
+      <div className="mesh-gradient" />
+      <div className="grid-plane" />
+      <div className="scan-line" />
+      <motion.div
+        className="orbital-ring ring-one"
+        animate={{ rotate: 360 }}
+        transition={{ duration: 42, repeat: Infinity, ease: "linear" }}
+      />
+      <motion.div
+        className="orbital-ring ring-two"
+        animate={{ rotate: -360 }}
+        transition={{ duration: 58, repeat: Infinity, ease: "linear" }}
+      />
+    </div>
+  );
+}
+
+function SystemGraph() {
+  const nodes = [
+    ["GitHub", "12%", "24%"],
+    ["AI", "66%", "18%"],
+    ["Projects", "78%", "58%"],
+    ["Experience", "24%", "64%"],
+    ["Deploy", "50%", "82%"],
+  ];
+
+  return (
+    <div className="system-graph" aria-hidden="true">
+      <svg viewBox="0 0 420 320" role="presentation">
+        <motion.path
+          d="M72 78 C160 24, 230 58, 278 66 S356 122, 328 188 C298 258, 198 248, 112 210 C48 182, 36 116, 72 78Z"
+          fill="none"
+          stroke="url(#lineGradient)"
+          strokeWidth="1.2"
+          initial={{ pathLength: 0, opacity: 0 }}
+          animate={{ pathLength: 1, opacity: 1 }}
+          transition={{ delay: 1.55, duration: 1.7 }}
+        />
+        <defs>
+          <linearGradient id="lineGradient" x1="0" x2="1">
+            <stop offset="0%" stopColor="#4ade80" />
+            <stop offset="50%" stopColor="#38bdf8" />
+            <stop offset="100%" stopColor="#a78bfa" />
+          </linearGradient>
+        </defs>
+      </svg>
+      {nodes.map(([label, left, top], index) => (
+        <motion.div
+          className="graph-node"
+          key={label}
+          style={{ left, top }}
+          initial={{ opacity: 0, scale: 0.65 }}
+          animate={{ opacity: 1, scale: 1 }}
+          transition={{ delay: 1.65 + index * 0.12, type: "spring", stiffness: 160, damping: 14 }}
+        >
+          {label}
+        </motion.div>
+      ))}
+    </div>
+  );
+}
+
+function StatusDock() {
+  return (
+    <aside className="status-dock" aria-label="Portfolio system status">
+      <span>
+        <strong>{projects.length}</strong> projects indexed
+      </span>
+      <span>
+        <strong>{experiences.length}</strong> experiences logged
+      </span>
+      <span>
+        <strong>1</strong> auto-update pipeline
+      </span>
+    </aside>
   );
 }
 
