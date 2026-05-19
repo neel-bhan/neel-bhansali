@@ -171,7 +171,7 @@ export const experiences: Experience[] = [
     company: "MiniOrange",
     role: "Software Engineer Intern",
     date: "Jun 2025 - Aug 2025",
-    location: "Remote / India",
+    location: "Remote",
     image: "/miniOrange.jpeg",
     summary:
       "Identity and security platform internship focused on directory tooling, MFA flows, admin UX, React surfaces, and .NET APIs.",
@@ -186,9 +186,25 @@ export const experiences: Experience[] = [
   {
     company: "Represented Collective",
     role: "Software Engineering Intern",
-    date: "Mar 2025 - May 2025",
-    location: "Remote",
+    date: "Sep 2025 - Present",
+    location: "Madison, WI",
     image: "/representedCollective.jpeg",
+    summary:
+      "Developing a HIPAA-compliant mobile health application for asthma patients with a React Native client and secure cloud backend.",
+    highlights: [
+      "Built patient-facing symptom tracking, medication adherence logging, and analytics dashboard workflows",
+      "Engineered an Express.js, Prisma, and PostgreSQL backend with JWT-based access control and audit logging",
+      "Containerized services with Docker and deployed infrastructure on AWS ECS and RDS with strict validation pipelines",
+    ],
+    stack: ["React Native", "Expo", "Express.js", "Prisma", "PostgreSQL", "AWS ECS/RDS", "Docker"],
+    accent: "blue",
+  },
+  {
+    company: "University of Wisconsin-Madison",
+    role: "Software Engineering Intern",
+    date: "Mar 2025 - May 2025",
+    location: "Madison, WI",
+    image: "/wisconsin.jpeg",
     summary:
       "Built immersive STEM learning experiences through VR chemistry interactions and AI-guided progressive tutoring.",
     highlights: [
@@ -197,7 +213,7 @@ export const experiences: Experience[] = [
       "Delivered a React and MongoDB portal for user content and experiment logs",
     ],
     stack: ["React", "Node.js", "MongoDB", "OpenAI", "VR"],
-    accent: "blue",
+    accent: "red",
   },
   {
     company: "UT Dallas",
