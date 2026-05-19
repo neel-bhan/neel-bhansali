@@ -10,6 +10,7 @@ import {
   Database,
   FileText,
   Github,
+  Linkedin,
   Mail,
   Menu,
   Network,
@@ -40,6 +41,7 @@ const commands = [
   { label: "Download resume", href: "/Neel_Bhansali_resume.pdf" },
   { label: "Email Neel", href: "mailto:neelbh99@gmail.com" },
   { label: "Open GitHub", href: "https://github.com/neel-bhan" },
+  { label: "Open LinkedIn", href: "https://www.linkedin.com/in/neel-bhansali/" },
 ];
 
 function App() {
@@ -225,6 +227,20 @@ function Hero({ commandOpen }: { commandOpen: () => void }) {
               <strong>Neel Bhansali</strong>
               <span>Full-stack + AI systems builder</span>
             </div>
+          </div>
+          <div className="profile-links" aria-label="Profile links">
+            <a href="https://github.com/neel-bhan" target="_blank" rel="noreferrer">
+              <Github size={16} />
+              GitHub
+            </a>
+            <a href="https://www.linkedin.com/in/neel-bhansali/" target="_blank" rel="noreferrer">
+              <Linkedin size={16} />
+              LinkedIn
+            </a>
+            <a href="/Neel_Bhansali_resume.pdf" target="_blank" rel="noreferrer">
+              <FileText size={16} />
+              Resume
+            </a>
           </div>
 
           <div className="signal-stack">
