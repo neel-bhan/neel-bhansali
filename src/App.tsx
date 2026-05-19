@@ -27,8 +27,8 @@ import type { Project } from "./content";
 
 const navItems = [
   { label: "Overview", href: "#top" },
-  { label: "Projects", href: "#projects" },
   { label: "Experience", href: "#experience" },
+  { label: "Projects", href: "#projects" },
   { label: "Automation", href: "#automation" },
   { label: "Contact", href: "#contact" },
 ];
@@ -94,14 +94,13 @@ function App() {
 
       <main>
         <Hero commandOpen={() => setCommandOpen(true)} />
-        <ProjectRegistry />
         <ExperienceLog />
+        <ProjectRegistry />
         <LeadershipNetwork />
         <AutomationPipeline />
         <ContactSection />
       </main>
 
-      <StatusDock />
       <CommandPalette open={commandOpen} onClose={() => setCommandOpen(false)} />
     </div>
   );
@@ -217,7 +216,7 @@ function Hero({ commandOpen }: { commandOpen: () => void }) {
       >
         <div className="system-card">
           <div className="card-header">
-            <span>System Overview</span>
+            <span>Profile Index</span>
             <span className="mono">online</span>
           </div>
           <div className="neel-card">
@@ -247,8 +246,6 @@ function Hero({ commandOpen }: { commandOpen: () => void }) {
             })}
           </div>
         </div>
-
-        <SystemGraph />
       </motion.div>
     </section>
   );
@@ -323,43 +320,66 @@ function ProjectCard({ project }: { project: Project }) {
 
 function LivingPipelineVisual() {
   const visualSteps = [
-    { label: "GitHub signal", icon: Github },
-    { label: "Repo context", icon: Database },
-    { label: "AI draft", icon: WandSparkles },
-    { label: "Review PR", icon: Check },
-    { label: "Site update", icon: Network },
+    { label: "GitHub", detail: "repo signal", icon: Github },
+    { label: "Context", detail: "metadata parse", icon: Database },
+    { label: "AI Draft", detail: "summary + tags", icon: WandSparkles },
+    { label: "Review", detail: "pull request", icon: Check },
+    { label: "Deploy", detail: "site update", icon: Network },
   ];
 
   return (
     <div className="living-pipeline-visual" aria-label="Animated GitHub to portfolio update pipeline">
-      <div className="pipeline-orbit" />
-      <motion.div
-        className="pipeline-pulse"
-        animate={{
-          offsetDistance: ["0%", "100%"],
-        }}
-        transition={{ duration: 6.5, repeat: Infinity, ease: "linear" }}
-      />
-      {visualSteps.map((step, index) => {
-        const Icon = step.icon;
-        return (
-          <motion.div
-            className="pipeline-node"
-            key={step.label}
-            initial={{ opacity: 0, y: 14, scale: 0.92 }}
-            whileInView={{ opacity: 1, y: 0, scale: 1 }}
-            viewport={{ once: true }}
-            transition={{ delay: index * 0.12, duration: 0.5 }}
-          >
-            <span className="node-index">{String(index + 1).padStart(2, "0")}</span>
-            <Icon size={22} />
-            <strong>{step.label}</strong>
-          </motion.div>
-        );
-      })}
-      <div className="pipeline-terminal">
-        <span className="mono">portfolio.update()</span>
-        <strong>Reviewed project record ready for deploy</strong>
+      <div className="pipeline-hud">
+        <span>automation pipeline</span>
+        <span className="mono">live simulation</span>
+      </div>
+      <svg className="pipeline-traces" viewBox="0 0 680 260" role="presentation">
+        <path className="trace trace-muted" d="M58 128 C160 58 250 58 340 128 S520 198 622 128" />
+        <path className="trace trace-hot trace-one" d="M58 128 C160 58 250 58 340 128 S520 198 622 128" />
+        <path className="trace trace-muted" d="M58 172 C160 214 250 214 340 172 S520 88 622 172" />
+        <path className="trace trace-hot trace-two" d="M58 172 C160 214 250 214 340 172 S520 88 622 172" />
+      </svg>
+      {[0, 1, 2, 3].map((packet) => (
+        <div
+          className="pipeline-packet"
+          key={packet}
+          style={{ animationDelay: `${packet * 0.95}s` }}
+        />
+      ))}
+      <div className="pipeline-pulse" />
+      <div className="pipeline-stage-grid">
+        {visualSteps.map((step, index) => {
+          const Icon = step.icon;
+          return (
+            <motion.div
+              className="pipeline-stage"
+              key={step.label}
+              initial={{ opacity: 0, y: 16, scale: 0.96 }}
+              whileInView={{ opacity: 1, y: 0, scale: 1 }}
+              viewport={{ once: true }}
+              transition={{ delay: index * 0.1, duration: 0.5 }}
+            >
+              <span className="node-index">{String(index + 1).padStart(2, "0")}</span>
+              <Icon size={20} />
+              <strong>{step.label}</strong>
+              <small>{step.detail}</small>
+            </motion.div>
+          );
+        })}
+      </div>
+      <div className="pipeline-console">
+        <div className="console-row">
+          <span className="mono">$ github.webhook.receive()</span>
+          <strong>new project signal detected</strong>
+        </div>
+        <div className="console-row">
+          <span className="mono">$ ai.summary.draft()</span>
+          <strong>portfolio record generated</strong>
+        </div>
+        <div className="console-output">
+          <span className="live-dot" />
+          reviewed update ready for deploy
+        </div>
       </div>
     </div>
   );
@@ -641,81 +661,8 @@ function BootSequence() {
 function AmbientSystem() {
   return (
     <div className="ambient-system" aria-hidden="true">
-      <div className="mesh-gradient" />
-      <div className="grid-plane" />
-      <div className="scan-line" />
-      <motion.div
-        className="orbital-ring ring-one"
-        animate={{ rotate: 360 }}
-        transition={{ duration: 42, repeat: Infinity, ease: "linear" }}
-      />
-      <motion.div
-        className="orbital-ring ring-two"
-        animate={{ rotate: -360 }}
-        transition={{ duration: 58, repeat: Infinity, ease: "linear" }}
-      />
+      <div className="matte-field" />
     </div>
-  );
-}
-
-function SystemGraph() {
-  const nodes = [
-    ["GitHub", "12%", "24%"],
-    ["AI", "66%", "18%"],
-    ["Projects", "78%", "58%"],
-    ["Experience", "24%", "64%"],
-    ["Deploy", "50%", "82%"],
-  ];
-
-  return (
-    <div className="system-graph" aria-hidden="true">
-      <svg viewBox="0 0 420 320" role="presentation">
-        <motion.path
-          d="M72 78 C160 24, 230 58, 278 66 S356 122, 328 188 C298 258, 198 248, 112 210 C48 182, 36 116, 72 78Z"
-          fill="none"
-          stroke="url(#lineGradient)"
-          strokeWidth="1.2"
-          initial={{ pathLength: 0, opacity: 0 }}
-          animate={{ pathLength: 1, opacity: 1 }}
-          transition={{ delay: 1.55, duration: 1.7 }}
-        />
-        <defs>
-          <linearGradient id="lineGradient" x1="0" x2="1">
-            <stop offset="0%" stopColor="#4ade80" />
-            <stop offset="50%" stopColor="#38bdf8" />
-            <stop offset="100%" stopColor="#a78bfa" />
-          </linearGradient>
-        </defs>
-      </svg>
-      {nodes.map(([label, left, top], index) => (
-        <motion.div
-          className="graph-node"
-          key={label}
-          style={{ left, top }}
-          initial={{ opacity: 0, scale: 0.65 }}
-          animate={{ opacity: 1, scale: 1 }}
-          transition={{ delay: 1.65 + index * 0.12, type: "spring", stiffness: 160, damping: 14 }}
-        >
-          {label}
-        </motion.div>
-      ))}
-    </div>
-  );
-}
-
-function StatusDock() {
-  return (
-    <aside className="status-dock" aria-label="Portfolio system status">
-      <span>
-        <strong>{projects.length}</strong> projects indexed
-      </span>
-      <span>
-        <strong>{experiences.length}</strong> experiences logged
-      </span>
-      <span>
-        <strong>1</strong> auto-update pipeline
-      </span>
-    </aside>
   );
 }
 
