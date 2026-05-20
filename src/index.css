@@ -537,7 +537,7 @@ button {
 
 .featured-project {
   display: grid;
-  grid-template-columns: minmax(260px, 0.72fr) minmax(420px, 1.28fr);
+  grid-template-columns: minmax(230px, 0.62fr) minmax(460px, 1.38fr);
   gap: 1.5rem;
   align-items: center;
   padding: clamp(1.1rem, 2.8vw, 2rem);
@@ -674,9 +674,9 @@ button {
 .living-pipeline-visual {
   position: relative;
   display: grid;
-  grid-template-rows: auto 1fr auto;
+  grid-template-rows: auto minmax(220px, 1fr) auto;
   gap: 1rem;
-  min-height: 430px;
+  min-height: 420px;
   padding: 1rem;
   overflow: hidden;
   border: 1px solid rgba(255, 255, 255, 0.1);
@@ -720,116 +720,81 @@ button {
   letter-spacing: 0;
 }
 
-.pipeline-stage-grid {
+.pipeline-map {
   position: relative;
-  z-index: 5;
-  display: grid;
-  grid-template-columns: repeat(5, minmax(0, 1fr));
-  gap: 0.55rem;
-  align-items: center;
-  padding: 3.6rem 0.35rem 3.25rem;
-}
-
-.pipeline-stage {
-  display: grid;
-  gap: 0.4rem;
-  min-height: 124px;
-  padding: 0.78rem;
-  border: 1px solid rgba(255, 255, 255, 0.12);
-  border-radius: 20px;
-  background: #0b101a;
-  box-shadow:
-    inset 0 1px 0 rgba(255, 255, 255, 0.08),
-    0 18px 48px rgba(0, 0, 0, 0.26),
-    0 0 36px rgba(56, 189, 248, 0.04);
-}
-
-.pipeline-stage:nth-child(even) {
-  transform: translateY(24px);
-}
-
-.pipeline-stage svg {
-  color: var(--cyan);
-  filter: drop-shadow(0 0 12px rgba(56, 189, 248, 0.45));
-}
-
-.node-index {
-  color: var(--soft);
-  font-family: "SFMono-Regular", Consolas, monospace;
-  font-size: 0.78rem;
-}
-
-.pipeline-stage strong {
-  font-size: clamp(0.72rem, 1.2vw, 0.98rem);
-  line-height: 1.2;
-}
-
-.pipeline-stage small {
-  color: var(--soft);
-  font-size: clamp(0.62rem, 1vw, 0.76rem);
-  line-height: 1.25;
-}
-
-.pipeline-traces {
-  position: absolute;
-  inset: 74px 0 auto;
-  z-index: 2;
+  z-index: 4;
   width: 100%;
-  height: 260px;
+  min-height: 220px;
   overflow: visible;
-  pointer-events: none;
 }
 
-.trace {
+.map-route {
   fill: none;
+  stroke-linejoin: round;
   stroke-linecap: round;
+}
+
+.map-route-base {
+  stroke: rgba(255, 255, 255, 0.12);
   stroke-width: 2.4;
 }
 
-.trace-muted {
-  stroke: rgba(255, 255, 255, 0.1);
+.map-route-hot {
+  stroke-width: 3;
+  stroke-dasharray: 88 1050;
+  animation: mapRouteFlow 6s linear infinite;
 }
 
-.trace-hot {
-  stroke: var(--cyan);
-  stroke-dasharray: 80 620;
-  stroke-width: 3.2;
-  filter: drop-shadow(0 0 12px rgba(56, 189, 248, 0.65));
-  animation: traceFlow 4.8s linear infinite;
+.map-route-hot.green {
+  stroke: url(#routeGlow);
+  filter: drop-shadow(0 0 5px rgba(74, 222, 128, 0.32));
 }
 
-.trace-two {
-  stroke: var(--emerald);
-  animation-delay: 1.3s;
+.map-route-hot.blue {
+  stroke: url(#routeGlowBlue);
+  filter: drop-shadow(0 0 5px rgba(56, 189, 248, 0.32));
 }
 
-.pipeline-packet,
-.pipeline-pulse {
-  position: absolute;
-  z-index: 3;
-  top: 46%;
-  left: 7%;
-  border-radius: 999px;
+.map-packet.green {
+  fill: var(--emerald);
+  filter: drop-shadow(0 0 7px rgba(74, 222, 128, 0.42));
 }
 
-.pipeline-packet {
-  width: 10px;
-  height: 10px;
-  background: var(--emerald);
-  box-shadow:
-    0 0 0 5px rgba(74, 222, 128, 0.08),
-    0 0 18px rgba(74, 222, 128, 0.62);
-  animation: packetTravel 4.8s linear infinite;
+.map-packet.blue {
+  fill: var(--cyan);
+  filter: drop-shadow(0 0 7px rgba(56, 189, 248, 0.42));
 }
 
-.pipeline-pulse {
-  width: 18px;
-  height: 18px;
-  background: white;
-  box-shadow:
-    0 0 0 9px rgba(56, 189, 248, 0.09),
-    0 0 26px rgba(56, 189, 248, 0.62);
-  animation: pulseTravel 5.4s linear infinite;
+.map-stage rect {
+  fill: #0b101a;
+  stroke: rgba(223, 247, 255, 0.14);
+  stroke-width: 1.2;
+  vector-effect: non-scaling-stroke;
+  shape-rendering: geometricPrecision;
+  filter: drop-shadow(0 14px 24px rgba(0, 0, 0, 0.26));
+}
+
+.map-stage text {
+  font-family:
+    Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  letter-spacing: 0;
+}
+
+.map-index {
+  fill: rgba(225, 238, 255, 0.52);
+  font-family: "SFMono-Regular", Consolas, monospace;
+  font-size: 15px;
+}
+
+.map-label {
+  fill: #f7fbff;
+  font-size: 18px;
+  font-weight: 800;
+}
+
+.map-detail {
+  fill: rgba(225, 238, 255, 0.58);
+  font-size: 12px;
 }
 
 .pipeline-console {
@@ -1362,55 +1327,12 @@ button {
   }
 }
 
-@keyframes packetTravel {
-  0% {
-    opacity: 0;
-    transform: translateX(0) translateY(0) scale(0.8);
-  }
-  12% {
-    opacity: 1;
-  }
-  50% {
-    transform: translateX(min(260px, 39vw)) translateY(-32px) scale(1);
-  }
-  88% {
-    opacity: 1;
-  }
-  100% {
-    opacity: 0;
-    transform: translateX(min(520px, 78vw)) translateY(0) scale(0.8);
-  }
-}
-
-@keyframes pulseTravel {
-  0% {
-    transform: translateX(0) scale(0.8);
-  }
-  48% {
-    transform: translateX(min(260px, 39vw)) translateY(-40px) scale(1);
-  }
-  100% {
-    transform: translateX(min(520px, 78vw)) scale(0.8);
-  }
-}
-
-@keyframes traceFlow {
+@keyframes mapRouteFlow {
   from {
-    stroke-dashoffset: 720;
+    stroke-dashoffset: 1120;
   }
   to {
     stroke-dashoffset: 0;
-  }
-}
-
-@keyframes pipelineSweep {
-  0%,
-  26% {
-    transform: translateX(-82%);
-  }
-  70%,
-  100% {
-    transform: translateX(82%);
   }
 }
 
@@ -1488,21 +1410,8 @@ button {
     padding: 1rem;
   }
 
-  .pipeline-traces,
-  .pipeline-packet,
-  .pipeline-pulse {
-    display: none;
-  }
-
-  .pipeline-stage-grid {
-    grid-template-columns: 1fr;
-    padding: 0;
-  }
-
-  .pipeline-stage,
-  .pipeline-stage:nth-child(even) {
-    min-height: auto;
-    transform: none;
+  .pipeline-map {
+    min-height: 210px;
   }
 
   .pipeline-hud,

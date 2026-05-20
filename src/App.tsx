@@ -7,15 +7,12 @@ import {
   ChevronRight,
   CircleDot,
   Command,
-  Database,
   FileText,
   Github,
   Linkedin,
   Mail,
   Menu,
-  Network,
   Sparkles,
-  WandSparkles,
   X,
 } from "lucide-react";
 import {
@@ -336,12 +333,17 @@ function ProjectCard({ project }: { project: Project }) {
 
 function LivingPipelineVisual() {
   const visualSteps = [
-    { label: "GitHub", detail: "repo signal", icon: Github },
-    { label: "Context", detail: "metadata parse", icon: Database },
-    { label: "AI Draft", detail: "summary + tags", icon: WandSparkles },
-    { label: "Review", detail: "pull request", icon: Check },
-    { label: "Deploy", detail: "site update", icon: Network },
+    { label: "GitHub", detail: "repo signal" },
+    { label: "Context", detail: "metadata parse" },
+    { label: "AI Draft", detail: "summary + tags" },
+    { label: "Review", detail: "human pass" },
+    { label: "PR", detail: "site change" },
+    { label: "Deploy", detail: "live update" },
   ];
+  const topPath =
+    "M24 134 H32 V86 Q32 66 52 66 H148 Q168 66 168 86 V134 H182 V86 Q182 66 202 66 H298 Q318 66 318 86 V134 H332 V86 Q332 66 352 66 H448 Q468 66 468 86 V134 H482 V86 Q482 66 502 66 H598 Q618 66 618 86 V134 H632 V86 Q632 66 652 66 H748 Q768 66 768 86 V134 H782 V86 Q782 66 802 66 H898 Q918 66 918 86 V134 H928";
+  const bottomPath =
+    "M24 134 H32 V182 Q32 202 52 202 H148 Q168 202 168 182 V134 H182 V182 Q182 202 202 202 H298 Q318 202 318 182 V134 H332 V182 Q332 202 352 202 H448 Q468 202 468 182 V134 H482 V182 Q482 202 502 202 H598 Q618 202 618 182 V134 H632 V182 Q632 202 652 202 H748 Q768 202 768 182 V134 H782 V182 Q782 202 802 202 H898 Q918 202 918 182 V134 H928";
 
   return (
     <div className="living-pipeline-visual" aria-label="Animated GitHub to portfolio update pipeline">
@@ -349,40 +351,61 @@ function LivingPipelineVisual() {
         <span>automation pipeline</span>
         <span className="mono">live simulation</span>
       </div>
-      <svg className="pipeline-traces" viewBox="0 0 680 260" role="presentation">
-        <path className="trace trace-muted" d="M58 128 C160 58 250 58 340 128 S520 198 622 128" />
-        <path className="trace trace-hot trace-one" d="M58 128 C160 58 250 58 340 128 S520 198 622 128" />
-        <path className="trace trace-muted" d="M58 172 C160 214 250 214 340 172 S520 88 622 172" />
-        <path className="trace trace-hot trace-two" d="M58 172 C160 214 250 214 340 172 S520 88 622 172" />
-      </svg>
-      {[0, 1, 2, 3].map((packet) => (
-        <div
-          className="pipeline-packet"
-          key={packet}
-          style={{ animationDelay: `${packet * 0.95}s` }}
-        />
-      ))}
-      <div className="pipeline-pulse" />
-      <div className="pipeline-stage-grid">
+      <svg className="pipeline-map" viewBox="0 0 940 260" role="presentation">
+        <defs>
+          <linearGradient id="routeGlow" x1="0" x2="1">
+            <stop offset="0%" stopColor="#4ade80" stopOpacity="0.15" />
+            <stop offset="45%" stopColor="#4ade80" />
+            <stop offset="100%" stopColor="#4ade80" />
+          </linearGradient>
+          <linearGradient id="routeGlowBlue" x1="0" x2="1">
+            <stop offset="0%" stopColor="#38bdf8" stopOpacity="0.15" />
+            <stop offset="45%" stopColor="#38bdf8" />
+            <stop offset="100%" stopColor="#38bdf8" />
+          </linearGradient>
+          <filter id="softGlow" x="-30%" y="-30%" width="160%" height="160%">
+            <feGaussianBlur stdDeviation="3" result="blur" />
+            <feMerge>
+              <feMergeNode in="blur" />
+              <feMergeNode in="SourceGraphic" />
+            </feMerge>
+          </filter>
+        </defs>
+        <path className="map-route map-route-base top" d={topPath} />
+        <path className="map-route map-route-base bottom" d={bottomPath} />
+        <path className="map-route map-route-hot green" d={topPath} />
+        <path className="map-route map-route-hot blue" d={bottomPath} />
+
+        {[0, 1, 2].map((packet) => (
+          <rect className="map-packet green" key={`top-${packet}`} width="18" height="7" rx="3.5">
+            <animateMotion dur="6s" begin={`${packet * 1.6}s`} repeatCount="indefinite" path={topPath} />
+          </rect>
+        ))}
+        {[0, 1, 2].map((packet) => (
+          <rect className="map-packet blue" key={`bottom-${packet}`} width="18" height="7" rx="3.5">
+            <animateMotion dur="6s" begin={`${packet * 1.6}s`} repeatCount="indefinite" path={bottomPath} />
+          </rect>
+        ))}
+
         {visualSteps.map((step, index) => {
-          const Icon = step.icon;
+          const x = 40 + index * 150;
+          const y = 74;
           return (
-            <motion.div
-              className="pipeline-stage"
-              key={step.label}
-              initial={{ opacity: 0, y: 16, scale: 0.96 }}
-              whileInView={{ opacity: 1, y: 0, scale: 1 }}
-              viewport={{ once: true }}
-              transition={{ delay: index * 0.1, duration: 0.5 }}
-            >
-              <span className="node-index">{String(index + 1).padStart(2, "0")}</span>
-              <Icon size={20} />
-              <strong>{step.label}</strong>
-              <small>{step.detail}</small>
-            </motion.div>
+            <g className="map-stage" key={step.label} transform={`translate(${x} ${y})`}>
+              <rect width="120" height="120" rx="18" />
+              <text className="map-index" x="18" y="28">
+                {String(index + 1).padStart(2, "0")}
+              </text>
+              <text className="map-label" x="18" y="66">
+                {step.label}
+              </text>
+              <text className="map-detail" x="18" y="91">
+                {step.detail}
+              </text>
+            </g>
           );
         })}
-      </div>
+      </svg>
       <div className="pipeline-console">
         <div className="console-row">
           <span className="mono">$ github.webhook.receive()</span>
